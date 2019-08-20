@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{066EC1D6-504A-4AD6-A96F-3DC61590E845}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>_3EndTCommercePresentation</RootNamespace>
+    <AssemblyName>3EndTCommercePresentation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin\ManageDocuments.aspx" />
+    <Content Include="admin\ManageProductItemPrice.aspx" />
+    <Content Include="admin\states.xml" />
+    <Content Include="client\careers.aspx" />
+    <Content Include="client\contact-us.aspx" />
+    <Content Include="client\order-confirmation.aspx" />
+    <Content Include="client\purchase-order.aspx" />
+    <Content Include="client\under-construction.aspx" />
+    <Content Include="client\UserControls\ShoppingCart.ascx" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="Images\facebook.png" />
+    <Content Include="Images\favicon.ico" />
+    <Content Include="Images\linkedin.png" />
+    <Content Include="Images\meco.jpg" />
+    <Content Include="Images\ndt-u.jpg" />
+    <Content Include="Images\ndt_si_thumb.png" />
+    <Content Include="Images\nova.jpg" />
+    <Content Include="Images\qmsa-logo.png" />
+    <Content Include="Images\side-menu-icon.png" />
+    <Content Include="Images\twiter.png" />
+    <Content Include="Images\wire_type_iqi_din.png" />
+    <Content Include="jquery-te\jquery-te-1.4.0.css" />
+    <Content Include="css\main.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\1st.png" />
+    <Content Include="Images\2nd.png" />
+    <Content Include="Images\3rd.png" />
+    <Content Include="Images\agfa_dryer.png" />
+    <Content Include="Images\bg-img.jpg" />
+    <Content Include="Images\carousel2.jpg" />
+    <Content Include="Images\close_button.png" />
+    <Content Include="Images\NoImage.jpg" />
+    <Content Include="Images\orange-shopping-cart.png" />
+    <Content Include="Images\RadAlert.jpg" />
+    <Content Include="Images\shopping-cart-2.png" />
+    <Content Include="Images\SM1000.jpg" />
+    <Content Include="jquery-te\jquery-te.png" />
+    <Content Include="js\bootstrap-modal.js" />
+    <Content Include="js\bootstrap-modalmanager.js" />
+    <Content Include="css\bootstrap-responsive.css" />
+    <Content Include="css\bootstrap-responsive.min.css" />
+    <Content Include="jquery-te\jquery-te-1.4.0.min.js" />
+    <Content Include="js\jquery.cookie.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\modal.js" />
+    <Content Include="js\model.min.js" />
+    <Content Include="admin\ManageCompany.aspx" />
+    <Content Include="admin\ManageCompanyShippingAddress.aspx" />
+    <Content Include="admin\ManageCustomer.aspx" />
+    <Content Include="admin\Dashboard.aspx" />
+    <Content Include="admin\Default.aspx" />
+    <Content Include="admin\ManageProduct.aspx" />
+    <Content Include="admin\ManageProductCategory.aspx" />
+    <Content Include="admin\ManageTier.aspx" />
+    <Content Include="client\about-us.aspx" />
+    <Content Include="client\product-details.aspx" />
+    <Content Include="client\products.aspx" />
+    <Content Include="client\SignUp.aspx" />
+    <Content Include="css\admin.css" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\fonts.css" />
+    <Content Include="Images\carousel.jpg" />
+    <Content Include="Images\cart%402x.png" />
+    <Content Include="Images\cart.png" />
+    <Content Include="Images\logo.jpg" />
+    <Content Include="Images\product-image-large.jpg" />
+    <Content Include="Images\product-image-medium.jpg" />
+    <Content Include="Images\product-image-small.jpg" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\custom.js" />
+    <Content Include="js\custom.modernizr.js" />
+    <Content Include="js\html5shiv.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\jquery.sonar.min.js" />
+    <Content Include="js\lazy-bootstrap-carousel.js" />
+    <Content Include="js\lazy-load.js" />
+    <Content Include="js\plugins.js" />
+    <Content Include="admin\ManageProductItem.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Images\calendar.png" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\edit.gif" />
+    <Content Include="Images\search.gif" />
+    <Content Include="Login.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="admin\ManageCompany.aspx.cs">
+      <DependentUpon>ManageCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageCompany.aspx.designer.cs">
+      <DependentUpon>ManageCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageCompanyShippingAddress.aspx.cs">
+      <DependentUpon>ManageCompanyShippingAddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageCompanyShippingAddress.aspx.designer.cs">
+      <DependentUpon>ManageCompanyShippingAddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageCustomer.aspx.cs">
+      <DependentUpon>ManageCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageCustomer.aspx.designer.cs">
+      <DependentUpon>ManageCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageDocuments.aspx.cs">
+      <DependentUpon>ManageDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageDocuments.aspx.designer.cs">
+      <DependentUpon>ManageDocuments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageProduct.aspx.cs">
+      <DependentUpon>ManageProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageProduct.aspx.designer.cs">
+      <DependentUpon>ManageProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageProductCategory.aspx.cs">
+      <DependentUpon>ManageProductCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageProductCategory.aspx.designer.cs">
+      <DependentUpon>ManageProductCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageProductItemPrice.aspx.cs">
+      <DependentUpon>ManageProductItemPrice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageProductItemPrice.aspx.designer.cs">
+      <DependentUpon>ManageProductItemPrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageTier.aspx.cs">
+      <DependentUpon>ManageTier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageTier.aspx.designer.cs">
+      <DependentUpon>ManageTier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\about-us.aspx.cs">
+      <DependentUpon>about-us.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\about-us.aspx.designer.cs">
+      <DependentUpon>about-us.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\careers.aspx.cs">
+      <DependentUpon>careers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\careers.aspx.designer.cs">
+      <DependentUpon>careers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\contact-us.aspx.cs">
+      <DependentUpon>contact-us.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\contact-us.aspx.designer.cs">
+      <DependentUpon>contact-us.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\order-confirmation.aspx.cs">
+      <DependentUpon>order-confirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\order-confirmation.aspx.designer.cs">
+      <DependentUpon>order-confirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\product-details.aspx.cs">
+      <DependentUpon>product-details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\product-details.aspx.designer.cs">
+      <DependentUpon>product-details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\products.aspx.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\products.aspx.designer.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\purchase-order.aspx.cs">
+      <DependentUpon>purchase-order.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\purchase-order.aspx.designer.cs">
+      <DependentUpon>purchase-order.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\SignUp.aspx.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\SignUp.aspx.designer.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\under-construction.aspx.cs">
+      <DependentUpon>under-construction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\under-construction.aspx.designer.cs">
+      <DependentUpon>under-construction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\UserControls\ShoppingCart.ascx.cs">
+      <DependentUpon>ShoppingCart.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\UserControls\ShoppingCart.ascx.designer.cs">
+      <DependentUpon>ShoppingCart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageProductItem.aspx.cs">
+      <DependentUpon>ManageProductItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageProductItem.aspx.designer.cs">
+      <DependentUpon>ManageProductItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\Client.Master.cs">
+      <DependentUpon>Client.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\Client.Master.designer.cs">
+      <DependentUpon>Client.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MasterPages\Admin.Master" />
+    <Content Include="packages.config" />
+    <Content Include="client\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="client\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="client\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="client\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="client\fonts\PTSans\PTS55F-webfont.eot" />
+    <Content Include="client\fonts\PTSans\PTS55F-webfont.svg" />
+    <Content Include="client\fonts\PTSans\PTS55F-webfont.ttf" />
+    <Content Include="client\fonts\PTSans\PTS55F-webfont.woff" />
+    <Content Include="client\fonts\PTSans\PTS56F-webfont.eot" />
+    <Content Include="client\fonts\PTSans\PTS56F-webfont.svg" />
+    <Content Include="client\fonts\PTSans\PTS56F-webfont.ttf" />
+    <Content Include="client\fonts\PTSans\PTS56F-webfont.woff" />
+    <Content Include="client\fonts\PTSans\PTS75F-webfont.eot" />
+    <Content Include="client\fonts\PTSans\PTS75F-webfont.svg" />
+    <Content Include="client\fonts\PTSans\PTS75F-webfont.ttf" />
+    <Content Include="client\fonts\PTSans\PTS75F-webfont.woff" />
+    <Content Include="client\fonts\PTSans\PTS76F-webfont.eot" />
+    <Content Include="client\fonts\PTSans\PTS76F-webfont.svg" />
+    <Content Include="client\fonts\PTSans\PTS76F-webfont.ttf" />
+    <Content Include="client\fonts\PTSans\PTS76F-webfont.woff" />
+    <Content Include="client\fonts\PTSans\PTSN\PTN57F-webfont.eot" />
+    <Content Include="client\fonts\PTSans\PTSN\PTN57F-webfont.svg" />
+    <Content Include="client\fonts\PTSans\PTSN\PTN57F-webfont.ttf" />
+    <Content Include="client\fonts\PTSans\PTSN\PTN57F-webfont.woff" />
+    <Content Include="client\fonts\PTSans\PTSN\PTN77F-webfont.eot" />
+    <Content Include="client\fonts\PTSans\PTSN\PTN77F-webfont.svg" />
+    <Content Include="client\fonts\PTSans\PTSN\PTN77F-webfont.ttf" />
+    <Content Include="client\fonts\PTSans\PTSN\PTN77F-webfont.woff" />
+    <Content Include="MasterPages\Client.Master" />
+    <Content Include="admin\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\Publish-Local.pubxml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\3EndTBusinessLayer\3EndTBusinessLayer.csproj">
+      <Project>{0d0d2ba8-f087-4157-8962-c4569be65433}</Project>
+      <Name>3EndTBusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\3EndTDataLayer\3EndTDataLayer.csproj">
+      <Project>{20e0e453-e31d-4e3c-a667-f898d2a35bd8}</Project>
+      <Name>3EndTDataLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>34625</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1855/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

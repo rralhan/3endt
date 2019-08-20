@@ -1,0 +1,14 @@
+System.DivideByZeroException: Attempted to divide by zero.
+   at _3EndTCommercePresentation.Admin.ManageProductCategory.Page_Load(Object sender, EventArgs e) in c:\Users\Rajiv\Source\Workspaces\3ENDTShop\SolutionX\3EndTCommercePresentation\Admin\ManageProductCategory.aspx.cs:line 28
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+======================================================================
+System.DivideByZeroException: Attempted to divide by zero.
+   at _3EndTCommercePresentation.Admin.ManageProductCategory.Page_Load(Object sender, EventArgs e) in c:\Users\Rajiv\Source\Workspaces\3ENDTShop\SolutionX\3EndTCommercePresentation\Admin\ManageProductCategory.aspx.cs:line 28
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+======================================================================

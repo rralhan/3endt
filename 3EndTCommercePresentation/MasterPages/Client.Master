@@ -1,0 +1,132 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Client.master.cs" Inherits="_3EndTCommercePresentation.MasterPages.Client" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3ENDT</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="/css/main.css?v07172017" />
+
+    <script type="text/javascript" src="/js/custom.modernizr.js"></script>
+    <script type='text/javascript' src='/js/jquery.min.js'></script>
+    <script type='text/javascript' src='/js/jquery.sonar.min.js'></script>
+    <script type='text/javascript' src='/js/lazy-load.js'></script>
+    <script type='text/javascript' src='/js/lazy-bootstrap-carousel.js'></script>
+    <script type='text/javascript' src='/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='/js/plugins.js'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="/js/main.js?v=12312017"></script>
+    <script src="/js/custom.js?v=12312017"></script>  
+    
+
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</head>
+
+<body >
+    <form id="form1" runat="server">
+      <%--  <asp:ScriptManager ID="clientScriptManager" runat="server"></asp:ScriptManager>--%>
+      
+
+
+        <div class="row">
+            <div class="side-menu">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <div class="brand-wrapper">
+                            <button type="button" class="navbar-toggle">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                            <!-- Brand -->
+                            <div class="brand-name-wrapper">
+                                <div class="row" style="padding-top: 5px" onclick="location.href='/default.aspx'">
+                                    <div class="col-xs-5 col-sm-5">
+                                        <img src="../images/logo.jpg" alt="3endt" />
+                                    </div>
+                                    <div class="col-xs-offset-2 col-xs-3 col-sm-offset-3 col-sm-3">
+                                        <img src="../images/qmsa-logo.png" alt="qmsa"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Menu -->
+                    <div class="side-menu-container">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="/default.aspx">HOME</a>
+                            </li>
+                            <li class="panel panel-default panel-expando" id="productsExpando">
+                                <a data-toggle="collapse" href="#div-expando-products">PRODUCTS<span class="caret"></span>
+                                </a>
+                                <div id="div-expando-products" class="panel-collapse">
+                                    <!--class="collapse"-->
+                                    <div class="panel-body">
+                                        <asp:Literal ID="ltProductItems" runat="server" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="panel panel-default panel-expando" id="serviceExpando">
+                                <a data-toggle="collapse" href="#div-expando-services">SERVICES<span class="caret"></span>
+                                </a>
+                                <div id="div-expando-services" class="panel-collapse">
+                                    <!--class="collapse"-->
+                                    <div class="panel-body">
+                                        <asp:Literal ID="ltServiceItems" runat="server" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="/client/about-us.aspx">ABOUT US</a>
+                            </li>
+                            <li>
+                                <a href="/client/contact-us.aspx">CONTACT US</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                 <input type="hidden" id="hdnNav" runat="server" enableviewstate="true" />
+            </div>
+                <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <asp:ContentPlaceHolder ID="CoreContentHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div id="footer">
+                    <h4>High Quality NDT Equipment</h4>
+                    &copy; Copyright 2017 | 3endt. All rights reserved.  
+                </div>
+            </div>
+        </div>
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-79575039-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    </form>
+</body>
+</html>

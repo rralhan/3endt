@@ -1,0 +1,120 @@
+﻿body {
+    font-size:14px;
+}
+
+.toptable {
+    width: 950px;
+    border-collapse: separate;
+    padding-left:25px;
+}
+
+.tdfirst {
+    width: 250px;
+}
+
+.tdsecond {
+    width: 350px;
+    white-space: nowrap;
+}
+
+.entries {
+    width: 250px;
+}
+
+.imp-msg {
+    text-align: center;
+    font-weight: bold;
+    color: red;
+}
+
+input[type=submit] {
+    width: 85px;
+}
+
+.tdcenter {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.tdproductitemheader{
+    border: thin solid #800000;
+    font-style: italic;
+    font-weight: bold;
+    width: 150px;
+    text-align: center;
+}
+.tblProductItemPrice {
+    border: thin dashed #800000;
+    padding: 5px;
+    border-collapse: collapse;
+}
+
+
+.tdleft {
+    padding-left: 10px;
+    text-align: left;
+}
+
+.tdright {
+    padding-right: 10px;
+    text-align: right;
+}
+
+.tdbuttonpad {
+    padding-left: 20px;
+    padding-bottom: 5px;
+}
+
+.heading {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.btnsubmit {
+    width: 85px;
+}
+
+.divadminleft {
+    float: left;
+    width: 20%;
+    overflow: auto;
+    border: 1px solid black;
+}
+
+    .divadminleft div {
+        margin-bottom: 10px;
+        text-align: left;
+        margin-left:10px;
+    }
+
+        .divadminleft div > div {
+            margin-left: 30px;
+        }
+
+.divadminright {
+    float: left;
+    width: 79%;
+    border: 1px solid black;
+}
+
+td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.logout
+{
+    font-size:16px;
+    text-decoration:none;
+}
+
+.jqte
+{
+    width:625px; 
+    max-width:700px;
+}
+.jqte_editor
+{
+    min-height:200px !important;
+    max-height:400px;
+}

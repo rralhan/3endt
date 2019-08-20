@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="80180b9851ea427dbb9cb6e74874a9e2" Name="Diagram1" ZoomLevel="95" ShowGrid="false">
+        <EntityTypeShape EntityType="EndTCommerceModel.Category" Width="1.5" PointX="1.5" PointY="13.25" />
+        <EntityTypeShape EntityType="EndTCommerceModel.Customer" Width="1.5" PointX="11.25" PointY="5.125" />
+        <EntityTypeShape EntityType="EndTCommerceModel.Product" Width="1.5" PointX="1.5" PointY="8.875" />
+        <EntityTypeShape EntityType="EndTCommerceModel.ProductInventory" Width="2.25" PointX="3.75" PointY="10.375" />
+        <EntityTypeShape EntityType="EndTCommerceModel.PurchaseOrderDetail" Width="1.875" PointX="16.875" PointY="7.5" />
+        <EntityTypeShape EntityType="EndTCommerceModel.PurchaseOrderMaster" Width="2.625" PointX="13.5" PointY="7" />
+        <EntityTypeShape EntityType="EndTCommerceModel.Tier" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="EndTCommerceModel.TierProduct" Width="2" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="EndTCommerceModel.TierProductPrice" Width="2.125" PointX="8.25" PointY="5.75" />
+        <EntityTypeShape EntityType="EndTCommerceModel.UserRole" Width="1.5" PointX="9" PointY="3.125" />
+        <AssociationConnector Association="EndTCommerceModel.FK_PurchaseOrderMaster_Customer" />
+        <AssociationConnector Association="EndTCommerceModel.FK_ProductInventory_Product" />
+        <AssociationConnector Association="EndTCommerceModel.FK_TierProduct_Tier" />
+        <AssociationConnector Association="EndTCommerceModel.FK_TierProductPrice_TierProduct" />
+        <AssociationConnector Association="EndTCommerceModel.UserRoleCustomer" />
+        <AssociationConnector Association="EndTCommerceModel.CategoryProduct" />
+        <AssociationConnector Association="EndTCommerceModel.PurchaseOrderMasterPurchaseOrderDetail" />
+        <EntityTypeShape EntityType="EndTCommerceModel.OrderStatus" Width="1.5" PointX="11.25" PointY="10.125" />
+        <AssociationConnector Association="EndTCommerceModel.OrderStatusPurchaseOrderMaster" />
+        <EntityTypeShape EntityType="EndTCommerceModel.ParentCompany" Width="2.5" PointX="2.75" PointY="23.125" />
+        <AssociationConnector Association="EndTCommerceModel.ProductPurchaseOrderDetail" />
+        <EntityTypeShape EntityType="EndTCommerceModel.Company" Width="1.5" PointX="6" PointY="2.5" />
+        <AssociationConnector Association="EndTCommerceModel.FK_CompanyCustomer" />
+        <AssociationConnector Association="EndTCommerceModel.FK_CompanyTierProductPrice" />
+        <AssociationConnector Association="EndTCommerceModel.FK_ParentCompanyCompany" />
+        <AssociationConnector Association="EndTCommerceModel.FK_TierCompany" />
+        <EntityTypeShape EntityType="EndTCommerceModel.ProductFilter" Width="2.25" PointX="1.5" PointY="16.75" />
+        <EntityTypeShape EntityType="EndTCommerceModel.ProductItem" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="EndTCommerceModel.FK_ProductItemPurchaseOrderDetail" />
+        <AssociationConnector Association="EndTCommerceModel.FK_ProductItemTierProduct" />
+        <EntityTypeShape EntityType="EndTCommerceModel.FilterTypes" Width="1.5" PointX="1.5" PointY="20.125" />
+        <AssociationConnector Association="EndTCommerceModel.ProductFilterProductItem" />
+        <AssociationConnector Association="EndTCommerceModel.ProductProductItem" />
+        <EntityTypeShape EntityType="EndTCommerceModel.Filter" Width="1.5" PointX="4.625" PointY="20" />
+        <AssociationConnector Association="EndTCommerceModel.FilterTypesFilter" />
+        <AssociationConnector Association="EndTCommerceModel.FilterProductFilter" />
+        <EntityTypeShape EntityType="EndTCommerceModel.Address" Width="1.5" PointX="9.5" PointY="14" />
+        <AssociationConnector Association="EndTCommerceModel.AddressPurchaseOrderMaster" />
+        <AssociationConnector Association="EndTCommerceModel.CompanyAddress" />
+        <EntityTypeShape EntityType="EndTCommerceModel.Document" Width="1.5" PointX="7.375" PointY="9.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
