@@ -8,8 +8,10 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>3ENDT</title>
-    <link rel="stylesheet" href="css/fonts.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
+     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+   <%-- <link rel="stylesheet" href="css/bootstrap.css" />--%>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="css/custom.css?ver=9" />
     <link rel="author" href="humans.txt" />
@@ -21,13 +23,13 @@
         <div class="whitepart pull-left">
             <section class="container">
                 <div class="row">
-                    <div class="loginform pull-center">
+                    <div class="card loginform pull-center">
                         <div class="logo pull-left">
                             <h1 class="pull-left">
                                 <img src="images/logo.jpg" alt="" /></h1>
                             <h3 class="pull-right">Login</h3>
                         </div>
-                        <form class="form-horizontal pull-left" role="form" id="form1" runat="server">
+                        <form class="card-body form-horizontal pull-left" role="form" id="form1" runat="server">
                             <asp:Login ID="Login1" runat="server" OnAuthenticate="Login1_Authenticate" OnLoggedIn="Login1_LoggedIn">
                                 <LayoutTemplate>
                                     <div class="form-group">
@@ -40,9 +42,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-md-3 control-label">Password</label>
-                                        <div class="col-md-9">
+                                        <div class="col-md-9" style="padding-bottom: 5%;">
 
-                                            <asp:TextBox ID="Password" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                            <asp:TextBox  ID="Password" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="Password" ErrorMessage="Password is required." ToolTip="Password is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
 
                                         </div>

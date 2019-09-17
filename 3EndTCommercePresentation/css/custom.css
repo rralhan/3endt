@@ -27,7 +27,7 @@ h2 { float: left; width: 100%; }
 .loginform form { padding: 30px 20px; width: 100%; box-shadow: 0 0 7px #555; box-shadow: 0 0 7px rgba(0,0,0,0.13); background-color:#ffffff; border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; }
 .form-group .col-xs-9 span { position: absolute; top: 16px; right: 5px; font-size: 32px; color: #CC0000; }
 
-.loginform form label.control-label { text-align: left; font-size: 20px; font-family: 'ptsn', Arial; font-weight: normal; line-height: 36px; }
+.loginform form label.control-label { text-align: left; font-size: 20px; font-family: 'ptsn', Arial; font-weight: normal; line-height: 36px; max-width:100%; }
 .loginform span{position:absolute !important;right:7px;top:10px;color:red;}
 .form-group.last button.btn, .form-group.last input.btn { width: 100%; background-color: #FFAA00; border-color: #f1a000; color: #fff; font-size: 20px; border-radius: 4px; padding: 10px; }
 .forgetpassword, .signup { font-family: Arial; font-size: 18px; text-align: right; line-height: 150%; margin-top: 10px; }
@@ -203,6 +203,8 @@ td span.star { font-size: 32px; color: #CC0000; }
 .product-image-me { width: 100%; height: auto; }
 .product-image-me img { height: auto; }
 table.halftr tr { width: 50%; float: left; }
+
+
 }
 
 @media screen and (max-width: 747px) {
@@ -246,6 +248,25 @@ table.halftr tr { width: 100%; float: left; }
 table.halftr tr td .product-image-me { width: 212px; max-width: 100%; margin-right: 0; }
 }
 
+.form-control {
+  display: block;
+  width: 100%;
+  height: 36px;
+  padding: 6px 12px;
+  font-family: 'pt',Arial;
+  font-size: 16px;
+  line-height: 130%;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
 @media screen and (max-width: 680px) {
 .product-details-lg { width: 100%; margin-top: 10px; }
     /*

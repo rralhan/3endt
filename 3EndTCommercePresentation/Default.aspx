@@ -19,7 +19,7 @@
             <a href="https://www.linkedin.com/company/3endt"><span class="glyphicon linkin"></span></a>
         </div>
     </div>
-    <div id="home-slider" class="carousel slide" data-ride="carousel">
+    <%--<div id="home-slider" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <div class="carousel-bg">
@@ -78,14 +78,70 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    --%>
+
     
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+ <%-- <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>--%>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="carousel-img">
+               <img src="images/1st.png" alt="firstImg">
+       </div>
+         <div class="carousel-caption">
+                        <h1>YOUR ONE STOP SHOP FOR NDT</h1>
+                        <p>
+                            World Class Customer Service, Competitive Cost, and Lowest Lead Time
+                        </p>
+                    </div>
+    </div>
+    <div class="carousel-item">
+        <div class="carousel-img">
+      <img src="images/2nd.png" alt="firstImg">
+            </div>
+         <div class="carousel-caption">
+                        <h1>YOUR ONE STOP SHOP FOR NDT</h1>
+                        <p>
+                            World Class Customer Service, Competitive Cost, and Lowest Lead Time
+                        </p>
+                    </div>
+    </div>
+    <div class="carousel-item">
+        <div class="carousel-img">
+      <img src="images/3rd.png" alt="firstImg">
+            </div>
+         <div class="carousel-caption">
+                        <h1>YOUR ONE STOP SHOP FOR NDT</h1>
+                        <p>
+                            World Class Customer Service, Competitive Cost, and Lowest Lead Time
+                        </p>
+                    </div>
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
    
     <strong>
 		<asp:LoginName ID="lnHeaderBtn" class="header-welcome" runat="server" FormatString="Welcome, {0} !&nbsp;&nbsp;" />
     </strong>
     
    
-        <asp:LoginStatus CssClass="header-btn" ID="MainLoginStatus" LogoutAction="Refresh" runat="server" LoginText="&nbsp;Login&nbsp;" LogoutText="&nbsp;Logout&nbsp;" />
+        <asp:LoginStatus CssClass="header-btn btn" ID="MainLoginStatus" LogoutAction="Refresh" runat="server" LoginText="&nbsp;Login&nbsp;" LogoutText="&nbsp;Logout&nbsp;" />
    
     
    

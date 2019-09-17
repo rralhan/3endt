@@ -4,7 +4,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CoreContentHolder" runat="server">
-
+    <style>
+        .h4FontSize
+        {
+            font-size:19px;
+        }
+    </style>
     <div class="top-upper row">
         <div class="col-xs-6">
             <a href="tel:2814702010"><span class="glyphicon glyphicon-earphone"></span>281-470-2010</a>
@@ -15,7 +20,7 @@
             <a href="https://www.linkedin.com/company/3endt"><span class="glyphicon linkin"></span></a>
         </div>
     </div>
-    <div class="divContact_add">
+    <div class="divContact_add" style="padding:5px;">
         <div class="row">
             <div class="col-sm-12">
                 <h2 class="contact-head">Contact Us</h2>
@@ -23,10 +28,10 @@
         </div>
         <div class="row ">
             <div class="col-sm-12">
-                <div class="row branch_add_all">
+                <div class="row branch_add_all"  style="padding:10px;">
                     <div class="col-sm-4">
                         <div class="branch_add">
-                            <h4>Texas Branch</h4>
+                            <h4 class="h4FontSize">Texas Branch</h4>
                             <p>
                                 3E NDT LLC.
                         <br />
@@ -40,7 +45,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="branch_add">
-                            <h4>California Branch</h4>
+                            <h4 class="h4FontSize">California Branch</h4>
                             <p>
                                 3E NDT LLC. 
                             <br />
@@ -54,7 +59,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="branch_add">
-                            <h4>Italy Branch</h4>
+                            <h4 class="h4FontSize">Italy Branch</h4>
                             <p>
                                 3E NDT, LLC 
                             <br />

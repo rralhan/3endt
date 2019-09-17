@@ -150,11 +150,11 @@
     div.product-choice div, div.price_box{
         margin-bottom:10px;
     }
-
+    .pull-left{float:left!important}
 </style>
 
 <div style="width: 98%; border-bottom: 1.5px solid #DDDDDD; margin-top: 5px" class="pull-left">
-    <div class="common-title" style="width: 50%; float: left; border: none">
+    <div class="common-title" style="width: 55%; float: left; border: none">
         <span><%=HeaderLabel %> &raquo;</span>
     </div>
     <input type="hidden" id="hdnShoppingCart" runat="server" data-name="hdnShoppingCart" />

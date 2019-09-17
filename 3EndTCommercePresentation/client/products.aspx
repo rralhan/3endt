@@ -25,10 +25,10 @@
                 </LayoutTemplate>
 
                 <ItemTemplate>
-                    <div class="product-details-me col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-details-me col-lg-3 col-md-4 col-sm-6" <%--style=" width:18rem;"--%>>
                         <div class="product-margin">
                             <div class="img-container product-padding">
-                                <img id="imgProduct" runat="server" class="img-dimension" src="#" alt="" />
+                                <img id="imgProduct" runat="server" class="img-dimension card-img-top" src="#" alt="" />
                             </div>
                             <div class="product-separator"></div>
 
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
 
-                            <div class="price_and_button_container">
+                            <div class="price_and_button_container ">
                                 <asp:LoginView ID="lvItemPrice" runat="server">
                                     <LoggedInTemplate>
                                         <div id="divProductItemPrice" runat="server">
@@ -55,7 +55,7 @@
                                                 </div>
                                                 <div class="col-md-12 table_one">
                                                     <div class="row row_min-height">
-                                                        <div class="col-md-4 text-left">
+                                                        <div class="col-md-4p text-left">
                                                             <strong>
                                                                 <asp:Label ID="lblPrimaryFilterType" runat="server"></asp:Label></strong>
                                                         </div>
@@ -96,7 +96,7 @@
 
                             </div>
                             <div id="divFurtherCategory" runat="server" class="price_div">
-                                <a id="lnkCategory" class="btncart" href='<%#GetProductLink(Eval("Type"),Eval("Id")) %>'>Select Product</a>
+                                <a id="lnkCategory" class="btn btncart" href='<%#GetProductLink(Eval("Type"),Eval("Id")) %>'>Select Product</a>
                             </div>
                         </div>
                     </div>
