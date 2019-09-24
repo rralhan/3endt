@@ -10,16 +10,16 @@
         <div class="single_product_title">
             <uc1:ShoppingCart ID="ShoppingCart1" runat="server" />
         </div>
-        <div class="single_product_details">
+        <div class="single_product_details ">
             <div class="col-md-12">
-            <div class="col-md-12 single_product_details_inner">
-            <div class="product-name">
+            <div class="col-md-12 single_product_details_inner card">
+            <div class="product-name card-header"  style="margin-top: 5px;">
                 <asp:Label ID="lblProductName" runat="server"></asp:Label>
             </div>
             <div class="col-sm-3 product_image">
-                <img src="../images/product-image-small.jpg" alt="" id="imgProduct" runat="server" class="product-image-me"/>
+                <img src="../images/product-image-small.jpg" alt="" id="imgProduct" runat="server" class="product-image-me card-img-top"/>
             </div>
-                <div class="col-sm-9">
+                <div class="col-sm-9 card-body">
             <div class="product-desc">
                 <asp:Label ID="lblProductDesc" runat="server"></asp:Label>
             </div>
@@ -47,8 +47,7 @@
                             </div>
                         </div></div>
                       
-                    </div>
--->
+                    </div> -->
                     
             <asp:LoginView ID="lvItemPrice" runat="server">
                 <LoggedInTemplate>

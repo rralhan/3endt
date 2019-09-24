@@ -48,7 +48,7 @@ ul.nav.navbar-nav { background: #135E5A; color: #fff; }
 
 .header-btn { color: #fff; position: absolute; top: 44px; right: 20px; background: #FFAA00; border: 1px solid #f1a000; padding: 5px 10px; border-radius: 3px; font-size: 22px; -webkit-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
 .header-btn:hover { background: #f1a000; color: #fff; -webkit-transition: all .2s ease-in-out; transition: all .2s ease-in-out; text-decoration: none; }
-.header-welcome { color: white; position: absolute; font-size: 22px; top: 50px; right: 120px; width: 100px; width: auto !important; }
+.header-welcome { color: orange; position: absolute; font-size: 22px; top: 50px; right: 120px; width: 100px; width: auto !important; }
 
 .carousel-caption { display: inline-block; position: absolute; vertical-align: middle; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);   padding: 0; bottom: inherit;}
 .carousel-caption h1{ text-transform: uppercase;margin-top: 5px; font-size: 28px;}
@@ -142,7 +142,7 @@ ul.nav.navbar-nav { background: #135E5A; color: #fff; }
 .purchase_order_page .theader{ background:#135E5A; color:#ffffff; font-size:16px; font-weight:600; }
 .purchase_order_page .product-details-xsm .itemselection label{ margin:0; }
 .purchase_order_page  .threediv td{ border-bottom: 1px solid #BBB; }
-.purchase_order_page .btncart{ background-color: #FFAA00; border: 1px solid #f1a000; color: #fff; font-size: 22px; border-radius: 4px; padding: 5px 10px; float: right; padding: 5px 10px; -webkit-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
+.purchase_order_page .btncart{ width:125%;background-color: #FFAA00; border: 1px solid #f1a000; color: #fff; font-size: 22px; border-radius: 4px; padding: 5px 10px; float: right; padding: 5px 10px; -webkit-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
 
 .purchase_order_page_outer .message_green{ border: 1px solid green;margin-bottom:15px; }
 .purchase_order_page_outer .item-selected { font-size: 16px; font-weight: 600; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px; }
@@ -207,7 +207,7 @@ a#lnkContinue.checkout.btncart { width: auto !important; }
 
 .products_page .price_and_button_container .col-md-12, .products_page .price_and_button_container .col-md-5, .products_page .price_and_button_container .col-md-7 { padding:5px 10px }
 .products_page .price_and_button_container .col-md-5 { font-size: 12px; line-height: 2 }
-.products_page .price_div { position: absolute; bottom: 0; width: 100%; min-height: 35px; margin-top: 15px; padding: 10px; background-color: #F2F2F2; padding-top: 0px; display: table;}
+.products_page .price_div { position: absolute; bottom: 0; width: 100%; min-height: 35px; margin-top: 15px; padding: 10px; /*background-color: #F2F2F2;*/ background-color:transparent; padding-top: 0px; display: table;}
 .products_page .product-details-me{margin-bottom:30px;}
 .products_page .product-margin { min-height: 430px; background: #fff; text-align: center; border-radius: 3px; box-sizing: border-box; box-shadow: #Dadada .1px .1px 5px;position:relative}
 .col-sm-offset-3{margin-left:28%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-0{margin-left:0}
@@ -228,7 +228,7 @@ a#lnkContinue.checkout.btncart { width: auto !important; }
 
 .btncart { width: 100%; background-color: #FFAA00; border-color: #f1a000; color: #fff !important; font-size: 20px; border-radius: 4px; padding: 10px; display: block; }
 
-.products_page .price.product-price { font-size: 24px; font-weight: 600; padding: 5px; text-align: right; ; background-color: #F2F2F2; padding-right: 10px; line-height: 0; }
+.products_page .price.product-price { font-size: 24px; font-weight: 600; padding: 5px; text-align: right;  /*background-color: #F2F2F2;*/  background-color: transparent; padding-right: 10px; line-height: 0; }
 
 .products_page .price_div_top { display: table-row; vertical-align: middle; width: 100%; margin: 0 auto; height: 45px;}
 .products_page .price_div_top > div { display: table-cell; vertical-align: middle;}

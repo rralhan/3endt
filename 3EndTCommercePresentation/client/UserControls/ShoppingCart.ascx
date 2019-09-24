@@ -115,7 +115,7 @@
     }
     
     .shopping_cart_without_button {
-          height: calc(100% - 120px) !important;
+          height: calc(100% - 0px) !important;
           overflow-y: auto !important;
           padding: 5px 20px;
     }
@@ -175,8 +175,11 @@
             <span id="spnCartQuantity" runat="server" class="cart-quantity" data-name="cartQuantity"></span>--%>
     </div>
 </div>
-<div id="dialog" title="Shopping Cart">
+<div id="dialog" title="Shopping Cart" class="modal"  tabindex="-1"  role="dialog">
     <div class="shopping_cart_without_button">
+        <div class="modal-dialog" role="document">
+         <div class="modal-content">
+    
         <asp:ListView ID="lvShoppingCart" runat="server" OnItemDataBound="lvShoppingCart_ItemDataBound">
             <LayoutTemplate>
                 <ul class="item-list">
@@ -189,14 +192,14 @@
                         <div class="product-image-sm item__image">
                             <img src="<%#Eval("ImageUrl")%>" alt="" />
                         </div>
-                        <div class="product_info-sm">
+                        <div class="product_info-sm modal-header">
                             <div class="item__body" <%--class="product-details-sm"--%>>
-                                <div class="product-name item__title">
+                                <div class="product-name item__title modal-title">
                                     <label><%#Eval("ProductName")%></label>
                                 </div>
                                 <asp:HiddenField ID="hdnProductId" runat="server" Value='<%#Eval("ProductId")%>' />
                                 <asp:HiddenField ID="hdnProductItemId" runat="server" Value='<%#Eval("ProductItemId")%>' />
-                                <div class="product-choice">
+                                <div class="product-choice modal-body" style="margin-left: -6%">
                                     <div>
                                         <strong>
                                             <asp:Label ID="lblPrimaryFilterType" runat="server"></asp:Label></strong>
@@ -234,14 +237,15 @@
 
         </asp:ListView>
     </div>
-    <div class="summary js-summary">
-        <div style="width: 48%; display: inline-block; vertical-align: bottom;">
+    <div class="summary js-summary modal-footer" style="background-color:transparent; pointer-events:all !important;">
+        <div style="width: 48%; display: inline-block; vertical-align: bottom; padding-top:5%;">
             <a href="#" id="lnkContinue" class="checkout btncart" style="float: left; width: 150px;" onclick="jsShoppingCart.closeCart();">Continue Shopping </a>
 
         </div>
         <div style="width: 48%; display: inline-block; vertical-align: bottom; text-align: center;">
             <ul class="checkout">
-                <li style="width: 100%; float: left; font-size: 24px; font-weight: 600; padding: 15px 0;">
+                <%--<li style="width: 100%; float: left; font-size: 24px; font-weight: 600; padding: 15px 0;">--%>
+                <li style="width: 100%; float: left; font-size: 16px; font-weight: 600;">
                     <span style="display: inline-block; width: 50%; float: left">Total:</span>
                     <span id="spnSumTotal" class="price sum" style="float: right;"></span>
                 </li>
@@ -253,6 +257,8 @@
         </div>
     </div>
     <input type="hidden" id="hdnIsUserAuthenticated" value="<%=IsUserAuthenticated %>" />
+        </div>
+     </div>
 </div>
 <script type="text/javascript">
     $(function () {

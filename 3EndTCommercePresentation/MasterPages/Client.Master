@@ -112,7 +112,7 @@
             </div>
             <div id="footer">
                 <h4>High Quality NDT Equipment</h4>
-                &copy; Copyright 2017 | 3endt. All rights reserved.  
+                &copy; Copyright <span id="year"></span> | 3endt. All rights reserved.  
                
             </div>
         </div>
@@ -129,6 +129,7 @@
             ga('create', 'UA-79575039-1', 'auto');
             ga('send', 'pageview');
 
+            document.getElementById("year").innerHTML = new Date().getFullYear();
         </script>
     </form>
 </body>
