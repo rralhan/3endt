@@ -1,36 +1,340 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="_3EndTCommercePresentation.MasterPages.Admin" %>
 
-
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head runat="server">
     <title>Administrator</title>
-    <link href="/css/admin.css" rel="stylesheet" />
+    <%--<link href="/css/admin.css" rel="stylesheet" />
     <script type='text/javascript' src='/js/jquery.min.js'></script>
-    <script src="/js/custom.js"></script>
+    <script src="/js/custom.js"></script>--%>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="Thu, 19 Nov 1900 08:52:00 GMT" />
+    <link rel="shortcut icon" href="/admin/images/icons/favicon.ico" />
+    <link rel="apple-touch-icon" href="/admin/images/icons/favicon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/admin/images/icons/favicon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/admin/images/icons/favicon-114x114.png" />
+    <!--Loading bootstrap css-->
+    <link type="text/css" rel="stylesheet"
+        href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700" />
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" />
+    <link type="text/css" rel="stylesheet"
+        href="/admin/vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/font-awesome/css/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/bootstrap/css/bootstrap.min.css" />
+    <!--LOADING STYLESHEET FOR PAGE-->
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/intro.js/introjs.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/calendar/zabuto_calendar.min.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/sco.message/sco.message.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/intro.js/introjs.css" />
+    <!--Loading style vendors-->
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/animate.css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/jquery-pace/pace.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/iCheck/skins/all.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/jquery-notific8/jquery.notific8.min.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/vendors/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <!--Loading style-->
+
+
+    <link href="../admin/css/themes/style1/orange-grey.css" rel="stylesheet" class="default-style" />
+    <%--<link type="text/css" rel="stylesheet" href="/admin/css/themes/style1/orange-blue.css" class="default-style" />
+    <link type="text/css" rel="stylesheet" href="/admin/css/themes/style1/orange-blue.css"
+        class="style-change color-change" />--%>
+    <link type="text/css" rel="stylesheet" href="/admin/css/style-responsive.css" />
+
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-       
-        <div>
-           <div style="overflow:hidden">
-                <div  style="height: 50px; text-align: center; font-size: x-large; width:80%; float:left">
-                    Admin Control Panel
+        <!--BEGIN TOPBAR-->
+        <div id="header-topbar-option-demo" class="page-header-topbar">
+            <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;"
+                class="navbar navbar-default navbar-static-top">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle">
+                        <span
+                            class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                                class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a id="logo" href="default.aspx" class="navbar-brand"><span class="fa fa-rocket"></span><span
+                        class="logo-text">3EndT</span><span style="display: none" class="logo-text-icon">µ</span></a>
                 </div>
-          <div style="width:20%;overflow:hidden;margin-top:5px;">
-               <asp:LoginStatus CssClass="logout" ID="MainLoginStatus" LogoutAction="Redirect" LogoutPageUrl ="/Default.aspx" runat="server" LoginText="&nbsp;Login&nbsp;" LogoutText="&nbsp;Logout&nbsp;"  />
-          </div>
-               </div>
+                <div class="topbar-main">
+                    <a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+                    <ul class="nav navbar-nav    ">
+                        <li class="active"><a href="index.html">Dashboard</a></li>
+                        <li><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">Layouts
+                        &nbsp;<i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="layout-left-sidebar.html">Left Sidebar</a></li>
+                                <li><a href="layout-right-sidebar.html">Right Sidebar</a></li>
+                                <li><a href="layout-left-sidebar-collapsed.html">Left Sidebar Collasped</a></li>
+                                <li><a href="layout-right-sidebar-collapsed.html">Right Sidebar Collasped</a></li>
+                                <li class="dropdown-submenu"><a href="javascript:;" data-toggle="dropdown"
+                                    class="dropdown-toggle">More Options</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Second level link</a></li>
+                                        <li class="dropdown-submenu"><a href="javascript:;" data-toggle="dropdown"
+                                            class="dropdown-toggle">More Options</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Third level link</a></li>
+                                                <li><a href="#">Third level link</a></li>
+                                                <li><a href="#">Third level link</a></li>
+                                                <li><a href="#">Third level link</a></li>
+                                                <li><a href="#">Third level link</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Second level link</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mega-menu-dropdown"><a href="javascript:;" data-toggle="dropdown"
+                            class="dropdown-toggle">UI Elements
+                        &nbsp;<i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <ul class="col-md-4 mega-menu-submenu">
+                                                <li>
+                                                    <h3>Neque porro quisquam</h3>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Lorem ipsum dolor sit amet</a>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Consectetur adipisicing
+                                                elit</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Sed ut perspiciatis unde
+                                                omnis</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>At vero eos et accusamus et
+                                                iusto</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Nam libero tempore cum
+                                                soluta</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Et harum quidem rerum
+                                                facilis est</a></li>
+                                            </ul>
+                                            <ul class="col-md-4 mega-menu-submenu">
+                                                <li>
+                                                    <h3>Neque porro quisquam</h3>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Lorem ipsum dolor sit amet</a>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Consectetur adipisicing
+                                                elit</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Sed ut perspiciatis unde
+                                                omnis</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>At vero eos et accusamus et
+                                                iusto</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Nam libero tempore cum
+                                                soluta</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Et harum quidem rerum
+                                                facilis est</a></li>
+                                            </ul>
+                                            <ul class="col-md-4 mega-menu-submenu">
+                                                <li>
+                                                    <h3>Neque porro quisquam</h3>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Lorem ipsum dolor sit amet</a>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Consectetur adipisicing
+                                                elit</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Sed ut perspiciatis unde
+                                                omnis</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>At vero eos et accusamus et
+                                                iusto</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Nam libero tempore cum
+                                                soluta</a></li>
+                                                <li><a href="#"><i class="fa fa-angle-right"></i>Et harum quidem rerum
+                                                facilis est</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mega-menu-dropdown mega-menu-full"><a href="javascript:;" data-toggle="dropdown"
+                            class="dropdown-toggle">Extras
+                        &nbsp;<i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <ul class="col-md-4 mega-menu-submenu">
+                                                    <li>
+                                                        <h3>Neque porro quisquam</h3>
+                                                    </li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Lorem ipsum dolor sit
+                                                    amet</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Consectetur adipisicing
+                                                    elit</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Sed ut perspiciatis
+                                                    unde omnis</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>At vero eos et
+                                                    accusamus et iusto</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Nam libero tempore cum
+                                                    soluta</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Et harum quidem rerum
+                                                    facilis est</a></li>
+                                                </ul>
+                                                <ul class="col-md-4 mega-menu-submenu">
+                                                    <li>
+                                                        <h3>Neque porro quisquam</h3>
+                                                    </li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Lorem ipsum dolor sit
+                                                    amet</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Consectetur adipisicing
+                                                    elit</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Sed ut perspiciatis
+                                                    unde omnis</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>At vero eos et
+                                                    accusamus et iusto</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Nam libero tempore cum
+                                                    soluta</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Et harum quidem rerum
+                                                    facilis est</a></li>
+                                                </ul>
+                                                <ul class="col-md-4 mega-menu-submenu">
+                                                    <li>
+                                                        <h3>Neque porro quisquam</h3>
+                                                    </li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Lorem ipsum dolor sit
+                                                    amet</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Consectetur adipisicing
+                                                    elit</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Sed ut perspiciatis
+                                                    unde omnis</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>At vero eos et
+                                                    accusamus et iusto</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Nam libero tempore cum
+                                                    soluta</a></li>
+                                                    <li><a href="#"><i class="fa fa-angle-right"></i>Et harum quidem rerum
+                                                    facilis est</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-5 document-demo">
+                                                <ul class="col-md-4 mega-menu-submenu">
+                                                    <li><a href="#"><i
+                                                        class="fa fa-info-circle"></i><span>Introduction</span></a></li>
+                                                    <li><a href="#"><i class="fa fa-download"></i><span>Installation</span></a>
+                                                    </li>
+                                                </ul>
+                                                <ul class="col-md-4 mega-menu-submenu">
+                                                    <li><a href="#"><i class="fa fa-cog"></i><span>T3 Settings</span></a>
+                                                    </li>
+                                                    <li><a href="#"><i class="fa fa-desktop"></i><span>Layout System</span></a>
+                                                    </li>
+                                                </ul>
+                                                <ul class="col-md-4 mega-menu-submenu">
+                                                    <li><a href="#"><i
+                                                        class="fa fa-magic"></i><span>Customization</span></a></li>
+                                                    <li><a href="#"><i
+                                                        class="fa fa-question-circle"></i><span>FAQs</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar navbar-top-links navbar-right mbn">
+
+                        <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle">
+                            <img
+                                src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/48.jpg" alt=""
+                                class="img-responsive img-circle" />&nbsp;<span class="hidden-xs">John Doe</span>&nbsp;<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-user pull-right">
+                                <li><a href="extra-profile.html"><i class="fa fa-user"></i>My Profile</a></li>
+                                <li><a href="page-calendar.html"><i class="fa fa-calendar"></i>My Calendar</a></li>
+                                <li><a href="email-inbox.html"><i class="fa fa-envelope"></i>My Inbox<span
+                                    class="badge badge-danger">3</span></a></li>
+                                <li><a href="#"><i class="fa fa-tasks"></i>My Tasks<span
+                                    class="badge badge-success">7</span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="extra-lock-screen.html"><i class="fa fa-lock"></i>Lock Screen</a></li>
+                                <%--<li><a href="extra-signin.html"><i class="fa fa-key"></i>Log Out</a></li>--%>
+
+                                <li>
+                                    <asp:LoginStatus CssClass="logout" ID="MainLoginStatus" LogoutAction="Redirect" LogoutPageUrl="/Default.aspx" runat="server" LoginText="&nbsp;Login&nbsp;" LogoutText="&nbsp;<i class='fa fa-key'></i> Log Out&nbsp;" />
+                                </li>
+
+
+                            </ul>
+                        </li>
+                        <%-- <li id="topbar-chat" class="hidden-xs"><a href="javascript:void(0)" class="btn-chat"><i
+                            class="fa fa-comments"></i><span class="badge badge-info">3</span></a></li>--%>
+                        <%--<li class="dropdown hidden-xs">
+                            <!--BEGIN THEME SETTING-->
+                            <a id="theme-setting" href="javascript:;"
+                                data-hover="dropdown" data-step="1"
+                                data-intro="&lt;b&gt;Header&lt;/b&gt;, &lt;b&gt;sidebar&lt;/b&gt;, &lt;b&gt;border style&lt;/b&gt; and &lt;b&gt;color&lt;/b&gt;, all of them can change for you to create the best"
+                                data-position="left"
+                                class="dropdown-toggle"><i
+                                    class="fa fa-cogs"></i></a>
+                            <ul class="dropdown-menu dropdown-theme-setting pull-right">
+                                <li>
+                                    <h4 class="mtn">Theme Styles</h4>
+                                    <select id="list-style" class="form-control">
+                                        <option value="style1">Flat Squared style</option>
+                                        <option value="style2">Flat Rounded style</option>
+                                        <option value="style3">Flat Border style</option>
+                                    </select></li>
+                                <li>
+                                    <h4 class="mtn">Menu Styles</h4>
+                                    <select id="list-menu" class="form-control">
+                                        <option value="sidebar-default">Menu style 1</option>
+                                        <option value="sidebar-colors">Menu style 2</option>
+                                        <option value="sidebar-icons">Menu style 3</option>
+                                        <option value="sidebar-collapsed">Menu style 4</option>
+                                    </select></li>
+                                <li>
+                                    <h4 class="mtn">Header & Sidebar</h4>
+                                    <select id="list-header" class="form-control">
+                                        <option value="header-static">Static</option>
+                                        <option value="header-fixed">Fixed</option>
+                                    </select></li>
+                                <li>
+                                    <h4 class="mtn">Theme Colors</h4>
+                                    <ul id="list-color" class="list-unstyled list-inline">
+                                        
+                                        <li data-color="orange-grey" data-hover="tooltip" title="Orange - Grey"
+                                            class="orange-grey"></li>
+                                        
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!--END THEME SETTING-->
+                        </li>--%>
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+        <!--END TOPBAR-->
+        <%--        <div>
+            <div style="overflow: hidden">
+                <div style="height: 50px; text-align: center; font-size: x-large; width: 80%; float: left">
+                    Admin Control Panel
+               
+                </div>
+                <div style="width: 20%; overflow: hidden; margin-top: 5px;">
+                    
+                </div>
+            </div>
             <div class="divadminleft">
 
 
                 <div>
                     Company Management                 
+
+                   
 
                     <div>
                         <asp:HyperLink ID="hlManageTier" NavigateUrl="/Admin/ManageTier.aspx" runat="server">Manage Tier</asp:HyperLink>
@@ -48,9 +352,10 @@
                 </div>
                 <div>
                     Product Management
-                                       <div>
-                                           <asp:HyperLink ID="hlManageCategory" NavigateUrl="~/Admin/ManageProductCategory.aspx" runat="server">Manage Category</asp:HyperLink>
-                                       </div>
+                                      
+                    <div>
+                        <asp:HyperLink ID="hlManageCategory" NavigateUrl="~/Admin/ManageProductCategory.aspx" runat="server">Manage Category</asp:HyperLink>
+                    </div>
                     <div>
                         <asp:HyperLink ID="hlManageProduct" NavigateUrl="~/Admin/ManageProduct.aspx" runat="server">Manage Product</asp:HyperLink>
                     </div>
@@ -58,29 +363,25 @@
                     <div>
                         <asp:HyperLink ID="hlManageProductItem" NavigateUrl="~/Admin/ManageProductItem.aspx" runat="server">Manage Product Item</asp:HyperLink>
                     </div>
-                     <div>
+                    <div>
                         <asp:HyperLink ID="hlManageProductItemPrices" NavigateUrl="~/Admin/ManageProductItemPrice.aspx" runat="server">Manage Product Prices</asp:HyperLink>
                     </div>
-                                         <div>
+                    <div>
                         <asp:HyperLink ID="hlManageDocuments" NavigateUrl="~/Admin/ManageDocuments.aspx" runat="server">Manage Documents</asp:HyperLink>
                     </div>
                 </div>
-                <%--<div>
-                    Customer
-                    <div>Manage Customer Tier</div>
-                    
-                    <div>
-                        <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Admin/ManageCustomerTierProductPrice.aspx" runat="server">Manage Customer Price</asp:HyperLink>
-                    </div>
-                </div>--%>
+
                 <div style="margin-bottom: 10px; text-align: left;">
                     Promotions
+
+                   
 
                     <div>Add Coupons</div>
                 </div>
                 <div>Dashboard</div>
                 <div>
                     Sales
+                   
                     <div>Order</div>
                     <div>Invoice</div>
                     <div>Shipment</div>
@@ -88,20 +389,182 @@
                 </div>
                 <div style="margin-bottom: 10px; text-align: left;">
                     Reports
+                   
                     <div>Sales</div>
                     <div>Shopping Cart</div>
                     <div>Products</div>
                     <div>Customers</div>
                 </div>
             </div>
-            <div class="divadminright">
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                </asp:ContentPlaceHolder>
+            <div class="divadminright">--%>
+        <div id="wrapper">
+            <!--BEGIN SIDEBAR MENU-->
+            <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side">
+                <div class="sidebar-collapse menu-scroll">
+                    <ul id="side-menu" class="nav">
+                        <li class="user-panel">
+                            <%--<div class="thumb">
+                                <img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg"
+                                    alt="" class="img-circle" />
+                            </div>--%>
+                            <%--<div class="info">
+                                <p>John Doe</p>
+                                <ul class="list-inline list-unstyled">
+                                    <li><a href="extra-profile.html" data-hover="tooltip" title="Profile"><i
+                                        class="fa fa-user"></i></a></li>
+                                    <li><a href="email-inbox.html" data-hover="tooltip" title="Mail"><i
+                                        class="fa fa-envelope"></i></a></li>
+                                    <li><a href="#" data-hover="tooltip" title="Setting" data-toggle="modal"
+                                        data-target="#modal-config"><i class="fa fa-cog"></i></a></li>
+                                    <li><a href="extra-signin.html" data-hover="tooltip" title="Logout"><i
+                                        class="fa fa-sign-out"></i></a></li>
+                                </ul>
+                            </div>--%>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li class="active"><a href="default.aspx"><i class="fa fa-tachometer fa-fw">
+                            <div class="icon-bg bg-orange"></div>
+                        </i><span class="menu-title">Dashboard</span></a></li>
+                        <%--<li><a href="http://madmin.swlabs.co/" target="_blank"><i class="fa fa-bullhorn fa-fw">
+                            <div class="icon-bg bg-orange"></div>
+                        </i><span class="menu-title">Angular JS Version</span><span
+                            class="label label-violet">v4.0</span></a></li>--%>
+                        <li><a href="#"><i class="fa fa-laptop fa-fw">
+                            <div class="icon-bg bg-pink"></div>
+                        </i><span class="menu-title">Company Management</span><span class="fa arrow"></span>
+                            <%--<span class="label label-yellow">v3.0</span>--%></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="../admin/ManageTier.aspx"><i class="fa fa-rocket"></i><span
+                                    class="submenu-title">Manage Tier</span></a></li>
+                                <li><a href="../admin/ManageCompany.aspx"><i class="fa fa-rocket"></i><span
+                                    class="submenu-title">Manage Company</span></a></li>
+                                <li><a href="../admin/ManageCompanyShippingAddress.aspx"><i class="fa fa-rocket"></i><span
+                                    class="submenu-title">Manage Company Shipping Address</span></a></li>
+                                <li><a href="../admin/ManageCustomer.aspx"><i class="fa fa-rocket"></i><span
+                                    class="submenu-title">Manage Customer</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fa fa-desktop fa-fw">
+                            <div class="icon-bg bg-pink"></div>
+                        </i><span class="menu-title">Product Management</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="ManageProductCategory.aspx"><i class="fa fa-align-left"></i><span
+                                    class="submenu-title">Manage Category</span></a></li>
+                                <li><a href="ManageProduct.aspx"><i
+                                    class="fa fa-angle-double-left"></i><span class="submenu-title">Manage Product</span></a>
+                                </li>
+                                <li><a href="ManageProductItem.aspx"><i class="fa fa-align-right"></i><span
+                                    class="submenu-title">Manage Product Item</span></a></li>
+                                <li><a href="ManageProductItemPrice.aspx"><i
+                                    class="fa fa-angle-double-right"></i><span class="submenu-title">Manage Product Prices</span></a>
+                                </li>
+                                <li><a href="ManageDocuments.aspx"><i class="fa fa-header"></i><span
+                                    class="submenu-title">Manage Documents</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fa fa-send-o fa-fw">
+                            <div class="icon-bg bg-green"></div>
+                        </i><span class="menu-title">Promotions</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="ui-generals.html"><i class="fa fa-briefcase"></i><span class="submenu-title">Add Coupons</span></a>
+                                </li>
+                                >
+                             
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fa fa-rocket fa-fw">
+                            <div class="icon-bg bg-green"></div>
+                        </i><span class="menu-title">Sales</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="ui-preloader.html"><i class="fa fa-spinner"></i><span class="submenu-title">Order</span><span
+                                    class="label label-yellow">v4.1</span></a></li>
+                                <li><a href="ui-editors.html"><i class="fa fa-edit"></i><span
+                                    class="submenu-title">Invoice</span></a></li>
+                                <li><a href="ui-nestable-list.html"><i class="fa fa-list-ol"></i><span
+                                    class="submenu-title">Shipment</span></a></li>
+                                <li><a href="ui-dropdown-select.html"><i class="fa fa-level-down"></i><span
+                                    class="submenu-title">Transaction</span><span
+                                        class="label label-yellow">v2.1</span></a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fa fa-edit fa-fw">
+                            <div class="icon-bg bg-violet"></div>
+                        </i><span class="menu-title">Reports</span><span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="form-layouts.html"><i class="fa fa-columns"></i><span class="submenu-title">Sales</span></a>
+                                </li>
+                                <li><a href="form-basic.html"><i class="fa fa-file-text-o"></i><span class="submenu-title">Shopping Cart
+                                </span></a>
+                                </li>
+                                <li><a href="form-components.html"><i class="fa fa-cube"></i><span class="submenu-title">Products</span></a>
+                                </li>
+                                <li><a href="form-xeditable.html"><i class="fa fa-edit"></i><span class="submenu-title">Customers</span></a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--END SIDEBAR MENU-->
+            <div id="page-wrapper">
+                <!--BEGIN TITLE & BREADCRUMB PAGE-->
+                <div class="page-content">
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
             </div>
 
-
         </div>
+        <%--</div>
 
+
+        </div>--%>
     </form>
+
+
+
+    <script src="/admin/js/jquery-1.10.2.min.js"></script>
+    <script src="/admin/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/admin/js/jquery-ui.js"></script>
+    <!--loading bootstrap js-->
+    <script src="/admin/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/admin/vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+    <script src="/admin/js/html5shiv.js"></script>
+    <script src="/admin/js/respond.min.js"></script>
+    <script src="/admin/vendors/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/admin/vendors/slimScroll/jquery.slimscroll.js"></script>
+    <script src="/admin/vendors/jquery-cookie/jquery.cookie.js"></script>
+    <script src="/admin/vendors/iCheck/icheck.min.js"></script>
+    <script src="/admin/vendors/iCheck/custom.min.js"></script>
+    <script src="/admin/vendors/jquery-notific8/jquery.notific8.min.js"></script>
+    <script src="/admin/vendors/jquery-highcharts/highcharts.js"></script>
+    <script src="/admin/js/jquery.menu.js"></script>
+    <script src="/admin/vendors/jquery-pace/pace.min.js"></script>
+    <script src="/admin/vendors/holder/holder.js"></script>
+    <script src="/admin/vendors/responsive-tabs/responsive-tabs.js"></script>
+    <script src="/admin/vendors/jquery-news-ticker/jquery.newsTicker.min.js"></script>
+    <script src="/admin/vendors/moment/moment.js"></script>
+    <script src="/admin/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/admin/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!--CORE JAVASCRIPT-->
+    <script src="/admin/js/main.js"></script>
+    <!--LOADING SCRIPTS FOR PAGE-->
+    <script src="/admin/vendors/intro.js/intro.js"></script>
+   <%-- <script src="/admin/vendors/flot-chart/jquery.flot.js"></script>
+    <script src="/admin/vendors/flot-chart/jquery.flot.categories.js"></script>
+    <script src="/admin/vendors/flot-chart/jquery.flot.pie.js"></script>
+    <script src="/admin/vendors/flot-chart/jquery.flot.tooltip.js"></script>
+    <script src="/admin/vendors/flot-chart/jquery.flot.resize.js"></script>
+    <script src="/admin/vendors/flot-chart/jquery.flot.fillbetween.js"></script>
+    <script src="/admin/vendors/flot-chart/jquery.flot.stack.js"></script>
+    <script src="/admin/vendors/flot-chart/jquery.flot.spline.js"></script>--%>
+    <script src="/admin/vendors/calendar/zabuto_calendar.min.js"></script>
+    <script src="/admin/vendors/sco.message/sco.message.js"></script>
+    <script src="/admin/vendors/intro.js/intro.js"></script>
+    <%--<script src="/admin/js/index.js"></script>--%>
+
 </body>
 </html>

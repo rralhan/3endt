@@ -8,6 +8,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.IO;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data.Common;
 
 namespace _3EndTCommercePresentation.admin
 {
@@ -16,12 +22,18 @@ namespace _3EndTCommercePresentation.admin
         private static string _product = string.Empty;
         private List<Tuple<TierProduct, TierProductPrice>> _listRegTPP = null;
         private List<Tuple<TierProduct, TierProductPrice>> _listTierTPP = null;
+        ManageProductPrice objGetdataforExcle = new ManageProductPrice();
+        string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+        OleDbConnection Econ;
+        SqlConnection con;
+        string constr, Query, sqlconn;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadTiers();                
-            }   
+                LoadTiers();
+            }
         }
         private void LoadTiers()
         {
@@ -38,11 +50,11 @@ namespace _3EndTCommercePresentation.admin
             _listRegTPP = ProductManager.GetAssociatedProductPricesByTier(1);
             _listTierTPP = ProductManager.GetAssociatedProductPricesByTier(Convert.ToInt16(ddlTiers.SelectedValue));
 
-            lblTierHeader.Text=  ddlTiers.SelectedItem.Text + " Tier";
+            lblTierHeader.Text = ddlTiers.SelectedItem.Text + " Tier";
 
             List<ProductItemInfo> lpii = ProductManager.GetAllProductItemInfo();
             lvProductItems.DataSource = lpii;
-            lvProductItems.DataBind();            
+            lvProductItems.DataBind();
         }
 
         protected void ddlTiers_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,21 +95,21 @@ namespace _3EndTCommercePresentation.admin
                         decimal regpr = Convert.ToDecimal(_listRegTPP.Where(x => (x.Item1 != null && x.Item1.ProductItemId == productitemid)).Select(x => x.Item2.Price).SingleOrDefault());
                         lblregtierprices.Text = string.Format("$ {0:#,###0.00}", regpr);
                         txtTierPrices.Text = string.Format("{0:#,###0.00}", regpr);
-                        if(regpr == -9999)
+                        if (regpr == -9999)
                         {
                             lblregtierprices.Text = "rfq";
                             txtTierPrices.Text = "rfq";
                         }
                     }
 
-                    if(_listTierTPP != null)
+                    if (_listTierTPP != null)
                     {
                         decimal tierpr = Convert.ToDecimal(_listTierTPP.Where(x => (x.Item1 != null && x.Item1.ProductItemId == productitemid)).Select(x => x.Item2.Price).SingleOrDefault());
                         txtTierPrices.Text = string.Format("{0:#,###0.00}", tierpr);
                         if (tierpr == -9999)
                             txtTierPrices.Text = "rfq";
                     }
-                    
+
                 }
 
 
@@ -109,7 +121,7 @@ namespace _3EndTCommercePresentation.admin
             decimal price = 0;
             int productitemid = 0;
             int tierid = Convert.ToInt32(ddlTiers.SelectedValue);
-            foreach(ListViewItem lv in lvProductItems.Items)
+            foreach (ListViewItem lv in lvProductItems.Items)
             {
                 Control cntrl = lv.FindControl("txtTierPrices");
                 if (cntrl != null)
@@ -141,5 +153,171 @@ namespace _3EndTCommercePresentation.admin
         {
             LoadProductItems();
         }
+
+        protected void btn_DownloadExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int TierID = Convert.ToInt32(ddlTiers.SelectedValue.ToString().Trim());
+                DataTable DTResult = objGetdataforExcle.GetTierPriceForExcelExport(ConnectionString, TierID);
+
+
+                //using (var workbook = new XLWorkbook())
+                //{
+                //    var worksheet = workbook.Worksheets.Add(ddlTiers.SelectedItem.Text.ToString().Trim());
+                //    worksheet.Add(DTResult);
+                //    workbook.SaveAs(ddlTiers.SelectedItem.Text.ToString().Trim() + "_" + DateTime.Now.Date + "_" + DateTime.Now.Month + "_" + DateTime.Now.Year);
+                //}
+
+                ClosedXML.Excel.XLWorkbook wbook = new ClosedXML.Excel.XLWorkbook();
+                wbook.Worksheets.Add(DTResult, ddlTiers.SelectedItem.Text.ToString().Trim());
+                // Prepare the response
+                HttpResponse httpResponse = Response;
+                httpResponse.Clear();
+                httpResponse.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                //Provide you file name here
+
+                string TempName = ddlTiers.SelectedItem.Text.ToString().Trim() + "_" + DateTime.Now.Date.Day.ToString().Trim() + "_" + DateTime.Now.Month.ToString().Trim() + "_" + DateTime.Now.Year.ToString().Trim();
+                string filename = "attachment;filename=\"" + TempName + ".xlsx\"";
+
+                httpResponse.AddHeader("content-disposition", filename);
+                //"attachment;filename=\"" + ddlTiers.SelectedItem.Text.ToString().Trim() + "_" + DateTime.Now.Date.ToString().Trim() + "_" + DateTime.Now.Month.ToString().Trim() + "_" + DateTime.Now.Year.ToString().Trim()"+ ".xlsx\"");
+
+                // Flush the workbook to the Response.OutputStream
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    wbook.SaveAs(memoryStream);
+                    memoryStream.WriteTo(httpResponse.OutputStream);
+                    memoryStream.Close();
+                }
+
+                httpResponse.End();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        protected void btn_SaveAndUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (fu_excel.HasFile)
+                {
+
+                    string path = string.Concat(Server.MapPath("~/admin/UploadFile/" + fu_excel.FileName));
+                    fu_excel.SaveAs(path);
+                    // Connection String to Excel Workbook  
+                    int x= objGetdataforExcle.TruncateTemptableforProductPriceViaExcel(ConnectionString);
+
+                    string excelCS = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 8.0", path);
+                    using (OleDbConnection con = new OleDbConnection(excelCS))
+                    {
+                        OleDbCommand cmd = new OleDbCommand("select * from [" + ddlTiers.SelectedItem.Text.ToString().Trim() + "$" + "]", con);
+                        con.Open();
+                        // Create DbDataReader to Data Worksheet  
+                        DbDataReader dr = cmd.ExecuteReader();
+                        // SQL Server Connection String  
+                        // string CS = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+                        // Bulk Copy to SQL Server   
+                        SqlBulkCopy bulkInsert = new SqlBulkCopy(ConnectionString);
+                        bulkInsert.DestinationTableName = "TempTierProductPriceTable";
+                        bulkInsert.BatchSize = 500;
+                        bulkInsert.BulkCopyTimeout = 10000;
+                        bulkInsert.WriteToServer(dr);
+
+                        con.Close();
+                        //string CurrentFilePath = Path.GetFullPath(fu_excel.PostedFile.FileName);
+                        //InsertExcelRecords(CurrentFilePath);
+                    }
+                    //SP_UpdateTierProductPriceViaExcel
+                    int RecordCount = objGetdataforExcle.UpdateProductPriceViaExcel(ConnectionString, Convert.ToInt32(ddlTiers.SelectedValue.ToString().Trim()));
+
+                    if(RecordCount > 0)
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "hwa", "alert('Price updated successfully.');", true);
+                       //-- Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "alert(" + "Price updated successfully." + ");", true);
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        private void ExcelConn(string FilePath)
+        {
+
+            constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", FilePath);
+            Econ = new OleDbConnection(constr);
+
+        }
+        private void connection()
+        {
+            //sqlconn = ConfigurationManager.ConnectionStrings["SqlCom"].ConnectionString;
+            con = new SqlConnection(ConnectionString);
+
+        }
+        private void InsertExcelRecords(string FilePath)
+        {
+            ExcelConn(FilePath);
+
+            Query = string.Format("Select * FROM [{0}]", ddlTiers.SelectedItem.Text.ToString().Trim() + "$");
+            OleDbCommand Ecom = new OleDbCommand(Query, Econ);
+            Econ.Open();
+
+            DataSet ds = new DataSet();
+            OleDbDataAdapter oda = new OleDbDataAdapter(Query, Econ);
+            Econ.Close();
+            oda.Fill(ds);
+            DataTable Exceldt = ds.Tables[0];
+            connection();
+            //creating object of SqlBulkCopy    
+            SqlBulkCopy objbulk = new SqlBulkCopy(con);
+            //assigning Destination table name    
+            objbulk.DestinationTableName = "TempTierProductPriceTable";
+            ////Mapping Table column    
+            //objbulk.ColumnMappings.Add("Name", "Name");
+            //objbulk.ColumnMappings.Add("City", "City");
+            //objbulk.ColumnMappings.Add("Address", "Address");
+            //objbulk.ColumnMappings.Add("Designation", "Designation");
+            //inserting Datatable Records to DataBase    
+            con.Open();
+            objbulk.WriteToServer(Exceldt);
+            objbulk.BatchSize = 500;
+            objbulk.BulkCopyTimeout = 10000;
+            con.Close();
+
+        }
+
+        //protected void Dummy_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+
+        //        //ProductPriceManager ObjPPM = new ProductPriceManager();
+        //        //string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EndtCommerceEntities"].ConnectionString;
+        //        //int TierID = Convert.ToInt32(ddlTiers.SelectedValue.ToString());
+
+        //        //DataTable DT = new DataTable();
+
+        //        //DT = ObjPPM.GetProductPriceForExportIntoExcel(ConnectionString, TierID);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message.ToString());
+        //    }
+        //}
+
+        //protected void Dummy_Click1(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

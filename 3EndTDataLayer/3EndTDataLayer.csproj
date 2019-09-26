@@ -55,6 +55,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EndtCommerceModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ManageProductPrice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
