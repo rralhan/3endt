@@ -60,7 +60,7 @@
                                                                 <asp:Label ID="lblPrimaryFilterType" runat="server"></asp:Label></strong>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <asp:DropDownList ID="ddlPrimaryFilter" runat="server" CssClass="entries demoselect"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlPrimaryFilter" runat="server" CssClass="entries demoselect dropdown"></asp:DropDownList>
                                                         </div>
 
                                                     </div>

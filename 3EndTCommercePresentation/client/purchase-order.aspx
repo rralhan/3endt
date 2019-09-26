@@ -52,10 +52,10 @@
              <asp:HiddenField ID="hdnSelectedShipping" runat="server"  />
         </div>
         <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 card">
 
-            <div class="item-selected">Items Selected &raquo;</div>
-            <div class="common-block">
+            <div class="item-selected card-header">Items Selected &raquo;</div>
+            <div class="common-block card-body">
 
                 <asp:DataList ID="dlCartItems" runat="server" CssClass="threediv" CellSpacing="0" CellPadding="4">
                     <HeaderTemplate>
@@ -97,14 +97,14 @@
                 <asp:Label ID="lblConfirmation" runat="server" CssClass="conf-msg" Visible="false" Text="Thank you. Your order has been placed."></asp:Label>
             </div>
             
-            <div class="col-xs-12 price_total_div">               
+            <div class="col-xs-12 price_total_div card-footer">               
                 <span class="col-xs-6">Total</span>
                 <span id="spnSumTotal" class ="price col-xs-6">  </span>
             </div>
             </div>
-            <div class="col-md-6">
-            <div class="common-title">Delivery Information &raquo;</div>
-            <div class="delivery_info row">
+            <div class="col-md-6 card">
+            <div class="common-title card-header">Delivery Information &raquo;</div>
+            <div class="delivery_info row card-body">
                 <div class="col-xs-12 mar-top-10">
                     <h2>Billing Address</h2>
                     <div class="billaddress">
@@ -134,7 +134,7 @@
                 </div>
             </div>
 
-            <div class="row order_number">
+            <div class="row order_number card-footer">
                 <div class="col-sm-6">
                 <h3 class="common-title">Order Number »</h3>
                     </div>
@@ -155,7 +155,7 @@
                 </div>
                 <div class="col-sm-2">&nbsp;</div>
                 <div class="col-sm-4 text-right">
-                    <asp:LinkButton ID="btnPlaceOrder" CssClass="btncart" runat="server" Text="Place Order &raquo;" OnClick="btnPlaceOrder_Click" ValidationGroup="PurchaseConfirmation" />
+                    <asp:LinkButton ID="btnPlaceOrder" CssClass="btn btncart" runat="server" Text="Place Order &raquo;" OnClick="btnPlaceOrder_Click" ValidationGroup="PurchaseConfirmation" />
                 </div>
             </div>
         </div>
