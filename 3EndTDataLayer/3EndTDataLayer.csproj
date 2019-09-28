@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.12\lib\net40\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DapperExtensions, Version=1.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DapperExtensions.1.6.3\lib\net45\DapperExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -50,6 +56,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="domain\Address.cs" />
+    <Compile Include="domain\BaseDomain.cs" />
+    <Compile Include="domain\Category.cs" />
+    <Compile Include="domain\Company.cs" />
+    <Compile Include="domain\User.cs" />
+    <Compile Include="domain\Document.cs" />
+    <Compile Include="domain\Filter.cs" />
+    <Compile Include="domain\Inventory.cs" />
+    <Compile Include="domain\Order.cs" />
+    <Compile Include="domain\Role.cs" />
+    <Compile Include="domain\TierProductPrice.cs" />
+    <Compile Include="domain\Product.cs" />
+    <Compile Include="domain\ProductFilter.cs" />
+    <Compile Include="domain\ProductItem.cs" />
+    <Compile Include="domain\Tier.cs" />
+    <Compile Include="domain\TierProduct.cs" />
     <Compile Include="EndtCommerceModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
