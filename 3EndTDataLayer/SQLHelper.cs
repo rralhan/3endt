@@ -268,6 +268,118 @@ INSERT INTO dbo.Addresses
             }
         }
         #endregion
-    }
 
+        #region User
+        public static int InsertUser(User user)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"
+INSERT INTO dbo.Users
+           (RoleId
+           ,FirstName
+           ,LastName
+           ,IsEmailSend
+           ,UserName
+           ,Password
+           ,EMailId
+           ,PhoneNumber
+           ,FaxNumber
+           ,CompanyId
+           ,CreatedDate   
+           ,IsActive)
+     VALUES
+           (@RoleId
+           ,@FirstName
+           ,@LastName
+           ,@IsEmailSend
+           ,@UserName
+           ,@Password
+           ,@EMailId
+           ,@PhoneNumber
+           ,@FaxNumber
+           ,@CompanyId
+           ,@CreatedDate 
+           ,@IsActive)
+";
+                return cn.Execute(sqlStr, user);
+            }
+
+        }
+
+        public static List<User> GetUsers()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from Users";
+                var userList = cn.Query<User>(sqlStr).ToList();
+                return userList;
+            }
+        }
+
+        public static int UpdateUser(User user)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"UPDATE dbo.Users
+   SET RoleId = @RoleId
+      ,FirstName = @FirstName
+      ,LastName = @LastName
+      ,IsEmailSend = @IsEmailSend
+      ,UserName = @UserName
+      ,Password = @Password
+      ,EMailId = @EMailId
+      ,PhoneNumber = @PhoneNumber
+      ,FaxNumber = @FaxNumber
+      ,CompanyId = @CompanyId   
+      ,ModifiedDate = @ModifiedDate
+      ,IsActive = @IsActive
+ WHERE UserId=@UserId";
+                return cn.Execute(sqlStr, user);
+            }
+        }
+
+        #endregion
+
+        #region Document
+        public static List<Document> GetDocuments()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from Documents";
+                var docList = cn.Query<Document>(sqlStr).ToList();
+                return docList;
+            }
+        }
+
+        public static int InsertDocument(Document doc)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"INSERT INTO dbo.Documents
+           (Key
+           ,Title
+           ,FilePath
+           ,Url
+           ,CreatedDate
+           ,IsActive)
+     VALUES
+           (@Key
+           ,@Title
+           ,@FilePath
+           ,@Url
+           ,@CreatedDate
+           ,@IsActive);";
+                return cn.Execute(sqlStr, doc);
+            }
+        }
+        #endregion
+    }
 }

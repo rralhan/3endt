@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using _3EndTBusinessLayer;
 using _3EndTBusinessLayer.BusinessObject;
 using _3EndTDataLayer;
+using _3EndTDataLayer.domain;
+
 namespace _3EndTCommercePresentation.Admin
 {
     public partial class ManageCustomer : System.Web.UI.Page
@@ -15,7 +17,7 @@ namespace _3EndTCommercePresentation.Admin
         private static Enums.FormMode _currentFormMode = Enums.FormMode.Save;
         public string Password { get; set; }
         private static List<Company> _listComps;
-        private static List<Customer> _listCusts;
+        private static List<User> _listCusts;
         private static int _customerId = 0;
         protected void Page_Load(object sender, EventArgs e)
         {             
@@ -62,7 +64,7 @@ namespace _3EndTCommercePresentation.Admin
 
         protected void LoadCustomers()
         {
-            _listCusts = CustomerManager.GetAllCustomers();
+            _listCusts = UserManager.GetAllCustomers();
             grdCustomer.DataSource = _listCusts;
             grdCustomer.DataBind();
 
@@ -81,7 +83,7 @@ namespace _3EndTCommercePresentation.Admin
             if (!this.Page.IsValid)
                 return;
              
-            Customer cust = new Customer(); 
+            User cust = new User(); 
             cust.UserName=txtUserName.Text.Trim();
             cust.Password=txtPassword.Text.Trim();
             cust.RoleId=(int)Enums.UserRole.Customer;
@@ -99,7 +101,7 @@ namespace _3EndTCommercePresentation.Admin
                     return;
                 }
 
-                if (CustomerManager.InsertCustomer(cust))
+                if (UserManager.InsertUser(cust))
                 {
                     lblMessage.Text = "New User Added.";
                     ResetControls();        
@@ -109,8 +111,8 @@ namespace _3EndTCommercePresentation.Admin
             }
             else
              {
-                 cust.CustomerId = _customerId;
-                if (CustomerManager.UpdateCustomer(cust))
+                 cust.UserId = _customerId;
+                if (UserManager.UpdateCustomer(cust))
                 {
                     ResetControls();
                     btnSave.Text = "Save";
@@ -180,7 +182,7 @@ namespace _3EndTCommercePresentation.Admin
                 {
                     HiddenField hdncustid = cntrl as HiddenField;
                     _customerId = Convert.ToInt32(hdncustid.Value);
-                    Customer cust = _listCusts.Where(c => c.CustomerId == _customerId).FirstOrDefault<Customer>();
+                    User cust = _listCusts.Where(c => c.UserId == _customerId).FirstOrDefault<User>();
                     txtUserName.Text = cust.UserName.Trim();
                     txtPassword.Text = cust.Password.Trim();
                     txtFirstName.Text = cust.FirstName.Trim();

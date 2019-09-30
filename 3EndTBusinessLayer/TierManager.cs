@@ -235,20 +235,20 @@ namespace _3EndTBusinessLayer
 
         //}
 
-        public static bool ApplyCustomerTier(List<Customer> SelectedCustomers)
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            foreach (Customer c in SelectedCustomers)
-            {
-                Customer dbCustomer = ECE.Customers.Where(x => x.CustomerId == c.CustomerId).FirstOrDefault();
-                if (dbCustomer != null)
-                {
-                    dbCustomer.Company.TierId = c.Company.TierId;                   
-                }
-            }
-            ECE.SaveChanges();
-            return true;
-        }
+        //public static bool ApplyCustomerTier(List<Customer> SelectedCustomers)
+        //{
+        //    EndtCommerceEntities ECE = new EndtCommerceEntities();
+        //    foreach (Customer c in SelectedCustomers)
+        //    {
+        //        Customer dbCustomer = ECE.Customers.Where(x => x.CustomerId == c.CustomerId).FirstOrDefault();
+        //        if (dbCustomer != null)
+        //        {
+        //            dbCustomer.Company.TierId = c.Company.TierId;                   
+        //        }
+        //    }
+        //    ECE.SaveChanges();
+        //    return true;
+        //}
         //public static bool ApplyCustomerTierProductPrices(List<Customer> selectedCustomers, List<CustomerTierProductPrice> customerTireProductPrices)
         //{
         //    EndtCommerceEntities ECE = new EndtCommerceEntities();

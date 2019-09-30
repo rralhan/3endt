@@ -1,4 +1,5 @@
 ﻿using _3EndTDataLayer;
+using _3EndTDataLayer.domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,29 +18,32 @@ namespace _3EndTBusinessLayer
         }
 
         public static bool InsertDocumentRecord(Document doc)
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            if (!CheckIfDocumentExists(ECE, doc))
+        {            
+            if (!CheckIfDocumentExists(doc))
             {
-                ECE.Documents.AddObject(doc);
-                ECE.SaveChanges();
-                return true;
+                var retval = SQLHelper.InsertDocument(doc);
+                if (retval > 0)
+                    return true;
+                return false;
             }
             return false;
         }
-        internal static bool CheckIfDocumentExists(EndtCommerceEntities ECE, Document doc)
+        internal static bool CheckIfDocumentExists(Document doc)
         {
-            if (ECE.Documents != null && ECE.Documents.Count() > 0)
+            var docs = SQLHelper.GetDocuments();
+            if (docs != null && docs.Count() > 0)
             {
-                var query = ECE.Documents.Any(x => x.Key == doc.Key);
+                var query = docs.Any(x => x.Key == doc.Key);
                 return query;
             }
             return false;
         }
-        public static List<Document> GetAllDocuments()
+        public static List<Document> GetAllDocuments(bool showActiveOnly=true)
         {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            return ECE.Documents.Where(x => x.IsActive == true).ToList();
+            var docs = SQLHelper.GetDocuments();
+            if (showActiveOnly)
+                docs = docs.Where(x => x.IsActive == true).ToList();
+            return docs;
         }
     }
 }

@@ -52,7 +52,6 @@ namespace _3EndTBusinessLayer
 
         #endregion
 
-
         #region Company
 
         public static List<Company> GetAllCompanies(bool showOnlyActive = true)
@@ -213,7 +212,6 @@ namespace _3EndTBusinessLayer
             return ds;
         }
         #endregion
-
 
     }
 }
