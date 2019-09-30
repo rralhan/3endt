@@ -145,7 +145,7 @@ namespace _3EndTCommercePresentation.Admin
             if(av == "viewCompany")
             {
                 ddlParentCompany.Items.Clear();
-                var pclist = CompanyManager.GetAllParentCompanies();
+                var pclist = CompanyManager.GetParentCompanies();
                 ddlParentCompany.DataSource = pclist;
                 ddlParentCompany.DataTextField = "Name";
                 ddlParentCompany.DataValueField = "ParentCompanyId";

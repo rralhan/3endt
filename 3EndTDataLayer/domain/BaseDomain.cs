@@ -10,5 +10,6 @@ namespace _3EndTDataLayer.domain
     {
         public bool IsActive { get; set; } = true;
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+        public DateTime? ModifiedDate { get; set; }
     }
 }

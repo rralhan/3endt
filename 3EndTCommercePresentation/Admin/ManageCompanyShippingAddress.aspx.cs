@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -35,8 +36,12 @@ namespace _3EndTCommercePresentation.Admin
 
         private void LoadShippingAddressGrid()
         {
-            gvShippingAddress.DataSource = CompanyManager.GetCompanyAddresses();
-            gvShippingAddress.DataBind();
+            var compAddresses = CompanyManager.GetCompanyAddresses();
+            if (compAddresses != null)
+            {
+                gvShippingAddress.DataSource = compAddresses;
+                gvShippingAddress.DataBind();
+            }
         }
 
         protected void LoadCompanyName()

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace _3EndTDataLayer.domain
 {
+
     public class Company : BaseDomain
     {
         public int? CompanyId { get; set; }
@@ -18,5 +19,11 @@ namespace _3EndTDataLayer.domain
         public string Email { get; set; }
         public int? ParentCompanyId { get; set; }
 
+    }
+    public class ParentCompany : BaseDomain
+    {
+        public int? ParentCompanyId { get; set; }
+        public string Name { get; set; }
+        public string FederalId { get; set; }
     }
 }

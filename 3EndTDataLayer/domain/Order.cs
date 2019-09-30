@@ -38,7 +38,7 @@ namespace _3EndTDataLayer.domain
 
         public int Quantity { get; set; }
 
-        public int PurchaseOrderId { get; set; }
+        public int OrderId { get; set; }
 
         public decimal TotalProductPrice { get; set; }
 
@@ -52,8 +52,6 @@ namespace _3EndTDataLayer.domain
     public class OrderStatus : BaseDomain
     {
         public int OrderStatusId { get; set; }
-
-        public bool IsActive { get; set; }
 
         public string Status { get; set; }
 
