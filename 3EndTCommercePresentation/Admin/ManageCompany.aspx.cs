@@ -8,6 +8,8 @@ using _3EndTBusinessLayer;
 using _3EndTDataLayer;
 using _3EndTBusinessLayer.BusinessObject;
 using System.Text;
+using _3EndTDataLayer.domain;
+
 namespace _3EndTCommercePresentation.Admin
 {
     public partial class ManageCompany : System.Web.UI.Page
@@ -88,7 +90,7 @@ namespace _3EndTCommercePresentation.Admin
                 AddressLine2 = txtBillingAddressLine2.Text,
                 City = txtBillingCity.Text,
                 State = ddlBillingState.SelectedValue,
-                Zipcode = txtBillingZipCode.Text,
+                ZipCode = txtBillingZipCode.Text,
                 Type = AddressType.Billing,
                 CompanyId = cmp.CompanyId
             };
@@ -197,11 +199,11 @@ namespace _3EndTCommercePresentation.Admin
                 txtBillingAddressLine2.Text = addr.AddressLine2 ?? "";
                 txtBillingCity.Text = addr.City;
                 ddlBillingState.SelectedValue = addr.State;
-                txtBillingZipCode.Text = addr.Zipcode;
+                txtBillingZipCode.Text = addr.ZipCode;
                 txtFederalId.Text = dbcomp.FederalId;
                 txtPhone.Text = dbcomp.PhoneNumber;
                 txtFaxNumber.Text = dbcomp.FaxNumber;
-                txtEmailId.Text = dbcomp.EMailId;
+                txtEmailId.Text = dbcomp.Email;
                 ddlParentCompany.SelectedValue = dbcomp.ParentCompanyId.ToString();
                 ddlTiers.SelectedValue = dbcomp.TierId.ToString();
                 chkIsActive.Checked = dbcomp.IsActive;

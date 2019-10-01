@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using _3EndTBusinessLayer;
 using _3EndTDataLayer;
 using _3EndTBusinessLayer.BusinessObject;
+using _3EndTDataLayer.domain;
 
 namespace _3EndTCommercePresentation.Admin
 {
@@ -86,13 +87,13 @@ namespace _3EndTCommercePresentation.Admin
                 State = ddlShippingState.SelectedValue,
                 IsActive = chkIsActive.Checked,
                 Type = AddressType.Shipping,
-                Zipcode = txtZipCode.Text
+                ZipCode = txtZipCode.Text
             };
 
             //Make sure that only one shipping address isPrimary
             if (newsa.IsPrimary)
             {
-                List<Address> allcsa = CompanyManager.GetAddressesByCompanyId(newsa.CompanyId);
+                List<Address> allcsa = CompanyManager.GetAddressesByCompanyId(newsa.CompanyId.Value);
                 foreach(Address sa in allcsa)
                 {
                     sa.IsPrimary = false;
@@ -160,7 +161,7 @@ namespace _3EndTCommercePresentation.Admin
                     txtShippingAddress2.Text = compshipaddrs.AddressLine2;
                     txtShippingCity.Text = compshipaddrs.City;
                     ddlShippingState.SelectedValue = compshipaddrs.State;
-                    txtZipCode.Text = compshipaddrs.Zipcode;
+                    txtZipCode.Text = compshipaddrs.ZipCode;
                     chkIsPrimary.Checked = compshipaddrs.IsPrimary;
                     chkIsActive.Checked = compshipaddrs.IsActive;
                     btnSave.Text = "Update";
@@ -202,7 +203,7 @@ namespace _3EndTCommercePresentation.Admin
                         txtShippingAddress1.Text = billingaddr.AddressLine1;
                         txtShippingAddress2.Text = billingaddr.AddressLine2 == null ? string.Empty : billingaddr.AddressLine2;
                         txtShippingCity.Text = billingaddr.City;
-                        txtZipCode.Text = billingaddr.Zipcode;
+                        txtZipCode.Text = billingaddr.ZipCode;
                         ddlShippingState.SelectedValue = billingaddr.State;
                     }
                 }

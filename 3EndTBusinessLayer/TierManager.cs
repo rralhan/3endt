@@ -1,130 +1,109 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using _3EndTDataLayer;
+using _3EndTDataLayer.domain;
 
 namespace _3EndTBusinessLayer
 {
     public class TierManager
     {
-        public static bool InsertTier(Tier Tier)
+        public static bool InsertTier(Tier tt)
         {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            try
+            if (tt.IsDefault == true)
             {
-                if (Tier.IsDefault == true)
+                var tiers = SQLHelper.GetTiers();
+                List<Tier> dbTier = tiers.Where(x => x.IsDefault == true).ToList();
+                foreach (Tier tier in dbTier)
                 {
-                    List<Tier> dbTier = ECE.Tiers.Where(x => x.IsDefault == true).ToList();
-                    foreach (Tier tier in dbTier)
-                    {
-                        tier.IsDefault = false;
-                    }
-                    ECE.AddToTiers(Tier);
-                    ECE.SaveChanges();
+                    tier.IsDefault = false;
                 }
-                else
-                {
-                    ECE.AddToTiers(Tier);
-                    ECE.SaveChanges();
-                }
+            }
+
+            var retval = SQLHelper.InsertTier(tt);
+            if (retval > 0)
                 return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            return false;
         }
       
         public static Tier GetTierById(int id)
         {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            Tier Tier = ECE.Tiers.Where(x => x.TierId == id).FirstOrDefault();
-            return Tier;
+            return SQLHelper.GetTierById(id);
         }
-        public static bool AddTiertProductPrice(TierProductPrice dbTierProductPrice)
+
+        public static List<Tier> GetAllTiers(bool showActiveOnly=true)
         {
-            try
+            var tiers = SQLHelper.GetTiers();
+            if (showActiveOnly)
+                tiers = tiers.Where(x => x.IsActive == true).ToList();
+            return tiers;
+        }
+
+        public static bool UpdateTier(Tier Tier)
+        {
+            var tiers = SQLHelper.GetTiers();
+            if (Tier.IsDefault == true)
             {
-                EndtCommerceEntities ECE = new EndtCommerceEntities();
-                ECE.AddToTierProductPrices(dbTierProductPrice);
-                ECE.SaveChanges();
+                List<Tier> dbTier = tiers.Where(x => x.IsDefault == true).ToList();
+                foreach (Tier tier in dbTier)
+                {
+                    tier.IsDefault = false;
+                }
+            }
+
+            Tier tt = tiers.Where(x => x.TierId == Tier.TierId).FirstOrDefault();
+            tt.TierName = Tier.TierName;
+            tt.IsDefault = Tier.IsDefault;
+            tt.IsActive = Tier.IsActive;
+            var retval = SQLHelper.UpdateTier(tt);
+            if (retval > 0)
                 return true;
-            }
-            catch (Exception ex)
-            {
+            return false;
+        }
+
+        public static Boolean CheckIfTierAlreadyExist(Tier dbTier)
+        {
+            var tiers = SQLHelper.GetTiers();
+            var tier = tiers.Where(x => x.TierName.ToLower() == dbTier.TierName.ToLower()).FirstOrDefault();
+            if (tier == null) 
                 return false;
-            }
-
+            else
+                return true;
         }
 
-        public static List<TierProductPrice> GetTierProductPriceByTierId(int Tierid)
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            return ECE.TierProductPrices.Where(x => x.TierProduct.Tier.TierId == Tierid).ToList();
-        }
-        public static List<TierProduct> GetAllTierProductListByTierId(int id)
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            List<TierProduct> TierProduct = ECE.TierProducts.Where(x => x.TierId == id).ToList();
-            return TierProduct;
-        }
+        //public static List<TierProductPrice> GetTierProductPriceByTierId(int Tierid)
+        //{
+        //    EndtCommerceEntities ECE = new EndtCommerceEntities();
+        //    return ECE.TierProductPrices.Where(x => x.TierProduct.Tier.TierId == Tierid).ToList();
+        //}
+        //public static List<TierProduct> GetAllTierProductListByTierId(int id)
+        //{
+        //    EndtCommerceEntities ECE = new EndtCommerceEntities();
+        //    List<TierProduct> TierProduct = ECE.TierProducts.Where(x => x.TierId == id).ToList();
+        //    return TierProduct;
+        //}
         //public static List<GetAssociatedProductWithTier_Result> GetAllTierProductByTierId(int id)
         //{
         //    EndtCommerceEntities ECE = new EndtCommerceEntities();
         //    List<GetAssociatedProductWithTier_Result> TierProduct = ECE.GetAssociatedProductWithTier(id).ToList();
         //    return TierProduct;
         //}
-        public static List<Tier> GetAllTiers()
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            List<Tier> Tier = ECE.Tiers.Where(x => x.IsActive == true).ToList<Tier>();
-            return Tier;
-        }
 
-        public static bool UpdateTier(Tier Tier)
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            try
-            {
-                if (Tier.IsDefault == true)
-                {
-                    List<Tier> dbTier = ECE.Tiers.Where(x => x.IsDefault == true).ToList();
-                    foreach (Tier tier in dbTier)
-                    {
-                        tier.IsDefault = false;
-                    }
-                    Tier Tier1 = ECE.Tiers.Where(x => x.TierId == Tier.TierId).FirstOrDefault();
-                    Tier1.TierName = Tier.TierName;
-                    Tier1.IsDefault = Tier.IsDefault;
-                    Tier1.IsActive = Tier.IsActive;
-                    ECE.SaveChanges();
-                }
-                else
-                {
-                    Tier Tier1 = ECE.Tiers.Where(x => x.TierId == Tier.TierId).FirstOrDefault();
-                    Tier1.TierName = Tier.TierName;
-                    Tier1.IsDefault = Tier.IsDefault;
-                    Tier1.IsActive = Tier.IsActive;
-                    ECE.SaveChanges();
-                }
-                return true;
-            }
-            catch (Exception)
-            {
+        //public static bool AddTiertProductPrice(TierProductPrice dbTierProductPrice)
+        //{
+        //    try
+        //    {
+        //        EndtCommerceEntities ECE = new EndtCommerceEntities();
+        //        ECE.AddToTierProductPrices(dbTierProductPrice);
+        //        ECE.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
 
-                return false;
-            }
-        }
-        public static Boolean CheckIfTierAlreadyExist(Tier dbTier)
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            Tier Tier = ECE.Tiers.Where(x => x.TierName.ToLower() == dbTier.TierName.ToLower()).FirstOrDefault();
-            if (Tier == null) return false;
-            else return true;
-
-        }
         //public static Boolean CheckIfTierProductPriceAlreadyExist(TierProductPrice dbTierProductPrice)
         //{
         //    EndtCommerceEntities ECE = new EndtCommerceEntities();
@@ -134,43 +113,39 @@ namespace _3EndTBusinessLayer
         //    else return true;
 
         //}
-        public static Boolean CheckDefaultTier(Tier dbTier)
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            Tier tier = ECE.Tiers.Where(x => x.IsDefault == dbTier.IsDefault).FirstOrDefault();
-            if (tier == null)
-            {
-                return false;
-            }
-            else return true;
-
-
-        }
-        public static Boolean CheckIfDefaultTierAlreadyExist(Tier dbTier)
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            try
-            {
-                List<Tier> dbadvertisement = ECE.Tiers.Where(x => x.TierId != dbTier.TierId && x.IsDefault == true).ToList();
-                //Tier Tier = ECE.Tiers.Where(x => x.TierName.ToLower() == dbTier.TierName.ToLower() && x.TierId != dbTier.TierId&&x.IsDefault==true).FirstOrDefault();
-                foreach (Tier tier in dbadvertisement)
-                {
-                    if (tier.IsDefault == true)
-                    {
-                        return true;
-                    }
-                    else
-                        return true;
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-
-
-        }
+        //public static Boolean CheckDefaultTier(Tier dbTier)
+        //{
+        //    EndtCommerceEntities ECE = new EndtCommerceEntities();
+        //    Tier tier = ECE.Tiers.Where(x => x.IsDefault == dbTier.IsDefault).FirstOrDefault();
+        //    if (tier == null)
+        //    {
+        //        return false;
+        //    }
+        //    else return true;
+        //}
+        //public static Boolean CheckIfDefaultTierAlreadyExist(Tier dbTier)
+        //{
+        //    EndtCommerceEntities ECE = new EndtCommerceEntities();
+        //    try
+        //    {
+        //        List<Tier> dbadvertisement = ECE.Tiers.Where(x => x.TierId != dbTier.TierId && x.IsDefault == true).ToList();
+        //        //Tier Tier = ECE.Tiers.Where(x => x.TierName.ToLower() == dbTier.TierName.ToLower() && x.TierId != dbTier.TierId&&x.IsDefault==true).FirstOrDefault();
+        //        foreach (Tier tier in dbadvertisement)
+        //        {
+        //            if (tier.IsDefault == true)
+        //            {
+        //                return true;
+        //            }
+        //            else
+        //                return true;
+        //        }
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
 
         //public static bool AddTiertProductPrice(List<TierProductPrice> tierProductPrices)
         //{
@@ -200,12 +175,12 @@ namespace _3EndTBusinessLayer
         //                    ECE.AddToCustomerTierProductPrices(ctpp);
         //                    ECE.SaveChanges();
         //                }
-                        
-                       
+
+
         //            }
-                  
+
         //        }
-              
+
         //        //foreach (TierProductPrice tppps in tierProductPrices)
         //        //{
         //        //        List<Customer> customers = ECE.Customers.Where(x => x.TierId == tppps.TierProduct.TierId).ToList();
@@ -220,12 +195,12 @@ namespace _3EndTBusinessLayer
         //        //            ECE.AddToCustomerTierProductPrices(ctpp);
         //        //            ECE.SaveChanges();
         //        //        }
-                             
+
         //        //}
-              
-               
+
+
         //        ECE.SaveChanges();
-             
+
         //        return true;
         //    }
         //    catch (Exception ex)
@@ -273,17 +248,16 @@ namespace _3EndTBusinessLayer
         //}
 
 
-        public static List<GetTierProductPriceByTierId_Result> GetAllTierProductPricesByTierId(int TierId)
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            return ECE.GetTierProductPriceByTierId(TierId).ToList();
-        }
+        //public static List<GetTierProductPriceByTierId_Result> GetAllTierProductPricesByTierId(int TierId)
+        //{
+        //    EndtCommerceEntities ECE = new EndtCommerceEntities();
+        //    return ECE.GetTierProductPriceByTierId(TierId).ToList();
+        //}
 
-        public static Tier GetDefaultTier()
-        {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            return ECE.Tiers.Where(x => x.IsDefault == true).FirstOrDefault();
-
-        }
+        //public static Tier GetDefaultTier()
+        //{
+        //    EndtCommerceEntities ECE = new EndtCommerceEntities();
+        //    return ECE.Tiers.Where(x => x.IsDefault == true).FirstOrDefault();
+        //}
     }
 }

@@ -74,7 +74,7 @@ namespace _3EndTBusinessLayer
         public static Product GetProductById(int productId)
         {
             EndtCommerceEntities ece = new EndtCommerceEntities();
-            Product dbProduct = ece.Products.Where(x => x.ProductId == productId).FirstOrDefault();
+            var dbProduct = ece.Products.Where(x => x.ProductId == productId).FirstOrDefault();
             return dbProduct;
         }
 

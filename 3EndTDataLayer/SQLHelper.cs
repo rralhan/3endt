@@ -40,6 +40,29 @@ namespace _3EndTDataLayer
             }
         }
 
+        public static int InsertCategory(Category cmp)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"INSERT INTO dbo.Categories
+           (CategoryName
+           ,CategoryLevel
+           ,ParentCategoryId
+           ,ImageUrl
+           ,IsService                 
+           ,IsActive)
+     VALUES
+           (@CategoryName
+           ,@CategoryLevel
+           ,@ParentCategoryId
+           ,@ImageUrl
+           ,@IsService            
+           ,@IsActive);";
+                return cn.Execute(sqlStr, cmp);
+            }
+        }
+
         public static int UpdateCategory(Category cat)
         {
             using (SqlConnection cn = new SqlConnection(_connStr))
@@ -156,13 +179,11 @@ WHERE CompanyId = @CompanyId";
                 cn.Open();
                 var sqlStr = @"INSERT INTO dbo.ParentCompanies
            (Name
-           ,FederalId
-           ,CreatedDate
+           ,FederalId       
            ,IsActive)
      VALUES
            (@Name
-           ,@FederalId
-           ,@CreatedDate
+           ,@FederalId        
            ,@IsActive);";
                 return cn.Execute(sqlStr, cmp);
             }
@@ -228,7 +249,7 @@ INSERT INTO dbo.Addresses
            ,@Type
            ,@IsActive)
 ";
-                return cn.Execute(sqlStr, addr); ;
+                return cn.Execute(sqlStr, addr);
             }
         }
 
@@ -286,8 +307,7 @@ INSERT INTO dbo.Users
            ,EMailId
            ,PhoneNumber
            ,FaxNumber
-           ,CompanyId
-           ,CreatedDate   
+           ,CompanyId            
            ,IsActive)
      VALUES
            (@RoleId
@@ -300,7 +320,6 @@ INSERT INTO dbo.Users
            ,@PhoneNumber
            ,@FaxNumber
            ,@CompanyId
-           ,@CreatedDate 
            ,@IsActive)
 ";
                 return cn.Execute(sqlStr, user);
@@ -368,18 +387,118 @@ INSERT INTO dbo.Users
            ,Title
            ,FilePath
            ,Url
-           ,CreatedDate
            ,IsActive)
      VALUES
            (@Key
            ,@Title
            ,@FilePath
            ,@Url
-           ,@CreatedDate
            ,@IsActive);";
                 return cn.Execute(sqlStr, doc);
             }
         }
+        #endregion
+
+        #region Tier
+
+        public static List<Tier> GetTiers()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from Tiers";
+                var tierList = cn.Query<Tier>(sqlStr).ToList();
+                return tierList;
+            }
+        }
+
+        public static Tier GetTierById(int tierId)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = "Select * from Tiers where TierId=@TierId";
+                var ct = cn.QueryFirst<Tier>(sqlStr, new
+                {
+                    TierId = tierId
+                });
+                return ct;
+            }
+        }
+
+        public static int InsertTier(Tier tier)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"
+INSERT INTO dbo.Tiers
+           (TierName
+           ,IsActive
+           ,IsDefault
+           )
+     VALUES
+           (@TierName
+           ,@IsActive
+           ,@IsDefault
+           )";
+                return cn.Execute(sqlStr, tier);
+            }
+        }
+
+        public static int UpdateTier(Tier tier)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"UPDATE dbo.Tiers
+   SET TierName = @TierName
+      ,IsActive = @IsActive
+      ,IsDefault = @IsDefault
+      ,CreatedDate = @CreatedDate
+      ,ModifiedDate = @ModifiedDate
+ WHERE TierId=@TierId";
+                return cn.Execute(sqlStr, tier);
+            }
+        }
+
+        #endregion
+
+        #region Order
+        public static int InsertOrder(Order order)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"INSERT INTO dbo.Orders
+           (UserId
+           ,OrderStatusId
+           ,BillingAddressId
+           ,CompanyShippingAddressId
+           ,PurchaseOrderNumber
+           ,ConfirmationNumber
+           ,ConfirmationSendDate
+           ,DateShipped
+           ,Comments
+           ,ShippingCost
+           ,IsActive)
+     VALUES
+           (@UserId
+           ,@OrderStatusId
+           ,@BillingAddressId
+           ,@CompanyShippingAddressId
+           ,@PurchaseOrderNumber
+           ,@ConfirmationNumber
+           ,@ConfirmationSendDate
+           ,@DateShipped
+           ,@Comments
+           ,@ShippingCost
+           ,@IsActive);";
+                return cn.Execute(sqlStr, order);
+            }
+        }
+
         #endregion
     }
 }

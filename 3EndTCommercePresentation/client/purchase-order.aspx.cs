@@ -77,19 +77,19 @@ namespace _3EndTCommercePresentation.client
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
         {
-            PurchaseMaster puchasemaster = new PurchaseMaster();
+            OrderManager puchasemaster = new OrderManager();
             // po == purchase order
             PurchaseOrderMaster pomaster = new PurchaseOrderMaster();
             pomaster.CustomerId = CustomerId;
             pomaster.OrderDate = DateTime.Now;
             pomaster.PurchaseOrderNumber = txtPurchaseOrderNumber.Text.Trim();            
             pomaster.BillingAddressId = CompanyManager.GetAddressesByCompanyId(CompanyId, AddressType.Billing).FirstOrDefault().AddressId;
-            pomaster.ConfirmationNumber = PurchaseMaster.GetConfirmationNumber(Company.CompanyName);
+            pomaster.ConfirmationNumber = OrderManager.GetConfirmationNumber(Company.CompanyName);
             pomaster.OrderStatusId = (int)Enums.PurchaseOrderStatus.Accepted;
             if (string.IsNullOrEmpty(hdnSelectedShipping.Value))
                 hdnSelectedShipping.Value = SelectedCompanyShipAddr.AddressId.ToString();
             pomaster.CompanyShippingAddressId = Convert.ToInt32(hdnSelectedShipping.Value);
-            int orderid = PurchaseMaster.InsertPurchaseMaster(pomaster);
+            int orderid = OrderManager.InsertPurchaseMaster(pomaster);
 
             foreach (CartItem ci in ShoppingCart.Instance.CartItems)
             {
@@ -100,7 +100,7 @@ namespace _3EndTCommercePresentation.client
                 podetail.UnitPrice = ci.UnitPrice;
                 podetail.TotalProductPrice = ci.TotalPrice;
                 podetail.ProductId = ci.ProductId;
-                PurchaseMaster.InsertPurchaseDetail(podetail);
+                OrderManager.InsertPurchaseDetail(podetail);
             }
             CreateEmail(pomaster.ConfirmationNumber, pomaster.PurchaseOrderNumber);
             ClearData();

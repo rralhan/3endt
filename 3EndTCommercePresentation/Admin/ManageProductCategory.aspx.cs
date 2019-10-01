@@ -8,6 +8,7 @@ using _3EndTBusinessLayer;
 using _3EndTDataLayer;
 using System.IO;
 using _3EndTBusinessLayer.BusinessObject;
+using _3EndTDataLayer.domain;
 
 namespace _3EndTCommercePresentation.Admin
 {

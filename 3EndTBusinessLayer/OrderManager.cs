@@ -1,4 +1,5 @@
 ﻿using _3EndTDataLayer;
+using _3EndTDataLayer.domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,12 @@ using System.Threading.Tasks;
 
 namespace _3EndTBusinessLayer
 {
-    public class PurchaseMaster
+    public class OrderManager
     {
-        public static int InsertPurchaseMaster(PurchaseOrderMaster poMaster)
+        public static int InsertOrder(Order order)
         {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            ece.PurchaseOrderMasters.AddObject(poMaster);
-            ece.SaveChanges();
-            return poMaster.PurchaseOrderId;
+            var retval = SQLHelper.InsertOrder(order);
+            return order.OrderId.HasValue ? order.OrderId.Value : 0;
         }
         public static string GetConfirmationNumber(string company)
         {

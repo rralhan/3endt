@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using _3EndTDataLayer;
-using System.Reflection;
-using System.Data.Objects.DataClasses;
 using System.Data;
 using System.Web;
 using _3EndTBusinessLayer.BusinessObject;

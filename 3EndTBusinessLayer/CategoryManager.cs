@@ -1,40 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using _3EndTDataLayer;
 using _3EndTDataLayer.domain;
 
 namespace _3EndTBusinessLayer
 {
-   public  class CategoryManager
+    public  class CategoryManager
     {
        
 
-       public static bool InsertCategory(Category Cata)
+       public static bool InsertCategory(Category ctg)
        {
-           EndtCommerceEntities ECE = new EndtCommerceEntities();
-           try
-           {
-               ECE.AddToCategories(Cata);
-               ECE.SaveChanges();
-               return true;
-           }
-           catch (Exception ex)
-           {
-               return false;
-           }
-       }
+            var retval = SQLHelper.InsertCategory(ctg);
+            if (retval > 0)
+                return true;
+            return false;
+        }
 
 
-       public static Boolean CheckIfCategoryAlreadyExist(Category cat)
-       {
-           EndtCommerceEntities ECE = new EndtCommerceEntities();
-           Category dbCategory = ECE.Categories.Where(x => x.CategoryName.ToLower() == cat.CategoryName.ToLower()).FirstOrDefault();
-           if (dbCategory == null) return false;
-           else return true;
-       }
+        public static Boolean CheckIfCategoryAlreadyExist(Category cat)
+        {
+            var ctgs = SQLHelper.GetCategories();
+            Category dbCategory = ctgs.Where(x => x.CategoryName.ToLower() == cat.CategoryName.ToLower()).FirstOrDefault();
+            if (dbCategory == null)
+                return false;
+            return true;
+        }
 
         public static List<Category> GetAllCategories(bool showOnlyActive = true)
         {
