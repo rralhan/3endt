@@ -8,8 +8,6 @@ namespace _3EndTBusinessLayer
 {
     public  class CategoryManager
     {
-       
-
        public static bool InsertCategory(Category ctg)
        {
             var retval = SQLHelper.InsertCategory(ctg);
@@ -35,7 +33,6 @@ namespace _3EndTBusinessLayer
                 cats = cats.Where(x => x.IsActive == true).ToList();
             return cats;
         }
-
 
        public static List<Category> GetTopCategories(bool isService = false)
        {

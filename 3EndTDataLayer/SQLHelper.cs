@@ -211,7 +211,6 @@ WHERE CompanyId = @CompanyId";
         {
             using (SqlConnection cn = new SqlConnection(_connStr))
             {
-
                 cn.Open();
 
                 var sqlStr = "Select * from Addresses";
@@ -499,6 +498,125 @@ INSERT INTO dbo.Tiers
             }
         }
 
+        public static List<Order> GetOrders()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from Orders";
+                var orderList = cn.Query<Order>(sqlStr).ToList();
+                return orderList;
+            }
+        }
+
+        public static List<OrderDetail> GetOrderDetails()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from OrderDetails";
+                var orderList = cn.Query<OrderDetail>(sqlStr).ToList();
+                return orderList;
+            }
+        }
+
+        public static int InsertOrderDetail(OrderDetail orderDtl)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"INSERT INTO dbo.OrderDetails
+           (OrderId
+           ,ProductId
+           ,ProductItemId
+           ,Quantity
+           ,TotalProductPrice
+           ,UnitPrice
+           ,CreatedDate           
+           ,IsActive)
+     VALUES
+           (@OrderId
+           ,@ProductId
+           ,@ProductItemId
+           ,@Quantity
+           ,@TotalProductPrice
+           ,@UnitPrice
+           ,@CreatedDate       
+           ,@IsActive);";
+                return cn.Execute(sqlStr, orderDtl);
+            }
+        }
+
+
         #endregion
+
+        #region Product
+
+        public static List<Product> GetProducts()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from Products";
+                var prdList = cn.Query<Product>(sqlStr).ToList();
+                return prdList;
+            }
+        }
+
+        public static int InsertProduct(Product prd)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"INSERT INTO dbo.Products
+           (CategoryId
+           ,ProductTitle
+           ,Description
+           ,Unit
+           ,ImageUrl
+           ,CreatedDate
+           ,IsActive)
+     VALUES
+           (@CategoryId
+           ,@ProductTitle
+           ,@Description
+           ,@Unit
+           ,@ImageUrl
+           ,@CreatedDate
+           ,@IsActive);";
+                return cn.Execute(sqlStr, prd);
+            }
+        }
+
+        public static Product GetProductById(int productId)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = "Select * from Products where ProductId=@ProductId";
+                var ct = cn.QueryFirst<Product>(sqlStr, new
+                {
+                    ProductId = productId
+                });
+                return ct;
+            }
+        }
+
+        public static int DeleteProduct(int productId)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"UPDATE [dbo].[Products]
+SET IsActive = @IsActive
+WHERE ProductId = @ProductId";
+                return cn.Execute(sqlStr, new { ProductId = productId, IsActive = false });
+            }
+        }
+        #endregion
+
     }
 }

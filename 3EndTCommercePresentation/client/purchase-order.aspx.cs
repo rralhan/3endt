@@ -12,6 +12,7 @@ using System.Web.Security;
 using System.IO;
 using System.Configuration;
 using System.Text;
+using _3EndTDataLayer.domain;
 
 namespace _3EndTCommercePresentation.client
 {
@@ -89,12 +90,12 @@ namespace _3EndTCommercePresentation.client
             if (string.IsNullOrEmpty(hdnSelectedShipping.Value))
                 hdnSelectedShipping.Value = SelectedCompanyShipAddr.AddressId.ToString();
             pomaster.CompanyShippingAddressId = Convert.ToInt32(hdnSelectedShipping.Value);
-            int orderid = OrderManager.InsertPurchaseMaster(pomaster);
+            int orderid = OrderManager.InsertOrder(pomaster);
 
             foreach (CartItem ci in ShoppingCart.Instance.CartItems)
             {
-                PurchaseOrderDetail podetail = new PurchaseOrderDetail();
-                podetail.PurchaseOrderId = orderid;
+                var podetail = new OrderDetail();
+                podetail.OrderId = orderid;
                 podetail.ProductItemId = ci.ProductItemId;
                 podetail.Quantity = ci.Quantity;
                 podetail.UnitPrice = ci.UnitPrice;

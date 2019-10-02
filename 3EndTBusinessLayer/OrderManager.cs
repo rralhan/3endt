@@ -20,19 +20,18 @@ namespace _3EndTBusinessLayer
             var chars = "0123456789abcdefghijklmno";
             var random = new Random();
             string result = company.Replace(" ","").Substring(0, 5) + new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            if (ece.PurchaseOrderMasters.Any(p => p.ConfirmationNumber == result))
+            var orders = SQLHelper.GetOrders();
+            if (orders.Any(p => p.ConfirmationNumber == result))
                 result = GetConfirmationNumber(company);      
         
             return result;
         }
-        public static void InsertPurchaseDetail(PurchaseOrderDetail poDetail)
+        public static void InsertPurchaseDetail(OrderDetail poDetail)
         {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            if(!ece.PurchaseOrderDetails.Any(p => p.PurchaseOrderId == poDetail.PurchaseOrderId && p.ProductItemId == poDetail.ProductItemId))            
+            var orderDetails = SQLHelper.GetOrderDetails();
+            if(!orderDetails.Any(p => p.OrderId == poDetail.OrderId && p.ProductItemId == poDetail.ProductItemId))            
             {
-                ece.PurchaseOrderDetails.AddObject(poDetail);
-                ece.SaveChanges();
+                SQLHelper.InsertOrderDetail(poDetail);
             }
             
         }
