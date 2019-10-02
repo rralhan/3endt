@@ -616,6 +616,45 @@ WHERE ProductId = @ProductId";
                 return cn.Execute(sqlStr, new { ProductId = productId, IsActive = false });
             }
         }
+
+
+
+        public static List<ProductItem> GetProductItems()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from GetProductItems";
+                var prdList = cn.Query<ProductItem>(sqlStr).ToList();
+                return prdList;
+            }
+        }
+
+        public static int UpdateProductItem(ProductItem pi)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"UPDATE dbo.Addresses
+   SET CompanyId = @CompanyId
+      ,AddressName = @AddressName
+      ,AddressLine1 = @AddressLine1
+      ,AddressLine2 = @AddressLine2
+      ,City = @City
+      ,State = @State
+      ,Zipcode = @Zipcode
+      ,IsPrimary = @IsPrimary
+      ,Type = @Type 
+      ,ModifiedDate = @ModifiedDate
+      ,IsActive = @IsActive
+ WHERE AddressId=@AddressId";
+                return cn.Execute(sqlStr, pi);
+            }
+        }
+
+
+
         #endregion
 
     }

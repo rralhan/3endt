@@ -66,19 +66,11 @@ namespace _3EndTBusinessLayer
 
         public static void UpdateProductItem(ProductItem productItem)
         {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            try
-            {
-                //Updating by the productfilterid
-                var cs = ece.ProductItems.Where(x => x.ProductItemId == productItem.ProductItemId).FirstOrDefault<ProductItem>();
-                cs.ProductSKU = productItem.ProductSKU;
-                cs.ProductFilterId = productItem.ProductFilterId;
-                ece.SaveChanges();         
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var pis = SQLHelper.GetProductItems();
+            var pi = pis.Where(x => x.ProductItemId == productItem.ProductItemId && x.IsActive == true).FirstOrDefault<ProductItem>();
+            pi.ProductSKU = productItem.ProductSKU;
+            pi.ProductFilterId = productItem.ProductFilterId;
+            SQLHelper.UpdateProductItem(pi);
         }
 
         public static void DeleteProduct(int productId)
@@ -218,12 +210,12 @@ namespace _3EndTBusinessLayer
         /// </summary>
         /// <param name="pfId"></param>
         /// <returns></returns>
-        public static ProductFilter GetProductFilterById(int pfId)
-        {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            ProductFilter pf = ece.ProductFilters.Where(x => x.ProductFilterId == pfId).SingleOrDefault();
-            return pf;           
-        }
+        //public static ProductFilter GetProductFilterById(int pfId)
+        //{
+        //    EndtCommerceEntities ece = new EndtCommerceEntities();
+        //    ProductFilter pf = ece.ProductFilters.Where(x => x.ProductFilterId == pfId).SingleOrDefault();
+        //    return pf;           
+        //}
 
         public static List<FilterTypes> GetAllFilterTypes()
         {          
@@ -237,14 +229,14 @@ namespace _3EndTBusinessLayer
         /// </summary>
         /// <param name="parentProductFilterId"></param>
         /// <returns></returns>
-        public static ProductFilter GetProductFilterByParentId(System.Nullable<int> parentProductFilterId)
-        {            
-            using (EndtCommerceEntities ece = new EndtCommerceEntities())
-            {
-                ProductFilter filter = ece.ProductFilters.Where(x => x.ProductFilterId == parentProductFilterId).FirstOrDefault();
-                return filter; 
-            }
-        }
+        //public static ProductFilter GetProductFilterByParentId(System.Nullable<int> parentProductFilterId)
+        //{            
+        //    using (EndtCommerceEntities ece = new EndtCommerceEntities())
+        //    {
+        //        ProductFilter filter = ece.ProductFilters.Where(x => x.ProductFilterId == parentProductFilterId).FirstOrDefault();
+        //        return filter; 
+        //    }
+        //}
 
         
         public static List<Tuple<TierProduct,TierProductPrice>> GetAssociatedProductPricesByTier(int tierId)
@@ -298,25 +290,25 @@ namespace _3EndTBusinessLayer
             return query;
         }
 
-        public static List<ProductItem> GetProductItemsByProductId(long productId)
-        {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            List<ProductItem> productItems = ece.ProductItems.Where(x => x.ProductId == productId).ToList();
-            return productItems;
-        }
+        //public static List<ProductItem> GetProductItemsByProductId(long productId)
+        //{
+        //    EndtCommerceEntities ece = new EndtCommerceEntities();
+        //    List<ProductItem> productItems = ece.ProductItems.Where(x => x.ProductId == productId).ToList();
+        //    return productItems;
+        //}
 
-        public static ProductItem GetProductItemByProductItemId(int productItemId)
-        {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            ProductItem productItem = ece.ProductItems.Where(x => x.ProductItemId == productItemId).FirstOrDefault();
-            return productItem;
-        }
+        //public static ProductItem GetProductItemByProductItemId(int productItemId)
+        //{
+        //    EndtCommerceEntities ece = new EndtCommerceEntities();
+        //    ProductItem productItem = ece.ProductItems.Where(x => x.ProductItemId == productItemId).FirstOrDefault();
+        //    return productItem;
+        //}
 
-        public static List<ProductItem> GetAllProductItems()
-        {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            return ece.ProductItems.ToList();
-        }
+        //public static List<ProductItem> GetAllProductItems()
+        //{
+        //    EndtCommerceEntities ece = new EndtCommerceEntities();
+        //    return ece.ProductItems.ToList();
+        //}
 
         public static List<BO.ProductItemInfo> GetProductItemInfoByProductId(int productId, int tierId = 1)
         {
