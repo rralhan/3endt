@@ -610,14 +610,30 @@ INSERT INTO dbo.Tiers
             using (SqlConnection cn = new SqlConnection(_connStr))
             {
                 cn.Open();
-                var sqlStr = @"UPDATE [dbo].[Products]
+                var sqlStr = @"UPDATE dbo.Products
 SET IsActive = @IsActive
 WHERE ProductId = @ProductId";
                 return cn.Execute(sqlStr, new { ProductId = productId, IsActive = false });
             }
         }
 
-
+        public static int UpdateProduct(Product pi)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"UPDATE dbo.Products
+   SET CategoryId = @CategoryId
+      ,ProductTitle = @ProductTitle
+      ,Description = @Description
+      ,Unit = @Unit
+      ,ImageUrl = @ImageUrl      
+      ,ModifiedDate = @ModifiedDate
+      ,IsActive = @IsActive
+ WHERE ProductId=@ProductId";
+                return cn.Execute(sqlStr, pi);
+            }
+        }
 
         public static List<ProductItem> GetProductItems()
         {
@@ -625,36 +641,162 @@ WHERE ProductId = @ProductId";
             {
                 cn.Open();
 
-                var sqlStr = "Select * from GetProductItems";
+                var sqlStr = "Select * from ProductItems";
                 var prdList = cn.Query<ProductItem>(sqlStr).ToList();
                 return prdList;
             }
         }
 
+        public static int InsertProductItem(ProductItem prdItem)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"INSERT INTO dbo.Products
+           (ProductSKU
+           ,ProductFilterId
+           ,ProductId
+           ,CreatedDate
+           ,IsActive)
+     VALUES
+           (@ProductSKU
+           ,@ProductFilterId
+           ,@ProductId
+           ,@CreatedDate
+           ,@IsActive);";
+                return cn.Execute(sqlStr, prdItem);
+            }
+        }
         public static int UpdateProductItem(ProductItem pi)
         {
             using (SqlConnection cn = new SqlConnection(_connStr))
             {
                 cn.Open();
-                var sqlStr = @"UPDATE dbo.Addresses
-   SET CompanyId = @CompanyId
-      ,AddressName = @AddressName
-      ,AddressLine1 = @AddressLine1
-      ,AddressLine2 = @AddressLine2
-      ,City = @City
-      ,State = @State
-      ,Zipcode = @Zipcode
-      ,IsPrimary = @IsPrimary
-      ,Type = @Type 
+                var sqlStr = @"UPDATE dbo.ProductItems
+   SET ProductSKU = @ProductSKU
+      ,ProductFilterId = @ProductFilterId
+      ,ProductId = @ProductId
       ,ModifiedDate = @ModifiedDate
       ,IsActive = @IsActive
- WHERE AddressId=@AddressId";
+ WHERE ProductItemId=@ProductItemId";
                 return cn.Execute(sqlStr, pi);
             }
         }
 
+        public static int DeleteProductItem(int productItemId)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"UPDATE dbo.ProductItems
+SET IsActive = @IsActive
+WHERE ProductItemId = @ProductItemId";
+                return cn.Execute(sqlStr, new { ProductId = productItemId, IsActive = false });
+            }
+        }
 
+        public static List<TierProduct> GetTierProducts()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
 
+                var sqlStr = "Select * from TierProducts";
+                var tpList = cn.Query<TierProduct>(sqlStr).ToList();
+                return tpList;
+            }
+        }
+
+        public static int DeleteTierProduct(int tpId)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"UPDATE dbo.TierProducts
+SET IsActive = @IsActive
+WHERE TierProductId = @TierProductId";
+                return cn.Execute(sqlStr, new { TierProductId = tpId, IsActive = false });
+            }
+        }
+
+        public static List<TierProductPrice> GetTierProductPrices()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from TierProductPrices";
+                var tpList = cn.Query<TierProductPrice>(sqlStr).ToList();
+                return tpList;
+            }
+        }
+
+        public static int DeleteTierProductPrice(int tppId)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"UPDATE dbo.TierProductPrices
+SET IsActive = @IsActive
+WHERE TierProductPriceId = @TierProductPriceId";
+                return cn.Execute(sqlStr, new { TierProductPriceId = tppId, IsActive = false });
+            }
+        }
+
+        public static List<ProductFilter> GetProductFilters()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from ProductFilters";
+                var prdFilters = cn.Query<ProductFilter>(sqlStr).ToList();
+                return prdFilters;
+            }
+        }
+
+        public static int InsertProductFilter(ProductFilter prdFilter)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"INSERT INTO dbo.ProductFilters
+           (PrimaryFilterId
+           ,SecondaryFilterId
+           ,CreatedDate
+           ,IsActive)
+     VALUES
+           (@PrimaryFilterId
+           ,@SecondaryFilterId
+           ,@CreatedDate
+           ,@IsActive);";
+                return cn.Execute(sqlStr, prdFilter);
+            }
+        }
+
+        public static List<Filter> GetFilters()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from Filters";
+                var filters = cn.Query<Filter>(sqlStr).ToList();
+                return filters;
+            }
+        }
+
+        public static List<FilterType> GetFilterTypes()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from FilterTypes";
+                var filterTypes = cn.Query<FilterType>(sqlStr).ToList();
+                return filterTypes;
+            }
+        }
         #endregion
 
     }

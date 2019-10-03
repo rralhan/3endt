@@ -59,18 +59,10 @@ namespace _3EndTBusinessLayer
 
         public static bool UpdateCategory(Category dbCategory)
         {
-
-            try
-            {
-                var retval = SQLHelper.UpdateCategory(dbCategory);
-                if (retval > 0)
-                    return true;
-                return false;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var retval = SQLHelper.UpdateCategory(dbCategory);
+            if (retval > 0)
+                return true;
+            return false;
         }
 
         public static List<Category> GetAllSubCategoryByParentCategoryId(int categoryId)

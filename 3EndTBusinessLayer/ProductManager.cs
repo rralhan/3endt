@@ -75,116 +75,72 @@ namespace _3EndTBusinessLayer
 
         public static void DeleteProduct(int productId)
         {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            try
+            var productItems = SQLHelper.GetProductItems();
+            var productitems = productItems.Where(pi => pi.ProductId == productId && pi.IsActive == true)
+            .Select(x => x.ProductItemId);
+            foreach (int pitemid in productitems)
             {
-                var productitems = ece.ProductItems.Where(pi => pi.ProductId == productId).Select(x => x.ProductItemId);
-                foreach(int pitemid in productitems)
-                {
-                    DeleteProductItem(pitemid);
-                }
-                var product = ece.Products.FirstOrDefault<Product>(x => x.ProductId == productId);
-                if (product != null)
-                    ece.Products.DeleteObject(product);
-                ece.SaveChanges();
+                DeleteProductItem(pitemid);
             }
-            catch(Exception)
-            {
-                throw;
-            }
+            var products = SQLHelper.GetProducts();
+            var product = products.FirstOrDefault<Product>(x => x.ProductId == productId && x.IsActive == true);
+            if (product != null)
+                SQLHelper.DeleteProduct(productId);
         }
 
         public static void DeleteProductItem(int productItemId)
         {
-             EndtCommerceEntities ece = new EndtCommerceEntities();
-             try
-             {
-                 var prices = (from tpp in ece.TierProductPrices
-                              join tp in ece.TierProducts on tpp.TierProductId equals tp.TierProductId
-                              where tp.ProductItemId == productItemId
-                              select tpp);
-                 if(prices != null && prices.Count() > 0)
-                 {
-                     foreach(TierProductPrice price in prices)
-                     {
-                           ece.TierProductPrices.DeleteObject(price);
-                     }
-                 }
-                 
-                 var tierproducts = ece.TierProducts.Where<TierProduct>(x => x.ProductItemId == productItemId);
-                 if (tierproducts != null && prices.Count() > 0)
-                 {
-                     foreach (TierProduct tierproduct in tierproducts)
-                     {
-                         ece.TierProducts.DeleteObject(tierproduct);
-                     }
-                 }
+            var productItems = SQLHelper.GetProductItems();
+            var tps = SQLHelper.GetTierProducts();
+            var tpps = SQLHelper.GetTierProductPrices();
+            var prices = (from tpp in tpps
+                          join tp in tps on tpp.TierProductId equals tp.TierProductId
+                          where tp.ProductItemId == productItemId && tpp.IsActive == true
+                          select tpp);
+            if (prices != null && prices.Count() > 0)
+            {
+                foreach (TierProductPrice price in prices)
+                {
+                    SQLHelper.DeleteTierProductPrice(price.TierProductPriceId);
+                }
+            }
 
-                 var pi = ece.ProductItems.Where(x => x.ProductItemId == productItemId).FirstOrDefault<ProductItem>();
-                 if (pi != null)
-                     ece.ProductItems.DeleteObject(pi);
+            var tierproducts = tps.Where<TierProduct>(x => x.ProductItemId == productItemId);
+            if (tierproducts != null && prices.Count() > 0)
+            {
+                foreach (TierProduct tierproduct in tierproducts)
+                {
+                    SQLHelper.DeleteTierProduct(tierproduct.TierProductId.Value);
+                }
+            }
 
-                 ece.SaveChanges();
-             }
-             catch (Exception)
-             {
-                 throw;
-             }
+            var pi = productItems.Where(x => x.ProductItemId == productItemId && x.IsActive == true).FirstOrDefault<ProductItem>();
+            if (pi != null && pi.ProductItemId.HasValue)
+                SQLHelper.DeleteProductItem(pi.ProductItemId.Value);
+
         }
         
-        public static bool UpdateProduct(Product product)
+        public static bool UpdateProduct(Product prd)
         {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            try
-            {
-                var query = ece.Products.Where(x => x.ProductId == product.ProductId);
-                if (query != null && query.Count() > 0)
-                {
-                    Product cs = query.FirstOrDefault<Product>();
-                    System.Reflection.PropertyInfo[] props = product.GetType().GetProperties();
-                    foreach (PropertyInfo pi in props)
-                    {
-                        if (pi.CanWrite)
-                        {
-                            EdmScalarPropertyAttribute[] attrs = (EdmScalarPropertyAttribute[])
-                                 pi.GetCustomAttributes(typeof(EdmScalarPropertyAttribute), false);
-
-                            foreach (EdmScalarPropertyAttribute attr in attrs)
-                            {
-                                if (attr.EntityKeyProperty)
-                                    continue;
-
-                                pi.SetValue(cs, pi.GetValue(product));
-                            }
-                        }
-                    }
-                    ece.SaveChanges();
-                }
+            var retval = SQLHelper.UpdateProduct(prd);
+            if (retval > 0)
                 return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return false;
         }
 
         public static void InsertProductFilter(ProductFilter productFilter)
         {
-            using (EndtCommerceEntities ece = new EndtCommerceEntities())
+            if (!CheckIfProductFilterExists(productFilter))
             {
-                if (!CheckIfProductFilterExists(productFilter))
-                {
-                    ece.ProductFilters.AddObject(productFilter);
-                    ece.SaveChanges();
-                }                        
+                SQLHelper.InsertProductFilter(productFilter);
             }
         }
 
         public static ProductFilter GetProductFilter(int primaryFilterId,int secondaryFilterId)
         {
             ProductFilter pfilter = null;
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            var query = ece.ProductFilters.Where(p => p.PrimaryFilterId == primaryFilterId && p.SecondaryFilterId == secondaryFilterId);
+            var prdFilters = SQLHelper.GetProductFilters();
+            var query = prdFilters.Where(p => p.PrimaryFilterId == primaryFilterId && p.SecondaryFilterId == secondaryFilterId);
             if (query.Count() > 0)
                 pfilter = query.FirstOrDefault<ProductFilter>();
             return pfilter;
@@ -194,8 +150,9 @@ namespace _3EndTBusinessLayer
         public static bool CheckIfProductFilterExists(ProductFilter productfilter)
         {
             bool retval = false;
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            var query = ece.ProductFilters.Where(p => p.PrimaryFilterId == productfilter.PrimaryFilterId && p.SecondaryFilterId == productfilter.SecondaryFilterId);
+            var prdFilters = SQLHelper.GetProductFilters();
+            var query = prdFilters.Where(p => p.PrimaryFilterId == productfilter.PrimaryFilterId &&
+            p.SecondaryFilterId == productfilter.SecondaryFilterId && p.IsActive == true);
             if (query.Count() > 0)
             {
                 productfilter = query.FirstOrDefault<ProductFilter>();
@@ -204,7 +161,7 @@ namespace _3EndTBusinessLayer
             return retval;
         }
 
-       
+
         /// <summary>
         /// Get ProductFilter by ProductFilterid
         /// </summary>
@@ -217,12 +174,13 @@ namespace _3EndTBusinessLayer
         //    return pf;           
         //}
 
-        public static List<FilterTypes> GetAllFilterTypes()
-        {          
-            using (EndtCommerceEntities ece = new EndtCommerceEntities())
-            {
-                return ece.FilterTypes.ToList(); 
-            }
+        public static List<FilterType> GetAllFilterTypes(bool showActiveOnly = true)
+        {
+            var retval = SQLHelper.GetFilterTypes();
+            if (showActiveOnly)
+                retval = retval.Where(x => x.IsActive == true).ToList();
+
+            return retval;
         }
         /// <summary>
         /// Get ProductFilter by ParentProductFilterId
@@ -385,17 +343,18 @@ namespace _3EndTBusinessLayer
         
         
 
-        public static void InsertProductItem(ProductItem item)
+        public static bool InsertProductItem(ProductItem item)
         {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            ece.AddToProductItems(item);
-            ece.SaveChanges();
+            var retval = SQLHelper.InsertProductItem(item);
+            if (retval > 0)
+                return true;
+            return false;
         }
 
         public static List<Filter> GetFilters(int filterTypeId = 0, string filterValue = "")
         {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            var query = ece.Filters.AsEnumerable<Filter>().Where(p => p.FilterTypeId == filterTypeId);            
+            var filters = SQLHelper.GetFilters();
+            var query = filters.AsEnumerable<Filter>().Where(p => p.FilterTypeId == filterTypeId && p.IsActive == true);            
             if (filterTypeId > 1 && filterValue.Trim() != string.Empty)       
                 query = query.Where(p=> p.FilterValue == filterValue);
 
