@@ -174,7 +174,7 @@ namespace _3EndTBusinessLayer
         //    return pf;           
         //}
 
-        public static List<FilterType> GetAllFilterTypes(bool showActiveOnly = true)
+        public static List<FilterType> GetFilterTypes(bool showActiveOnly = true)
         {
             var retval = SQLHelper.GetFilterTypes();
             if (showActiveOnly)
@@ -196,55 +196,72 @@ namespace _3EndTBusinessLayer
         //    }
         //}
 
-        
-        public static List<Tuple<TierProduct,TierProductPrice>> GetAssociatedProductPricesByTier(int tierId)
-        {            
-            using (EndtCommerceEntities ece = new EndtCommerceEntities())
-            {
-                var query = (from tp in ece.TierProducts
-                             join tpp in ece.TierProductPrices on tp.TierProductId equals tpp.TierProductId
-                             where tp.TierId == tierId
-                             select new { tp, tpp }).AsEnumerable().Select(x => Tuple.Create(x.tp, x.tpp));
-                List<Tuple<TierProduct, TierProductPrice>> tiertuple = query.ToList();
 
-                return tiertuple; 
-            }
+        public static List<Tuple<TierProduct, TierProductPrice>> GetAssociatedProductPricesByTier(int tierId)
+        {
+            var tps = SQLHelper.GetTierProducts();
+            var tpps = SQLHelper.GetTierProductPrices();
+
+            var query = (from tp in tps
+                         join tpp in tpps on tp.TierProductId equals tpp.TierProductId
+                         where tp.TierId == tierId
+                         select new { tp, tpp }).AsEnumerable().Select(x => Tuple.Create(x.tp, x.tpp));
+            List<Tuple<TierProduct, TierProductPrice>> tiertuple = query.ToList();
+
+            return tiertuple;
         }
         
-        public static void UpdateTierProductPrices(int tierId, int productItemId, decimal price)
+        public static void UpdateTierProductPrices(int tierId, int prdItemId, decimal price)
         {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            TierProduct tierprod = ece.TierProducts.Where(tp => tp.ProductItemId == productItemId && tp.TierId == tierId).SingleOrDefault();
-            if(tierprod == null)
+            var tps = SQLHelper.GetTierProducts();
+            TierProduct tierprod = tps.Where(tp => tp.ProductItemId == prdItemId && tp.TierId == tierId).SingleOrDefault();
+            if (tierprod == null)
             {
                 tierprod = new TierProduct();
-                ece.TierProducts.AddObject(tierprod);
+                tierprod.TierId = tierId;
+                tierprod.ProductItemId = prdItemId;
+                SQLHelper.InsertTierProducts(tierprod);
             }
-            tierprod.TierId = tierId;
-            tierprod.ProductItemId = productItemId;
-            ece.SaveChanges();
-
-            int tipid = tierprod.TierProductId;
-
-            TierProductPrice tierprodprice = ece.TierProductPrices.Where(x => x.TierProductId == tipid).SingleOrDefault();
-            if(tierprodprice == null)
+            else
             {
-                tierprodprice = new TierProductPrice();
-                ece.TierProductPrices.AddObject(tierprodprice);
+                tierprod.TierId = tierId;
+                tierprod.ProductItemId = prdItemId;
+                tierprod.ModifiedDate = DateTime.UtcNow;
+                SQLHelper.UpdateTierProducts(tierprod);
             }
-            tierprodprice.TierProductId = tipid;
-            tierprodprice.Price = price;
-            ece.SaveChanges();
+
+            tps = SQLHelper.GetTierProducts();
+            tierprod = tps.FirstOrDefault<TierProduct>(x => x.TierId == tierId && x.ProductItemId == prdItemId);
+            if(tierprod != null)
+            {
+                int tipid = tierprod.TierProductId.HasValue ? tierprod.TierProductId.Value : 0;
+                var tpps = SQLHelper.GetTierProductPrices();
+
+                var tierprdprice = tpps.Where(x => x.TierProductId == tipid).FirstOrDefault();
+                if (tierprdprice == null)
+                {
+                    tierprdprice = new TierProductPrice();
+                    tierprdprice.TierProductId = tipid;
+                    tierprdprice.Price = price;
+                    SQLHelper.InsertTierProductPrices(tierprdprice);
+                }
+                else
+                {
+                    tierprdprice.TierProductId = tipid;
+                    tierprdprice.Price = price;
+                    tierprdprice.ModifiedDate = DateTime.UtcNow;
+                    SQLHelper.UpdateTierProductPrices(tierprdprice);
+                }
+
+            }          
         }
 
         public static List<Product> GetAllProductByCategoryId(int categoryId)
         {
-            EndtCommerceEntities ece = new EndtCommerceEntities();
-            var query = (from prd in ece.Products
+            var prds = SQLHelper.GetProducts();
+            var query = (from prd in prds
                          where prd.CategoryId == categoryId && prd.IsActive == true
                          select prd).ToList();
-            
-            //ece.GetAllProductsByCategoryId(categoryId, customerId).ToList();
             return query;
         }
 
@@ -300,41 +317,45 @@ namespace _3EndTBusinessLayer
             List<BO.ProductItemInfo> iteminfos = new List<BO.ProductItemInfo>();
             if (HttpContext.Current.Cache["iteminfos"] == null)
             {
-                using (EndtCommerceEntities ece = new EndtCommerceEntities())
-                {
-                    var query = from pi in ece.ProductItems
-                                join p in ece.Products on pi.ProductId equals p.ProductId
-                                join pf in ece.ProductFilters on pi.ProductFilterId equals pf.ProductFilterId
+                var filters = SQLHelper.GetFilters();
+                var filterTypes = SQLHelper.GetFilterTypes();
+                var products = SQLHelper.GetProducts();
+                var productItems = SQLHelper.GetProductItems();
+                var productFilters = SQLHelper.GetProductFilters();
 
-                                join f1 in ece.Filters on pf.PrimaryFilterId equals f1.FilterId into p1
+                    var query = from pi in productItems
+                                join p in products on pi.ProductId equals p.ProductId
+                                join pf in productFilters on pi.ProductFilterId equals pf.ProductFilterId
+
+                                join f1 in filters on pf.PrimaryFilterId equals f1.FilterId into p1
                                 from f1 in p1.DefaultIfEmpty() // left join
-                                join ft1 in ece.FilterTypes on f1.FilterTypeId equals ft1.FilterTypeId
+                                join ft1 in filterTypes on f1.FilterTypeId equals ft1.FilterTypeId
 
-                                join f2 in ece.Filters on pf.SecondaryFilterId equals f2.FilterId into p2
+                                join f2 in filters on pf.SecondaryFilterId equals f2.FilterId into p2
                                 from f2 in p2.DefaultIfEmpty()// left join
-                                join ft2 in ece.FilterTypes on f2.FilterTypeId equals ft2.FilterTypeId
+                                join ft2 in filterTypes on f2.FilterTypeId equals ft2.FilterTypeId
 
-                                where p.IsActive == true //&& pi.ProductItemId > 1224
+                                where p.IsActive == true && pf.IsActive == true
                                 select new BO.ProductItemInfo
                                 {
-                                    ProductId = p.ProductId,
+                                    ProductId = p.ProductId.Value,
                                     ProductName = p.ProductTitle,
                                     ProductUnit = p.Unit,
-                                    ItemId = pi.ProductItemId,
+                                    ItemId = pi.ProductItemId.Value,
                                     ProductSKU = pi.ProductSKU,
                                     PrimaryFilterTypeId = f1.FilterTypeId,
                                     PrimaryFilterType = ft1.FilterTypeName,
-                                    PrimaryFilterId = f1.FilterId,
+                                    PrimaryFilterId = f1.FilterId.Value,
                                     PrimaryFilterValue = f1.FilterValue,
                                     SecondaryFilterTypeId = f2.FilterTypeId,
                                     SecondaryFilterType = ft2.FilterTypeName,
-                                    SecondaryFilterId = f2.FilterId,
+                                    SecondaryFilterId = f2.FilterId.Value,
                                     SecondaryFilterValue = f2.FilterValue
                                 };
                     iteminfos = query.OrderBy(x => x.ItemId).ToList<BO.ProductItemInfo>();                
 
                     HttpContext.Current.Cache.Insert("iteminfos", iteminfos, null, DateTime.UtcNow.AddHours(CacheHours), System.Web.Caching.Cache.NoSlidingExpiration);                                        
-                }
+                
             }
             else            
                 iteminfos = (List<BO.ProductItemInfo>)HttpContext.Current.Cache["iteminfos"];
@@ -354,28 +375,23 @@ namespace _3EndTBusinessLayer
         public static List<Filter> GetFilters(int filterTypeId = 0, string filterValue = "")
         {
             var filters = SQLHelper.GetFilters();
-            var query = filters.AsEnumerable<Filter>().Where(p => p.FilterTypeId == filterTypeId && p.IsActive == true);            
-            if (filterTypeId > 1 && filterValue.Trim() != string.Empty)       
-                query = query.Where(p=> p.FilterValue == filterValue);
-
-            return query.ToList<Filter>();
+            if (filterTypeId > 1 && filterValue.Trim() != string.Empty)
+            {
+                var query = filters.AsEnumerable<Filter>().Where(p => p.FilterTypeId == filterTypeId && p.FilterValue == filterValue && p.IsActive == true);
+                return query.ToList<Filter>();
+            }
+            return filters;         
         }
-        
+
         public static void InsertORUpdateFilter(Filter filter)
         {
-            using (EndtCommerceEntities ece = new EndtCommerceEntities())
+            if (filter.FilterId > 0)
             {
-                if (filter.FilterId > 0)
-                {
-                    var stub = new Filter { FilterId = filter.FilterId };
-                    ece.Filters.Attach(stub);
-                    ece.Filters.ApplyCurrentValues(filter);
-                }
-                else
-                {
-                    ece.Filters.AddObject(filter);
-                    ece.SaveChanges();
-                }               
+                SQLHelper.UpdateFilter(filter);
+            }
+            else
+            {
+                SQLHelper.InsertFilter(filter);
             }
         }
 

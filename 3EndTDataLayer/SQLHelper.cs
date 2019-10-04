@@ -533,8 +533,7 @@ INSERT INTO dbo.Tiers
            ,ProductItemId
            ,Quantity
            ,TotalProductPrice
-           ,UnitPrice
-           ,CreatedDate           
+           ,UnitPrice          
            ,IsActive)
      VALUES
            (@OrderId
@@ -542,8 +541,7 @@ INSERT INTO dbo.Tiers
            ,@ProductItemId
            ,@Quantity
            ,@TotalProductPrice
-           ,@UnitPrice
-           ,@CreatedDate       
+           ,@UnitPrice       
            ,@IsActive);";
                 return cn.Execute(sqlStr, orderDtl);
             }
@@ -577,7 +575,6 @@ INSERT INTO dbo.Tiers
            ,Description
            ,Unit
            ,ImageUrl
-           ,CreatedDate
            ,IsActive)
      VALUES
            (@CategoryId
@@ -585,7 +582,6 @@ INSERT INTO dbo.Tiers
            ,@Description
            ,@Unit
            ,@ImageUrl
-           ,@CreatedDate
            ,@IsActive);";
                 return cn.Execute(sqlStr, prd);
             }
@@ -652,21 +648,20 @@ WHERE ProductId = @ProductId";
             using (SqlConnection cn = new SqlConnection(_connStr))
             {
                 cn.Open();
-                var sqlStr = @"INSERT INTO dbo.Products
+                var sqlStr = @"INSERT INTO dbo.ProductItems
            (ProductSKU
            ,ProductFilterId
            ,ProductId
-           ,CreatedDate
            ,IsActive)
      VALUES
            (@ProductSKU
            ,@ProductFilterId
            ,@ProductId
-           ,@CreatedDate
-           ,@IsActive);";
+            ,@IsActive);";
                 return cn.Execute(sqlStr, prdItem);
             }
         }
+
         public static int UpdateProductItem(ProductItem pi)
         {
             using (SqlConnection cn = new SqlConnection(_connStr))
@@ -707,6 +702,41 @@ WHERE ProductItemId = @ProductItemId";
             }
         }
 
+        public static int InsertTierProducts(TierProduct tierPrd)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"INSERT INTO dbo.TierProducts
+           (TierId
+           ,ProductItemId
+           ,CreatedDate
+           ,IsActive)
+     VALUES
+           (@TierId
+           ,@ProductItemId
+           ,@CreatedDate
+           ,@IsActive);";
+                return cn.Execute(sqlStr, tierPrd);
+            }
+        }
+
+        public static int UpdateTierProducts(TierProduct tierPrd)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"Update TierProducts
+set TierId = @TierId,
+ProductItemId = @ProductItemId,
+ModifiedDate = @ModifiedDate
+IsActive = @IsActive
+Where
+TierProductId = @TierProductId";
+                return cn.Execute(sqlStr, tierPrd);
+            }
+        }
+        
         public static int DeleteTierProduct(int tpId)
         {
             using (SqlConnection cn = new SqlConnection(_connStr))
@@ -728,6 +758,48 @@ WHERE TierProductId = @TierProductId";
                 var sqlStr = "Select * from TierProductPrices";
                 var tpList = cn.Query<TierProductPrice>(sqlStr).ToList();
                 return tpList;
+            }
+        }
+
+        public static int InsertTierProductPrices(TierProductPrice tierPrdPrice)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"INSERT INTO dbo.TierProductPrices
+           (TierProductId
+           ,Price
+           ,SpecialCompanyId
+           ,SpecialDiscountPercent
+           ,SpecialDiscountPrice
+           ,IsActive)
+     VALUES
+           (@TierProductId
+           ,@Price
+           ,@SpecialCompanyId
+           ,@SpecialDiscountPercent
+           ,@SpecialDiscountPrice
+           ,@IsActive);";
+                return cn.Execute(sqlStr, tierPrdPrice);
+            }
+        }
+
+        public static int UpdateTierProductPrices(TierProductPrice tierPrdPrice)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"UPDATE dbo.TierProductPrices
+   SET TierProductId = @TierProductId
+      ,Price = @Price
+      ,SpecialCompanyId = @SpecialCompanyId
+      ,SpecialDiscountPercent = @SpecialDiscountPercent
+      ,SpecialDiscountPrice = @SpecialDiscountPrice
+      ,ModifiedDate = @ModifiedDate
+      ,IsActive = @IsActive
+WHERE
+TierProductPriceId = @TierProductPriceId";
+                return cn.Execute(sqlStr, tierPrdPrice);
             }
         }
 
@@ -763,12 +835,10 @@ WHERE TierProductPriceId = @TierProductPriceId";
                 var sqlStr = @"INSERT INTO dbo.ProductFilters
            (PrimaryFilterId
            ,SecondaryFilterId
-           ,CreatedDate
            ,IsActive)
      VALUES
            (@PrimaryFilterId
            ,@SecondaryFilterId
-           ,@CreatedDate
            ,@IsActive);";
                 return cn.Execute(sqlStr, prdFilter);
             }
@@ -783,6 +853,39 @@ WHERE TierProductPriceId = @TierProductPriceId";
                 var sqlStr = "Select * from Filters";
                 var filters = cn.Query<Filter>(sqlStr).ToList();
                 return filters;
+            }
+        }
+
+        public static int InsertFilter(Filter filter)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"INSERT INTO dbo.Filters
+           (FilterTypeId
+           ,FilterValue
+           ,IsActive)
+     VALUES
+           (@FilterTypeId
+           ,@FilterValue
+           ,@IsActive);";
+                return cn.Execute(sqlStr, filter);
+            }
+        }
+
+        public static int UpdateFilter(Filter filter)
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+                var sqlStr = @"UPDATE dbo.Filters
+   SET FilterTypeId = @FilterTypeId
+      ,FilterValue = @FilterValue
+      ,ModifiedDate = @ModifiedDate
+      ,IsActive = @IsActive
+    WHERE
+    FilterId = @FilterId;";
+                return cn.Execute(sqlStr, filter);
             }
         }
 

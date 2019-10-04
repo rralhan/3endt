@@ -14,6 +14,7 @@ using System.Web.Services;
 using System.Data;
 using System.Configuration;
 using System.Globalization;
+using _3EndTDataLayer.domain;
 
 namespace _3EndTCommercePresentation.Client
 {
@@ -55,9 +56,9 @@ namespace _3EndTCommercePresentation.Client
             List<Category> subcats = CategoryManager.GetAllSubCategoryByParentCategoryId(_categoryId);
 
             var query = (from p in products
-                         select new ProductPageBindableObject { Id = p.ProductId, ImageUrl = p.ImageUrl, Title = p.ProductTitle, Type = BindableObjectType.Product, Description = p.Description })
+                         select new ProductPageBindableObject { Id = p.ProductId.Value, ImageUrl = p.ImageUrl, Title = p.ProductTitle, Type = BindableObjectType.Product, Description = p.Description })
                          .Concat(from c in subcats
-                                 select new ProductPageBindableObject { Id = c.CategoryId, ImageUrl = c.ImageUrl, Title = c.CategoryName, Type = BindableObjectType.Category, Description = string.Empty });
+                                 select new ProductPageBindableObject { Id = c.CategoryId.Value, ImageUrl = c.ImageUrl, Title = c.CategoryName, Type = BindableObjectType.Category, Description = string.Empty });
 
             if (query.Count() > 0)
             {

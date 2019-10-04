@@ -80,11 +80,11 @@ namespace _3EndTCommercePresentation.client
         {
             OrderManager puchasemaster = new OrderManager();
             // po == purchase order
-            PurchaseOrderMaster pomaster = new PurchaseOrderMaster();
+            var pomaster = new Order();
             pomaster.CustomerId = CustomerId;
             pomaster.OrderDate = DateTime.Now;
             pomaster.PurchaseOrderNumber = txtPurchaseOrderNumber.Text.Trim();            
-            pomaster.BillingAddressId = CompanyManager.GetAddressesByCompanyId(CompanyId, AddressType.Billing).FirstOrDefault().AddressId;
+            pomaster.BillingAddressId = CompanyManager.GetAddressesByCompanyId(CompanyId, AddressType.Billing).FirstOrDefault().AddressId.Value;
             pomaster.ConfirmationNumber = OrderManager.GetConfirmationNumber(Company.CompanyName);
             pomaster.OrderStatusId = (int)Enums.PurchaseOrderStatus.Accepted;
             if (string.IsNullOrEmpty(hdnSelectedShipping.Value))

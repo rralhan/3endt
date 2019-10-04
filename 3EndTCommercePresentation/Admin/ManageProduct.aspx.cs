@@ -31,7 +31,7 @@ namespace _3EndTCommercePresentation.Admin
         }
         protected void LoadProducts()
         {
-            List<Product> products = ProductManager.GetAllProducts();
+            List<Product> products = ProductManager.GetProducts();
             grdProducts.DataSource = products;
             grdProducts.DataBind();
         }

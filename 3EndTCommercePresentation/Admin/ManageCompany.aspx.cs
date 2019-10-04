@@ -80,7 +80,7 @@ namespace _3EndTCommercePresentation.Admin
             cmp.TierId = Convert.ToInt32(ddlTiers.SelectedValue);
             cmp.PhoneNumber = txtPhone.Text.Trim();
             cmp.FaxNumber = (txtFaxNumber.Text != null && txtPhone.Text != string.Empty) ? txtFaxNumber.Text.Trim() : string.Empty;
-            cmp.EMailId = (txtEmailId.Text != null && txtEmailId.Text != string.Empty) ? txtEmailId.Text.Trim() : string.Empty;
+            cmp.Email = (txtEmailId.Text != null && txtEmailId.Text != string.Empty) ? txtEmailId.Text.Trim() : string.Empty;
             cmp.ParentCompanyId = Convert.ToInt32(ddlParentCompany.SelectedValue);
             cmp.IsActive = chkIsActive.Checked;
 
@@ -156,7 +156,7 @@ namespace _3EndTCommercePresentation.Admin
                
 
                 ddlTiers.Items.Clear();
-                var tierlist = TierManager.GetAllTiers();
+                var tierlist = TierManager.GetTiers();
                 ddlTiers.DataSource = tierlist;
                 ddlTiers.DataTextField = "TierName";
                 ddlTiers.DataValueField = "TierId";

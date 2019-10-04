@@ -31,7 +31,7 @@ namespace _3EndTCommercePresentation.Client
         }
         private void LoadProductInfo()
         {
-            Product prod = ProductManager.GetProductById(_productId);
+            var prod = ProductManager.GetProductById(_productId);
             List<ProductItemInfo> pilist = ProductManager.GetProductItemInfoByProductId(_productId);
             JavaScriptSerializer jss = new JavaScriptSerializer();
 

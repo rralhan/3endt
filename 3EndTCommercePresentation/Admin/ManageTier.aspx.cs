@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using _3EndTBusinessLayer;
 using _3EndTBusinessLayer.BusinessObject;
 using _3EndTDataLayer;
+using _3EndTDataLayer.domain;
+
 namespace _3EndTCommercePresentation.Admin
 {
     public partial class ManageTier : System.Web.UI.Page
@@ -21,7 +23,7 @@ namespace _3EndTCommercePresentation.Admin
         }
         protected void LoadTiers()
         {
-            List<Tier> dbCategory = TierManager.GetAllTiers();
+            List<Tier> dbCategory = TierManager.GetTiers();
             grdTier.DataSource = dbCategory;
             grdTier.DataBind();
         }

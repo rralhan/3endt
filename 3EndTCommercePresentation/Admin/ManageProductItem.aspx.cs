@@ -1,6 +1,7 @@
 ﻿using _3EndTBusinessLayer;
 using _3EndTBusinessLayer.BusinessObject;
 using _3EndTDataLayer;
+using _3EndTDataLayer.domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace _3EndTCommercePresentation
 
         private void LoadProducts()
         {
-            List<_3EndTDataLayer.Product> products  = ProductManager.GetAllProducts();
+            List<Product> products  = ProductManager.GetProducts();
             ddlProduct.DataSource = products;
             ddlProduct.DataTextField = "ProductTitle";
             ddlProduct.DataValueField = "ProductId";
@@ -43,7 +44,7 @@ namespace _3EndTCommercePresentation
         }
         private void LoadFilterTypes()
         {
-            Action<List<FilterTypes>,DropDownList> BindFilterTypes = delegate(List<FilterTypes> filterTypes, DropDownList ddlProdFilter)
+            Action<List<FilterType>,DropDownList> BindFilterTypes = delegate(List<FilterType> filterTypes, DropDownList ddlProdFilter)
             {
                 ddlProdFilter.DataSource = filterTypes;
                 ddlProdFilter.DataTextField = "FilterTypeName";
@@ -54,7 +55,7 @@ namespace _3EndTCommercePresentation
             };
 
 
-            List<FilterTypes> filtertypes = ProductManager.GetAllFilterTypes();
+            List<FilterType> filtertypes = ProductManager.GetFilterTypes();
             BindFilterTypes(filtertypes, ddlProductFilter);
             BindFilterTypes(filtertypes, ddlProductFilter2);
             ddlProductFilter.DataSource = filtertypes; 
@@ -109,13 +110,13 @@ namespace _3EndTCommercePresentation
             Func<Filter, Filter, ProductFilter> CreateProductFilter = delegate(Filter primaryFilter, Filter secondaryFilter)
             {
                 ProductFilter pfilter = null;
-                pfilter = ProductManager.GetProductFilter(primaryFilter.FilterId, secondaryFilter.FilterId);
+                pfilter = ProductManager.GetProductFilter(primaryFilter.FilterId.Value, secondaryFilter.FilterId.Value);
                 if (pfilter == null)
                 {
                     pfilter = new ProductFilter
                     {
-                        PrimaryFilterId = primaryFilter.FilterId,
-                        SecondaryFilterId = secondaryFilter.FilterId
+                        PrimaryFilterId = primaryFilter.FilterId.Value,
+                        SecondaryFilterId = secondaryFilter.FilterId.Value
                     };
                     ProductManager.InsertProductFilter(pfilter);
                 }
@@ -175,7 +176,7 @@ namespace _3EndTCommercePresentation
             }
 
             if (productfilter != null)
-                retval = productfilter.ProductFilterId;
+                retval = productfilter.ProductFilterId.Value;
             return retval;
 
         }

@@ -31,7 +31,7 @@ namespace _3EndTBusinessLayer
             return SQLHelper.GetTierById(id);
         }
 
-        public static List<Tier> GetAllTiers(bool showActiveOnly=true)
+        public static List<Tier> GetTiers(bool showActiveOnly=true)
         {
             var tiers = SQLHelper.GetTiers();
             if (showActiveOnly)
