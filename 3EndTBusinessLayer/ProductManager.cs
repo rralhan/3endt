@@ -256,7 +256,7 @@ namespace _3EndTBusinessLayer
             }          
         }
 
-        public static List<Product> GetAllProductByCategoryId(int categoryId)
+        public static List<Product> GetAllProductsByCategoryId(int categoryId)
         {
             var prds = SQLHelper.GetProducts();
             var query = (from prd in prds

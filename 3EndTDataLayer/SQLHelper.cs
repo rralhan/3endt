@@ -361,6 +361,17 @@ INSERT INTO dbo.Users
             }
         }
 
+        public static List<Role> GetRoles()
+        {
+            using (SqlConnection cn = new SqlConnection(_connStr))
+            {
+                cn.Open();
+
+                var sqlStr = "Select * from Roles";
+                var roleList = cn.Query<Role>(sqlStr).ToList();
+                return roleList;
+            }
+        }
         #endregion
 
         #region Document

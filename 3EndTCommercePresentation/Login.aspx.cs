@@ -27,14 +27,19 @@ namespace _3EndTCommercePresentation
             var customer = UserManager.ValidateUser(userName, password);
             if (customer != null)
             {
-                Enums.UserRole userRole;
-                if (customer.UserRole.RoleName.Equals("Administrator"))
-                    userRole = Enums.UserRole.Administrator;
-                else
-                    userRole = Enums.UserRole.Customer;
-                
-                SessionManager.__doInitializeSession(customer.UserId.Value, customer.CompanyId, customer.FirstName, customer.LastName, customer.UserName, userRole);
-                e.Authenticated = true;
+                var roles = UserManager.GetRoles();
+                var uRole = roles.FirstOrDefault(x => x.RoleId == customer.RoleId);
+                if (uRole != null)
+                {
+                    Enums.UserRole userRole;
+                    if (uRole.RoleName.Equals("Administrator"))
+                        userRole = Enums.UserRole.Administrator;
+                    else
+                        userRole = Enums.UserRole.Customer;
+
+                    SessionManager.__doInitializeSession(customer.UserId.Value, customer.CompanyId, customer.FirstName, customer.LastName, customer.UserName, userRole);
+                    e.Authenticated = true;
+                }
             }
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _3EndTDataLayer.domain
 {
-    class Role : BaseDomain
+    public class Role : BaseDomain
     {
         public int RoleId { get; set; }
 

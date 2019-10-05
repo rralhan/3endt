@@ -59,6 +59,14 @@ namespace _3EndTBusinessLayer
             return user;
         }
 
+        public static List<Role> GetRoles(bool showActiveOnly=true)
+        {
+            var roles = SQLHelper.GetRoles();
+            if (showActiveOnly)
+                roles = roles.Where(r => r.IsActive == true).ToList();
+            return roles;
+        }
+
         //public static List<Customer> GetUserDetails()
         //{
         //    EndtCommerceEntities ECE = new EndtCommerceEntities();

@@ -49,22 +49,26 @@ namespace _3EndTCommercePresentation.Client
         private void LoadItems()
         {
             List<ProductPageBindableObject> productpageobjects = new List<ProductPageBindableObject>();
-            List<Product> products = ProductManager.GetAllProductByCategoryId(_categoryId);
-            if(products.Count > 0)            
-                ShoppingCart1.HeaderLabel = products[0].Category.CategoryName;            
-       
-            List<Category> subcats = CategoryManager.GetAllSubCategoryByParentCategoryId(_categoryId);
-
-            var query = (from p in products
-                         select new ProductPageBindableObject { Id = p.ProductId.Value, ImageUrl = p.ImageUrl, Title = p.ProductTitle, Type = BindableObjectType.Product, Description = p.Description })
-                         .Concat(from c in subcats
-                                 select new ProductPageBindableObject { Id = c.CategoryId.Value, ImageUrl = c.ImageUrl, Title = c.CategoryName, Type = BindableObjectType.Category, Description = string.Empty });
-
-            if (query.Count() > 0)
+            List<Product> products = ProductManager.GetAllProductsByCategoryId(_categoryId);
+            if (products.Count > 0)
             {
-                productpageobjects = query.OrderBy(q => q.Title).ToList<ProductPageBindableObject>();
-                lvProducts.DataSource = productpageobjects;
-                lvProducts.DataBind();
+                var cat = SQLHelper.GetCategoryById(_categoryId);
+
+                ShoppingCart1.HeaderLabel = cat.CategoryName;
+
+                List<Category> subcats = CategoryManager.GetAllSubCategoryByParentCategoryId(_categoryId);
+
+                var query = (from p in products
+                             select new ProductPageBindableObject { Id = p.ProductId.Value, ImageUrl = p.ImageUrl, Title = p.ProductTitle, Type = BindableObjectType.Product, Description = p.Description })
+                             .Concat(from c in subcats
+                                     select new ProductPageBindableObject { Id = c.CategoryId.Value, ImageUrl = c.ImageUrl, Title = c.CategoryName, Type = BindableObjectType.Category, Description = string.Empty });
+
+                if (query.Count() > 0)
+                {
+                    productpageobjects = query.OrderBy(q => q.Title).ToList<ProductPageBindableObject>();
+                    lvProducts.DataSource = productpageobjects;
+                    lvProducts.DataBind();
+                }
             }
             else
                 Response.Redirect("/client/under-construction.aspx");           
