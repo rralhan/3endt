@@ -1,50 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using _3EndTBusinessLayer.BusinessObject;
 using _3EndTDataLayer;
+using _3EndTDataLayer.domain;
 
 namespace _3EndTBusinessLayer
 {
     public class UserManager
     {
-        public static void GetUsers()
+        public static bool InsertUser(User user)
         {
-
+            var retval = SQLHelper.InsertUser(user);
+            if (retval > 0)
+                return true;
+            return false;
         }
-        public static Boolean CheckIfUserNameAlreadyExist(Customer dbuser)
+
+        public static List<User> GetAllCustomers(bool showActiveOnly = true)
         {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            Customer dbusers = ECE.Customers.Where(x => x.UserName.ToLower().Equals(dbuser.UserName.ToLower())).FirstOrDefault<Customer>();
-            if (dbusers == null) return false;
-            else return true;
+            var users = SQLHelper.GetUsers();
+            if (showActiveOnly)
+                users = users.Where(x => x.IsActive == true).ToList();
+            users = users.Where(c => c.RoleId != (int)Enums.UserRole.Administrator).ToList<User>();
+            return users;
+        }
+
+        public static bool UpdateCustomer(User user)
+        {
+            var retval = SQLHelper.UpdateUser(user);
+            if (retval > 0)
+                return true;
+            return false;
+        }
+
+        public static Boolean CheckIfUserNameAlreadyExist(User user)
+        {
+            var users = SQLHelper.GetUsers();
+            var dbusers = users.Where(x => x.UserName.ToLower().Equals(user.UserName.ToLower())).FirstOrDefault<User>();
+            if (dbusers == null)
+                return false;
+            return true;
         }
 
         public static bool IsPasswordExist(string Password)
         {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            Customer user = ECE.Customers.Where(x => x.Password == Password).FirstOrDefault();
+            var users = SQLHelper.GetUsers();
+            User user = users.Where(x => x.Password == Password).FirstOrDefault();
             if (user == null)
                 return false;
-
             return true;
         }
-        public static Customer ValidateUser(string UserName, string Password)
+
+        public static User ValidateUser(string UserName, string Password)
         {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            Customer user = new Customer();
-            user = ECE.Customers.Where(x => x.UserName == UserName && x.Password == Password).FirstOrDefault();
+            var users = SQLHelper.GetUsers();
+            var user = users.Where(x => x.UserName == UserName && x.Password == Password && x.IsActive == true).FirstOrDefault();
             return user;
         }
 
-        public static List<Customer> GetUserDetails()
+        public static List<Role> GetRoles(bool showActiveOnly=true)
         {
-            EndtCommerceEntities ECE = new EndtCommerceEntities();
-            List<Customer> AllCategory = ECE.Customers.ToList();
-            return AllCategory;
+            var roles = SQLHelper.GetRoles();
+            if (showActiveOnly)
+                roles = roles.Where(r => r.IsActive == true).ToList();
+            return roles;
         }
+
+        //public static List<Customer> GetUserDetails()
+        //{
+        //    EndtCommerceEntities ECE = new EndtCommerceEntities();
+        //    List<Customer> AllCategory = ECE.Customers.ToList();
+        //    return AllCategory;
+        //}
 
     }
 }

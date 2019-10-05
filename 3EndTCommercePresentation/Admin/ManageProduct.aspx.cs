@@ -1,5 +1,6 @@
 ﻿using _3EndTBusinessLayer;
 using _3EndTDataLayer;
+using _3EndTDataLayer.domain;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,7 +31,7 @@ namespace _3EndTCommercePresentation.Admin
         }
         protected void LoadProducts()
         {
-            List<Product> products = ProductManager.GetAllProducts();
+            List<Product> products = ProductManager.GetProducts();
             grdProducts.DataSource = products;
             grdProducts.DataBind();
         }

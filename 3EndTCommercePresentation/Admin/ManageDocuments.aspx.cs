@@ -1,5 +1,6 @@
 ﻿using _3EndTBusinessLayer;
 using _3EndTDataLayer;
+using _3EndTDataLayer.domain;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

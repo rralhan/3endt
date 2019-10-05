@@ -14,6 +14,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.Common;
+using _3EndTDataLayer.domain;
 
 namespace _3EndTCommercePresentation.admin
 {
@@ -37,7 +38,7 @@ namespace _3EndTCommercePresentation.admin
         }
         private void LoadTiers()
         {
-            ddlTiers.DataSource = TierManager.GetAllTiers();
+            ddlTiers.DataSource = TierManager.GetTiers();
             ddlTiers.DataTextField = "TierName";
             ddlTiers.DataValueField = "TierId";
             ddlTiers.DataBind();

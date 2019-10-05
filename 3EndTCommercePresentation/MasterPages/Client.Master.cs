@@ -9,6 +9,7 @@ using _3EndTBusinessLayer;
 using _3EndTDataLayer;
 using _3EndTBusinessLayer.BusinessObject;
 using System.Text;
+using _3EndTDataLayer.domain;
 
 namespace _3EndTCommercePresentation.MasterPages
 {

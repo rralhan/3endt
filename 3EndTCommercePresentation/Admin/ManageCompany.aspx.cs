@@ -8,6 +8,8 @@ using _3EndTBusinessLayer;
 using _3EndTDataLayer;
 using _3EndTBusinessLayer.BusinessObject;
 using System.Text;
+using _3EndTDataLayer.domain;
+
 namespace _3EndTCommercePresentation.Admin
 {
     public partial class ManageCompany : System.Web.UI.Page
@@ -78,7 +80,7 @@ namespace _3EndTCommercePresentation.Admin
             cmp.TierId = Convert.ToInt32(ddlTiers.SelectedValue);
             cmp.PhoneNumber = txtPhone.Text.Trim();
             cmp.FaxNumber = (txtFaxNumber.Text != null && txtPhone.Text != string.Empty) ? txtFaxNumber.Text.Trim() : string.Empty;
-            cmp.EMailId = (txtEmailId.Text != null && txtEmailId.Text != string.Empty) ? txtEmailId.Text.Trim() : string.Empty;
+            cmp.Email = (txtEmailId.Text != null && txtEmailId.Text != string.Empty) ? txtEmailId.Text.Trim() : string.Empty;
             cmp.ParentCompanyId = Convert.ToInt32(ddlParentCompany.SelectedValue);
             cmp.IsActive = chkIsActive.Checked;
 
@@ -88,7 +90,7 @@ namespace _3EndTCommercePresentation.Admin
                 AddressLine2 = txtBillingAddressLine2.Text,
                 City = txtBillingCity.Text,
                 State = ddlBillingState.SelectedValue,
-                Zipcode = txtBillingZipCode.Text,
+                ZipCode = txtBillingZipCode.Text,
                 Type = AddressType.Billing,
                 CompanyId = cmp.CompanyId
             };
@@ -145,7 +147,7 @@ namespace _3EndTCommercePresentation.Admin
             if(av == "viewCompany")
             {
                 ddlParentCompany.Items.Clear();
-                var pclist = CompanyManager.GetAllParentCompanies();
+                var pclist = CompanyManager.GetParentCompanies();
                 ddlParentCompany.DataSource = pclist;
                 ddlParentCompany.DataTextField = "Name";
                 ddlParentCompany.DataValueField = "ParentCompanyId";
@@ -154,7 +156,7 @@ namespace _3EndTCommercePresentation.Admin
                
 
                 ddlTiers.Items.Clear();
-                var tierlist = TierManager.GetAllTiers();
+                var tierlist = TierManager.GetTiers();
                 ddlTiers.DataSource = tierlist;
                 ddlTiers.DataTextField = "TierName";
                 ddlTiers.DataValueField = "TierId";
@@ -197,11 +199,11 @@ namespace _3EndTCommercePresentation.Admin
                 txtBillingAddressLine2.Text = addr.AddressLine2 ?? "";
                 txtBillingCity.Text = addr.City;
                 ddlBillingState.SelectedValue = addr.State;
-                txtBillingZipCode.Text = addr.Zipcode;
+                txtBillingZipCode.Text = addr.ZipCode;
                 txtFederalId.Text = dbcomp.FederalId;
                 txtPhone.Text = dbcomp.PhoneNumber;
                 txtFaxNumber.Text = dbcomp.FaxNumber;
-                txtEmailId.Text = dbcomp.EMailId;
+                txtEmailId.Text = dbcomp.Email;
                 ddlParentCompany.SelectedValue = dbcomp.ParentCompanyId.ToString();
                 ddlTiers.SelectedValue = dbcomp.TierId.ToString();
                 chkIsActive.Checked = dbcomp.IsActive;
