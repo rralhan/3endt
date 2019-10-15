@@ -124,10 +124,10 @@ var jsProducts = {
         self.addClass('s-hidden');
 
         // Wrap the select element in a div
-        self.wrap('<div class="select dropdown" style="min-width: 100%; margin-left: -12%;"></div>');
+        self.wrap('<div class="select"></div>');           
 
         // Insert a styled div to sit over the top of the hidden select element
-        self.after('<div class="styledSelect dropdown"></div>');
+        self.after('<div class="styledSelect"></div>');
 
         // Cache the styled div
         var $styledSelect = self.next('div.styledSelect');
@@ -141,13 +141,12 @@ var jsProducts = {
     
         // Insert an unordered list after the styled div and also cache the list
         var $list = $('<ul />', {
-            'class': 'options dropdown-menu'
+            'class': 'options'
         }).insertAfter($styledSelect);
 
         // Insert a list item into the unordered list for each select option
         for (var i = 0; i < numberOfOptions; i++) {
             $('<li />', {
-                'class': 'dropdown-item',
                 text: self.children('option').eq(i).text(),
                 rel: self.children('option').eq(i).val()
             }).appendTo($list);

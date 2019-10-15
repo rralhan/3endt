@@ -13,6 +13,15 @@ namespace _3EndTCommercePresentation.MasterPages {
     public partial class Client {
         
         /// <summary>
+        /// theme_change control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlLink theme_change;
+        
+        /// <summary>
         /// ContentPlaceHolder2 control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace _3EndTCommercePresentation.MasterPages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// hdnNav control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnNav;
+        
+        /// <summary>
         /// ltProductItems control.
         /// </summary>
         /// <remarks>
@@ -47,15 +65,6 @@ namespace _3EndTCommercePresentation.MasterPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltServiceItems;
-        
-        /// <summary>
-        /// hdnNav control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdnNav;
         
         /// <summary>
         /// CoreContentHolder control.

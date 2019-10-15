@@ -4,133 +4,165 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>3ENDT</title>
-    
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="/css/main.css?v07172017" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="Thu, 19 Nov 1900 08:52:00 GMT" />
 
-    <script type="text/javascript" src="/js/custom.modernizr.js"></script>
-    <script type='text/javascript' src='/js/jquery.min.js'></script>
-    <script type='text/javascript' src='/js/jquery.sonar.min.js'></script>
-    <script type='text/javascript' src='/js/lazy-load.js'></script>
-    <script type='text/javascript' src='/js/lazy-bootstrap-carousel.js'></script>
-    <script type='text/javascript' src='/js/jquery.cookie.js'></script>
-    <script type='text/javascript' src='/js/bootstrap.min.js'></script>
-    <script type='text/javascript' src='/js/plugins.js'></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <script src="/js/main.js?v=12312017"></script>
-    <script src="/js/custom.js?v=12312017"></script>
-
+    <link rel="apple-touch-icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/favicon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/favicon-114x114.png" />
+    <!--Loading bootstrap css-->
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700" />
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" />
+    <link type="text/css" rel="stylesheet" href="/vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css" />
+    <link type="text/css" rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css" />
+    <%--<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />--%>
+    <link type="text/css" rel="stylesheet" href="/vendors/bootstrap/css/bootstrap.min.css" />
+    <!--LOADING STYLESHEET FOR PAGE-->
+    <link type="text/css" rel="stylesheet" href="/vendors/jplist/html/css/jplist-custom.css" />
+    <!--Loading style vendors-->
+    <link type="text/css" rel="stylesheet" href="/vendors/animate.css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="/vendors/jquery-pace/pace.css" />
+    <link type="text/css" rel="stylesheet" href="/vendors/iCheck/skins/all.css" />
+    <link type="text/css" rel="stylesheet" href="/vendors/jquery-notific8/jquery.notific8.min.css" />
+    <link type="text/css" rel="stylesheet" href="/vendors/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <!--Loading style-->
+    <link type="text/css" rel="stylesheet" href="/css1/themes/style1/orange-blue.css" class="default-style" />
+    <link type="text/css" rel="stylesheet" href="/css1/themes/style1/orange-blue.css" id="theme_change"
+        class="style-change color-change" />
+    <link type="text/css" rel="stylesheet" href="/css1/style-responsive.css" />
 
     <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
     </asp:ContentPlaceHolder>
+
+
+     <script src="/js1/jquery-1.10.2.min.js"></script>
+        <script src="/js1/jquery-migrate-1.2.1.min.js"></script>
+        <script src="/js1/jquery-ui.js"></script>
+        <!--loading bootstrap js-->
+        <script src="/vendors/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+        <script src="/js1/html5shiv.js"></script>
+        <script src="/js1/respond.min.js"></script>
+     <script src="/js/custom.js"></script>
+            <script src="/vendors/metisMenu/jquery.metisMenu.js"></script>
+        <script src="/vendors/slimScroll/jquery.slimscroll.js"></script>
+        <script src="/vendors/jquery-cookie/jquery.cookie.js"></script>
+        <script src="/vendors/iCheck/icheck.min.js"></script>
+        <script src="/vendors/iCheck/custom.min.js"></script>
+        <script src="/vendors/jquery-notific8/jquery.notific8.min.js"></script>
+        <script src="/vendors/jquery-highcharts/highcharts.js"></script>
+        <script src="/js1/jquery.menu.js"></script>
+        <script src="/vendors/jquery-pace/pace.min.js"></script>
+        <script src="/vendors/holder/holder.js"></script>
+        <script src="/vendors/responsive-tabs/responsive-tabs.js"></script>
+        <script src="/vendors/jquery-news-ticker/jquery.newsTicker.min.js"></script>
+        <script src="/vendors/moment/moment.js"></script>
+        <script src="/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <!--CORE JAVASCRIPT-->
+        <script src="/js1/main.js"></script>
+        <!--LOADING SCRIPTS FOR PAGE-->
 </head>
 
 <body>
     <form id="form1" runat="server">
-        <%--  <asp:ScriptManager ID="clientScriptManager" runat="server"></asp:ScriptManager>--%>
+        <div>
 
-
-         <div class="row" >
-            <div class="side-menu">
-                <nav class="navbar navbar-default navbar-expand-md fix-top " role="navigation">
+            <!--BEGIN BACK TO TOP-->
+            <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
+            <!--END BACK TO TOP-->
+            <!--BEGIN TOPBAR-->
+            <div id="header-topbar-option-demo" class="page-header-topbar">
+                <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;"
+                    class="navbar navbar-default navbar-static-top">
                     <div class="navbar-header">
-                        <div class="brand-wrapper">
-                            <button type="button" class="navbar-toggle"   data-toggle="collapse" data-target="#collapsibleNavbar">
-                                <span class="navbar-toggler-icon"></span>
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-
-                            <!-- Brand -->
-                            <div class="brand-name-wrapper">
-                                <div class="row" style="padding-top: 5px" onclick="location.href='/default.aspx'">
-                                    <div class="col-xs-5 col-sm-5">
-                                        <img src="../images/logo.jpg" alt="3endt" />
-                                    </div>
-                                    <div class="col-xs-offset-2 col-xs-3 col-sm-offset-3 col-sm-3">
-                                        <img src="../images/qmsa-logo.png" alt="qmsa"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle">
+                            <span
+                                class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                                    class="icon-bar"></span><span class="icon-bar"></span></button>
+                        <a id="logo" href="../Default.aspx">
+                            <img src="../images/logo.jpg" alt="3endt" style="height: 100%" /></a>
                     </div>
-
-                    <!-- Main Menu -->
-                    <div class="side-menu-container collapse navbar-collapse "  id="collapsibleNavbar">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="/default.aspx">HOME</a>
+                    <div class="topbar-main">
+                        <a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+                        <ul class="nav navbar navbar-top-links navbar-right mbn">
+                            <li><a href="tel:2814702010"><i class="fa fa-phone"></i>&nbsp;281-470-2010</a>
                             </li>
-                            <li class="panel panel-default panel-expando" id="productsExpando">
-                                <a data-toggle="collapse" href="#div-expando-products">PRODUCTS<span class="caret"></span>
-                                </a>
-                                <div id="div-expando-products" class="panel-collapse">
-                                    <!--class="collapse"-->
-                                    <div class="panel-body">
-                                        <asp:Literal ID="ltProductItems" runat="server" />
-                                    </div>
-                                </div>
+                            <li><a href="https://www.facebook.com/3endt"><i class="fa fa-facebook"></i></a>
                             </li>
-                            <li class="panel panel-default panel-expando" id="serviceExpando">
-                                <a data-toggle="collapse" href="#div-expando-services">SERVICES<span class="caret"></span>
-                                </a>
-                                <div id="div-expando-services" class="panel-collapse">
-                                    <!--class="collapse"-->
-                                    <div class="panel-body">
-                                        <asp:Literal ID="ltServiceItems" runat="server" />
-                                    </div>
-                                </div>
+                            <li><a href="https://www.twitter.com/3endt"><i class="fa fa-twitter"></i></a>
                             </li>
-                            <li>
-                                <a href="/client/about-us.aspx">ABOUT US</a>
-                            </li>
-                            <li>
-                                <a href="/client/contact-us.aspx">CONTACT US</a>
+                            <li><a href="https://www.linkedin.com/company/3endt"><i class="fa fa-linkedin"></i></a>
                             </li>
                         </ul>
                     </div>
                 </nav>
-                 <input type="hidden" id="hdnNav" runat="server" enableviewstate="true" />
             </div>
-        
-        <!-- Main Content -->
-        <div class="container-fluid">
-            <div class="side-body">
+            <!--END TOPBAR-->
+            <div id="wrapper">
+                <!--BEGIN SIDEBAR MENU-->
+                <asp:HiddenField ID="hdnNav" runat="server" />
+                <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side">
+                    <div class="sidebar-collapse menu-scroll">
+                        <ul id="side-menu" class="nav">
+                            <li>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li class="active"><a href="../Default.aspx"><i class="fa fa-radiation fa-fw">
+                                <div class="icon-bg bg-orange"></div>
+                            </i><span class="menu-title">Home</span></a></li>
+                            <li><a href="#"><i class="fa fa-radiation fa-fw">
+                                <div class="icon-bg bg-red"></div>
+                            </i><span class="menu-title">PRODUCTS</span><span class="fa arrow"></span></a>
+                                <%--<ul class="nav nav-second-level">--%>
+                                <asp:Literal ID="ltProductItems" runat="server" />
+                                <%--</ul>--%>
+                            </li>
+                            <li><a href="#"><i class="fa fa-radiation fa-fw">
+                                <div class="icon-bg bg-red"></div>
+                            </i><span class="menu-title">SERVICES</span><span class="fa arrow"></span></a>
+                                <%--<ul class="nav nav-second-level">--%>
+                                <asp:Literal ID="ltServiceItems" runat="server" />
+                                <%--</ul>--%>
+                            </li>
+                            <li><a href="/client/about-us.aspx"><i class="fa fa-radiation fa-fw">
+                                <div class="icon-bg bg-yellow"></div>
+                            </i><span class="menu-title">ABOUT US</span></a>
+                            </li>
+                            <li><a href="/client/contact-us.aspx"><i class="fa fa-radiation fa-fw">
+                                <div class="icon-bg bg-yellow"></div>
+                            </i><span class="menu-title">CONTACT US</span></a>
+                            </li>
+                            <!--li.charts-sum<div id="ajax-loaded-data-sidebar"></div>-->
+                        </ul>
+                    </div>
+                </nav>
+                <!--END SIDEBAR MENU-->
+                <!--BEGIN PAGE WRAPPER-->
                 <asp:ContentPlaceHolder ID="CoreContentHolder" runat="server">
                 </asp:ContentPlaceHolder>
+                <!--BEGIN FOOTER-->
+                <div id="footer">
+                    <center>
+                    <h4>High Quality NDT Equipment</h4>
+                    <div class="copyright">Copyright 2017 | 3endt. All rights reserved.</div>
+                        </center>
+                </div>
+                <!--END FOOTER-->
+                <!--END PAGE WRAPPER-->
             </div>
-            <div id="footer">
-                <h4>High Quality NDT Equipment</h4>
-                &copy; Copyright <span id="year"></span> | 3endt. All rights reserved.  
-               
-            </div>
-        </div>
         </div>
        
-        <script>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-            ga('create', 'UA-79575039-1', 'auto');
-            ga('send', 'pageview');
 
-            document.getElementById("year").innerHTML = new Date().getFullYear();
-        </script>
+
+
+
     </form>
 </body>
 </html>
