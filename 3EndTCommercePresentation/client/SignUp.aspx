@@ -4,395 +4,211 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <link href="../Admin/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
-    <link href="../Admin/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
-    <link href="../Admin/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="../Admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../Admin/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../Admin/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../Admin/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-    <script src="../Admin/bootstrap/js/jquery-1.8.3.js" type="text/javascript"></script>
-    
-
+    <title>SignUp</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="Thu, 19 Nov 1900 08:52:00 GMT" />
+    <!--Loading bootstrap css-->
+    <link type="text/css"
+        href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800" />
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" />
+    <link type="text/css" rel="stylesheet"
+        href="../vendors/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.css" />
+    <link type="text/css" rel="stylesheet" href="../vendors/font-awesome/css/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" href="../vendors/bootstrap/css/bootstrap.min.css" />
+    <!--Loading style vendors-->
+    <link type="text/css" rel="stylesheet" href="../vendors/animate.css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="../vendors/iCheck/skins/all.css" />
+    <!--Loading style-->
+    <link type="text/css" rel="stylesheet" href="../css1/themes/style1/pink-blue.css" class="default-style" />
+    <link type="text/css" rel="stylesheet" href="../css1/themes/style1/pink-blue.css" id="theme_change"
+        class="style-change color-change" />
+    <link type="text/css" rel="stylesheet" href="../css1/style-responsive.css" />
+    <link rel="shortcut icon" href="../images/favicon.ico" />
 </head>
-<body>
-    <form id="form1" runat="server">
- 
-    <div><strong style="color: #0000FF">Create An Account.</strong></div>
-    <asp:UpdatePanel ID="upnlTop" runat="server">
-    <ContentTemplate>
-   
-    <div style="width: 49%; float: left; border: 1px solid red;">
-   
-
-
-        <table class="auto-style1">
-
-            <tr>
-                <td class="style1" colspan="3">&nbsp; 
-                    <asp:Label ID="lblMessage" runat="server" ForeColor="Red" Text=""></asp:Label>
-                </td>
-                <td class="style1">&nbsp; 
-                    <asp:Label ID="lblPassword" runat="server" Visible="false" ForeColor="Red" Text=""></asp:Label>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="style1">&nbsp;</td>
-                <td class="auto-style7">&nbsp;</td>
-                <td class="auto-style6">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="style1">First Name:</td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="txtFirstName" runat="server" Width="175px"></asp:TextBox>
-
-                </td>
-                <td class="auto-style6">
-
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" 
-                        ControlToValidate="txtFirstName" ValidationGroup="ValidateSignUp" 
-                        Display="None" runat="server" 
-                        ErrorMessage="<b>First Name is empty</b><br/>Please enter a value for First Name."></asp:RequiredFieldValidator>
-
-                </td>
-
-            </tr>
-
-            <tr>
-                <td class="style1">Last Name:</td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="txtLastName" runat="server" Width="175px"></asp:TextBox>
-
-                </td>
-                <td class="auto-style6">
-
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator15" 
-                        ControlToValidate="txtLastName" ValidationGroup="ValidateSignUp" 
-                        Display="None" runat="server" 
-                        
-                        ErrorMessage="<b>Last Name is empty</b><br/>Please enter a value for Last Name."></asp:RequiredFieldValidator>
-
-                </td>
-
-            </tr>
-
-            <tr>
-                <td class="style1">Company Name:</td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="txtCompanyName" runat="server" Width="175px"></asp:TextBox>
-
-                </td>
-                <td class="auto-style6">
-
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator12" ControlToValidate="txtCompanyName" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Company is empty</b><br/>Please enter a value for Company."></asp:RequiredFieldValidator>
-
-                </td>
-
-            </tr>
-
-            <tr>
-                <td class="style1">Parent Company Name:</td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="txtParentCompanyName" runat="server" Width="175px"></asp:TextBox>
-
-                </td>
-                <td class="auto-style6">
-
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator13" ControlToValidate="txtParentCompanyName" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Parent-Company is empty</b><br/>Please enter a value for Parent-Company."></asp:RequiredFieldValidator>
-
-                </td>
-
-            </tr>
-
-            <tr>
-                <td class="style1">Company Billing Address:</td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="txtBillingAddress" runat="server" Width="175px"></asp:TextBox>
-
-                </td>
-                <td class="auto-style6">
-
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="txtBillingAddress" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Billing Address is empty</b><br/>Please enter a value for billing address."></asp:RequiredFieldValidator>
-
-                </td>
-
-            </tr>
-
-            <tr>
-                <td class="style1">FederalId:</td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="txtFederalId" runat="server" Width="175px"></asp:TextBox></td>
-                <td class="auto-style6">
-
-                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="txtFederalId" ValidationGroup="ValidateCompany" Display="None" runat="server" ErrorMessage="<b>FederalId is empty</b><br/>Please enter a value for FederalId."></asp:RequiredFieldValidator>
-                    <asp:ValidatorCalloutExtender ID="RequiredFieldValidator7_ValidatorCalloutExtender" TargetControlID="RequiredFieldValidator7" runat="server">
-                    </asp:ValidatorCalloutExtender>--%>
-                </td>
-
-            </tr>
-
-            <tr>
-                <td class="style1">Contact:</td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="txtContact" runat="server" Width="175px"></asp:TextBox></td>
-                <td class="auto-style6">
-
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ControlToValidate="txtContact"  ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Contact is empty</b><br/>Please enter a value for contact no."></asp:RequiredFieldValidator>
-
-                </td>
-
-            </tr>
-
-            <tr>
-                <td class="style1">Fax Number:</td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="txtFaxNumber" runat="server" Width="175px"></asp:TextBox></td>
-                <td class="auto-style6">
-
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="txtFaxNumber" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Fax No.is empty</b><br/>Please enter a value for fax no."></asp:RequiredFieldValidator>
-
-                </td>
-
-            </tr>
-
-            <tr>
-                <td class="style1">Email ID:</td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="txtEmailId" runat="server" Width="175px"></asp:TextBox></td>
-                <td class="auto-style6">
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="None"   ErrorMessage="<b>Enter Valid Eamil Address.</b>" ControlToValidate="txtEmailId" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" ControlToValidate="txtEmailId" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Eamil Address is empty</b><br/>Please enter a value for email address."></asp:RequiredFieldValidator>
-
-                </td>
-
-            </tr>
-
-            <tr>
-                <td class="style1">User ID</td>
-                <td class="auto-style7">
-                    <asp:TextBox ID="txtUserId" runat="server" Width="175px"></asp:TextBox>
-                </td>
-                <td class="auto-style6">
-
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator16" 
-                        ControlToValidate="txtUserId" ValidationGroup="ValidateSignUp" 
-                        Display="None" runat="server" 
-                        ErrorMessage="<b>User ID is empty</b><br/>Please enter a value for User Id"></asp:RequiredFieldValidator>
-
-
-                </td>
-            </tr>
-            <tr>
-                <td class="style1">
-                    <asp:Button ID="btnSave" runat="server" ValidationGroup="ValidateSignUp" Text="Sign Up" Width="73px" OnClick="btnSave_Click" />
-                </td>
-                <td class="auto-style7">
-                    <asp:Button ID="btnCancel" runat="server" CausesValidation="false" OnClick="btnCancel_Click" Text="Cancel" Width="73px" />
-                </td>
-                <td class="auto-style6">&nbsp;</td>
-            </tr>
-        </table>
-
-
-    </div>
-     </ContentTemplate>
-    </asp:UpdatePanel> 
-     <script type="text/javascript" src="Admin/bootstrap/js/bootstrap.js"></script>
-    
-    
-    <asp:UpdatePanel ID="upCrudGrid" runat="server">
-
-        <ContentTemplate>
-            <div style="width: 50%; border: 1px solid black; float: right;">
-                <div>
-                    Shipping Address
-            
-                </div>
-
-
-                <div>
-
-                    <asp:Button ID="btnAddNewShippingAddress" runat="server" Text="Add New"
-                        CausesValidation="false" OnClick="btnAddNewShippingAddress_Click" />
-
-                </div>
-                <div>
-                    <asp:Label ID="lblDispaly" ForeColor="Red" runat="server" Text=""></asp:Label>
-
-                </div>
-                <div>
-                    <asp:UpdatePanel ID="upnlShipping" runat="server">
-                        <ContentTemplate>
-                            <asp:GridView ID="gvShippingAddress" runat="server" AutoGenerateColumns="False"
-                                CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%"
-                                AllowPaging="True" OnPageIndexChanging="gvShippingAddress_PageIndexChanging"
-                                OnRowCommand="gvShippingAddress_RowCommand">
-                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                                <EditRowStyle BackColor="#999999" />
-                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                                <Columns>
-                                    <asp:TemplateField HeaderText="S. No">
-                                        <HeaderStyle HorizontalAlign="left" />
-                                        <ItemStyle HorizontalAlign="left" />
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblSRNO" runat="server" Text='<%#Container.DataItemIndex+1 %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField Visible="false">
-
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblShippingAddressId" runat="server" Text='<%#Eval("ShippingAddressId") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField>
-                                        <HeaderStyle HorizontalAlign="left" />
-                                        <ItemStyle HorizontalAlign="left" />
-                                        <HeaderTemplate>
-                                            <asp:Label ID="Label1" runat="server" Text="Shipping Address "></asp:Label>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-
-                                            <asp:Label ID="lblShippingAddress" runat="server" Text='<%# Eval("ShippingAddressName")%>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                       <asp:TemplateField>
-                                        <HeaderStyle HorizontalAlign="left" />
-                                        <ItemStyle HorizontalAlign="left" />
-                                        <HeaderTemplate>
-                                            <asp:Label ID="lblPrimary" runat="server" Text=" Primary "></asp:Label>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-
-                                           <asp:RadioButton ID="rdoIsPrimary" Checked='<%# Eval("IsPrimary")%>' Text="Set As Primary" GroupName="Primary" AutoPostBack="true" runat="server" />
-                                          
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                   <%--  <asp:TemplateField>
-                                        <HeaderStyle HorizontalAlign="left" />
-                                        <ItemStyle HorizontalAlign="left" />
-                                        <HeaderTemplate>
-                                            <asp:Label ID="lblPrimary" runat="server" Text="Not Primary "></asp:Label>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-
-                                           <asp:RadioButton ID="rdoIsPrimary" Checked='<%# Eval("IsPrimary")%>' Text="Set As Primary" GroupName="Primary" AutoPostBack="true" runat="server" />
-                                          
-                                        </ItemTemplate>
-                                    </asp:TemplateField>--%>
-                                   <%-- <asp:TemplateField HeaderText="Edit/Delete Shipping Address">
-                                        <HeaderStyle HorizontalAlign="left" />
-                                        <ItemStyle HorizontalAlign="left" />
-                                        <ItemTemplate>
-                                            <asp:ImageButton ID="imgEdit" runat="server" ImageUrl="~/Images/edit.gif" ToolTip="Edit" CausesValidation="false" CommandArgument='<%# Eval("ShippingAddressId") %>' CommandName="cmdedit" />
-                                            <asp:ImageButton ID="imgDelete" runat="server" ImageUrl="~/Images/delete.png" ToolTip="Delete" CausesValidation="false" CommandArgument='<%# Eval("ShippingAddressId") %>' CommandName="cmddelete" />
-
-
-                                        </ItemTemplate>
-                                    </asp:TemplateField>--%>
-                                </Columns>
-                            </asp:GridView>
-
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-
-                </div>
-
+<body id="signup-page">
+    <div class="page-form">
+        <form id="form1" runat="server">
+            <div class="header-content">
+                <h1>Create An Account.</h1>
             </div>
-        </ContentTemplate>
-        <Triggers></Triggers>
-    </asp:UpdatePanel>
-    
-    <asp:UpdateProgress ID="UpdateProgress1" runat="server">
-        <ProgressTemplate>
-            <br />
-            <img src="" alt="Loading.. Please wait!" />
-        </ProgressTemplate>
-    </asp:UpdateProgress>
-    <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog"
-        aria-labelledby="addModalLabel" aria-hidden="true">
+            <div class="body-content">
 
-        <div class="modal-header">
+                <asp:ScriptManager ID="ScriptManager1" runat="server" />
+                <asp:UpdatePanel ID="upnlTop" runat="server">
+                    <ContentTemplate>
+                        <div class="form-group">
+                            <asp:Label ID="lblMessage" runat="server" ForeColor="Red" Text=""></asp:Label>
+                            <asp:Label ID="lblPassword" runat="server" Visible="false" ForeColor="Red" Text=""></asp:Label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" placeholder="First Name"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator14" ControlToValidate="txtFirstName" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>First Name is empty</b><br/>Please enter a value for First Name."></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" placeholder="Last Name"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator15"
+                                ControlToValidate="txtLastName" ValidationGroup="ValidateSignUp"
+                                Display="None" runat="server"
+                                ErrorMessage="<b>Last Name is empty</b><br/>Please enter a value for Last Name."></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtCompanyName" runat="server" CssClass="form-control" placeholder="Company Name"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator12" ControlToValidate="txtCompanyName" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Company is empty</b><br/>Please enter a value for Company."></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtParentCompanyName" runat="server" CssClass="form-control" placeholder="Parent Company Name"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator13" ControlToValidate="txtParentCompanyName" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Parent-Company is empty</b><br/>Please enter a value for Parent-Company."></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtBillingAddress" runat="server" CssClass="form-control" placeholder="Company Billing Address"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="txtBillingAddress" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Billing Address is empty</b><br/>Please enter a value for billing address."></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtFederalId" runat="server" CssClass="form-control" placeholder="FederalId"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtContact" runat="server" CssClass="form-control" placeholder="Contact"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ControlToValidate="txtContact" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Contact is empty</b><br/>Please enter a value for contact no."></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtFaxNumber" runat="server" CssClass="form-control" placeholder="Fax Number"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="txtFaxNumber" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Fax No.is empty</b><br/>Please enter a value for fax no."></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtEmailId" runat="server" CssClass="form-control" placeholder="Email ID"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="None" ErrorMessage="<b>Enter Valid Eamil Address.</b>" ControlToValidate="txtEmailId" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" ControlToValidate="txtEmailId" ValidationGroup="ValidateSignUp" Display="None" runat="server" ErrorMessage="<b>Eamil Address is empty</b><br/>Please enter a value for email address."></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtUserId" runat="server" CssClass="form-control" placeholder="User ID"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator16" ControlToValidate="txtUserId" ValidationGroup="ValidateSignUp"
+                                Display="None" runat="server"
+                                ErrorMessage="<b>User ID is empty</b><br/>Please enter a value for User Id"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <asp:Button ID="btnSave" runat="server" ValidationGroup="ValidateSignUp" Text="Sign Up" CssClass="btn btn-info" />
+                            <asp:Button ID="btnCancel" runat="server" CausesValidation="false" Text="Cancel" CssClass="btn btn-warning" />
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 
-            <button type="button" class="close" data-dismiss="modal"
-                aria-hidden="true">
-                ×</button>
-
-            <h3 id="addModalLabel">Add Shipping Address</h3>
-
-        </div>
-
-        <asp:UpdatePanel ID="upAdd" runat="server">
-
-            <ContentTemplate>
-
-                <div class="modal-body">
-
-                    <table class="table table-bordered table-hover">
-
-                        <tr>
-
-                            <td>Shipping Address Name :
-
-   <asp:TextBox ID="txtShippingAddressName" runat="server">
-
-   </asp:TextBox>
-
-                            </td>
-                            <td>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtShippingAddressName" ValidationGroup="Shipping" ForeColor="Red" runat="server" ErrorMessage="Enter Shipping Address"></asp:RequiredFieldValidator>
-                                <%--<asp:ValidatorCalloutExtender ID="ValidatorCalloutExtender1" TargetControlID="RequiredFieldValidator1" runat="server">
-                    </asp:ValidatorCalloutExtender>--%>
-
-                            </td>
-
-                        </tr>
-                        <tr>
-                        <td>
-                            <asp:RadioButton ID="rdoIsPrimary" Text="Set As Primary" GroupName="Primary" AutoPostBack="true" runat="server" />
-                            <asp:RadioButton ID="rdoNotPrimary" Text="Not Primary" GroupName="Primary" AutoPostBack="true" runat="server" />
-                        </td>
-                        </tr>
-
-
-                    </table>
-
+                <asp:UpdatePanel ID="upCrudGrid" runat="server">
+                    <ContentTemplate>
+                        <div class="form-group">
+                            Shipping Address
+                        <button type="button" CausesValidation="false" class="btn btn-info" data-target="#addModal" data-toggle="modal">Add New</button>                            <asp:Label ID="lblDispaly" ForeColor="Red" runat="server" Text=""></asp:Label>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers></Triggers>
+                </asp:UpdatePanel>
+                <asp:UpdatePanel ID="upnlShipping" runat="server">
+                    <ContentTemplate>
+                        <asp:GridView ID="gvShippingAddress" runat="server" AutoGenerateColumns="False"
+                            CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%"
+                            AllowPaging="True">
+                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <EditRowStyle BackColor="#999999" />
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                            <Columns>
+                                <asp:TemplateField HeaderText="S. No">
+                                    <HeaderStyle HorizontalAlign="left" />
+                                    <ItemStyle HorizontalAlign="left" />
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblSRNO" runat="server" Text='<%#Container.DataItemIndex+1 %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblShippingAddressId" runat="server" Text='<%#Eval("ShippingAddressId") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <HeaderStyle HorizontalAlign="left" />
+                                    <ItemStyle HorizontalAlign="left" />
+                                    <HeaderTemplate>
+                                        <asp:Label ID="Label1" runat="server" Text="Shipping Address "></asp:Label>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblShippingAddress" runat="server" Text='<%# Eval("ShippingAddressName")%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <HeaderStyle HorizontalAlign="left" />
+                                    <ItemStyle HorizontalAlign="left" />
+                                    <HeaderTemplate>
+                                        <asp:Label ID="lblPrimary" runat="server" Text=" Primary "></asp:Label>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:RadioButton ID="rdoIsPrimary" Checked='<%# Eval("IsPrimary")%>' Text="Set As Primary" GroupName="Primary" AutoPostBack="true" runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+                    <ProgressTemplate>
+                        <br />
+                        <img src="#" alt="Loading.. Please wait!" />
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
+            <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="modal-wide-width-label" aria-hidden="true" class="modal fade">
+                <div class="modal-dialog modal-wide-width">
+                    <div class="modal-content">
+                        <asp:UpdatePanel ID="upAdd" runat="server">
+                            <ContentTemplate>
+                                <div class="modal-header">
+                                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                                    <h3 id="addModalLabel">Add Shipping Address</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            Shipping Address Name :
+                                        </div>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtShippingAddressName" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtShippingAddressName" ValidationGroup="Shipping" ForeColor="Red" runat="server" ErrorMessage="Enter Shipping Address"></asp:RequiredFieldValidator>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:RadioButton ID="rdoIsPrimary" Text="Set As Primary" GroupName="Primary" AutoPostBack="true" runat="server" />
+                                            <asp:RadioButton ID="rdoNotPrimary" Text="Not Primary" GroupName="Primary" AutoPostBack="true" runat="server" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:Button ID="btnAddRecord" runat="server" ValidationGroup="Shipping" Text="Add" CssClass="btn btn-info" />
+                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
                 </div>
-
-                <div class="modal-footer">
-
-                    <asp:Button ID="btnAddRecord" runat="server" ValidationGroup="Shipping" OnClick="btnAddRecord_Click" Text="Add"
-                        CssClass="btn btn-info" />
-
-                    <button class="btn btn-info" data-dismiss="modal"
-                        aria-hidden="true">
-                        Close</button>
-
-                </div>
-
-            </ContentTemplate>
-
-            <%--<Triggers>
-
-  <asp:AsyncPostBackTrigger ControlID="btnAddRecord" EventName="Click" />
-
-  </Triggers>--%>
-        </asp:UpdatePanel>
-
+            </div>
+        </form>
     </div>
-    
-   
-    </form>
+    <script type="text/javascript" src="../js1/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js1/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../js1/jquery-ui.js"></script>
+    <!--loading bootstrap js-->
+    <script type="text/javascript" src="../vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+    <script type="text/javascript" src="../vendors/jquery-validate/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../js1/html5shiv.js"></script>
+    <script type="text/javascript" src="../js1/respond.min.js"></script>
+    <script type="text/javascript" src="../js1/extra-signup.js"></script>
+    <script type="text/javascript" src="../vendors/iCheck/icheck.min.js"></script>
+    <script type="text/javascript" src="../vendors/iCheck/custom.min.js"></script>
 </body>
 </html>

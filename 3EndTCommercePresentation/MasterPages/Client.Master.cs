@@ -55,31 +55,46 @@ namespace _3EndTCommercePresentation.MasterPages
         private string RenderCategories(List<Category> allCategories,List<Category> parentCategories)
         {
             string retval = string.Empty;
-            List<Category> subcategories = null;
-            StringBuilder menu = new StringBuilder();
+            try {
+               
+                List<Category> subcategories = null;
+                StringBuilder menu = new StringBuilder();
 
-            menu.Append(@"<ul class='nav navbar-nav'>");
-            foreach (Category category in parentCategories)
-            {
-                subcategories = allCategories.Where(x => x.ParentCategoryId == category.CategoryId).ToList();
-                if (subcategories.Count() > 0)
+                //menu.Append(@"<ul class='nav navbar-nav'>");
+                menu.Append(@"<ul class='nav nav-second-level'>");
+                foreach (Category category in parentCategories)
                 {
-                    menu.AppendFormat(@"<li class='panel panel-default panel-expando' id='dropdown'><a href='#dropdown-lvl2_{0}' data-toggle='collapse' aria-expanded='false' aria-controls='collapseExample'> <span class='glyphicon glyphicon-off'></span>{1}<span class='caret'></span></a>", category.CategoryId, category.CategoryName);
-                    menu.AppendFormat("<div id='dropdown-lvl2_{0}' class='panel-collapse collapse'><div class='panel-body'><ul class='nav navbar-nav'>", category.CategoryId);
-                    foreach (Category innerCategory in subcategories)
+                    subcategories = allCategories.Where(x => x.ParentCategoryId == category.CategoryId).ToList();
+                    if (subcategories.Count() > 0)
                     {
-                        menu.AppendFormat("<li id='liTProduct_{0}'><a href='/client/products.aspx?_cid={0}' onclick='addToCookieNav();'>{1}</a></li>", innerCategory.CategoryId, innerCategory.CategoryName);
-                    }
-                    menu.Append("</ul></div></div>");
-                }
-                else
-                    menu.AppendFormat("<li class='panel panel-default' id='dropdown'><a href='/client/under-construction.aspx' ><span class='glyphicon glyphicon-off'></span>{1}</a>", category.CategoryId, category.CategoryName);
+                        //menu.AppendFormat(@"<li class='panel panel-default panel-expando' id='dropdown'><a href='#dropdown-lvl2_{0}' data-toggle='collapse' aria-expanded='false' aria-controls='collapseExample'> <span class='glyphicon glyphicon-off'></span>{1}<span class='caret'></span></a>", category.CategoryId, category.CategoryName);
+                        //menu.AppendFormat("<div id='dropdown-lvl2_{0}' class='panel-collapse collapse'><div class='panel-body'><ul class='nav navbar-nav'>", category.CategoryId);
+                        menu.AppendFormat(@"<li><a href='#dropdown-lvl2_{0}'>{1}<span class='fa arrow'></span></a>", category.CategoryId, category.CategoryName);
+                        menu.AppendFormat("<ul class='nav nav-third-level'>", category.CategoryId);
 
-                menu.AppendFormat("</li>");
+                        foreach (Category innerCategory in subcategories)
+                        {
+                            // menu.AppendFormat("<li id='liTProduct_{0}'><a href='/client/products.aspx?_cid={0}' onclick='addToCookieNav();'>{1}</a></li>", innerCategory.CategoryId, innerCategory.CategoryName);
+                            menu.AppendFormat("<li id='liTProduct_{0}'><a href='/client/products.aspx?_cid={0}' onclick='addToCookieNav();'>{1}</a></li>", innerCategory.CategoryId, innerCategory.CategoryName);
+                        }
+                        // menu.Append("</ul></div></div>");
+                        menu.Append("</ul>");
+                    }
+                    else
+                        // menu.AppendFormat("<li class='panel panel-default' id='dropdown'><a href='/client/under-construction.aspx' ><span class='glyphicon glyphicon-off'></span>{1}</a>", category.CategoryId, category.CategoryName);
+                        menu.AppendFormat("<li><a href='/client/under-construction.aspx' ><span></span>{1}</a>", category.CategoryId, category.CategoryName);
+
+                    menu.AppendFormat("</li>");
+                }
+                menu.Append("</ul>");
+                retval = menu.ToString();
             }
-            menu.Append("</ul>");
-            retval = menu.ToString();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
             return retval;
+
         }
 
         /*
