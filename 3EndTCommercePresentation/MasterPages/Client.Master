@@ -153,6 +153,7 @@
         <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
         <!--CORE JAVASCRIPT-->
         <script src="/js1/main.js"></script>
+        <script src="/js/custom.js"></script>
         <!--LOADING SCRIPTS FOR PAGE-->
         <script src="/vendors/jplist/html/js/vendor/modernizr.min.js"></script>
         <script src="/vendors/jplist/html/js/jplist.min.js"></script>

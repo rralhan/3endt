@@ -8,14 +8,12 @@
     <link href="../vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="../js1/jquery-1.10.2.min.js"></script>
     <script src="../vendors/bootstrap/js/bootstrap.min.js"></script>
-    <script>
-        resetNavigation();
-    </script>
+
     <div id="page-wrapper">
         <!--BEGIN TITLE & BREADCRUMB PAGE-->
         <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
             <div class="page-header">
-                <uc1:ShoppingCart ID="ShoppingCart1" runat="server" style="font-size:xx-large" />
+                <uc1:ShoppingCart ID="ShoppingCart1" runat="server" style="font-size: xx-large" />
             </div>
             <div class="clearfix"></div>
         </div>
@@ -34,21 +32,21 @@
                                 <ItemTemplate>
                                     <div class="col-lg-3">
                                         <div <%--class="product-margin"--%>>
-                                            <div class="img" style="line-height: 200px;height: 240px;padding:10px">
-                                                <img id="imgProduct" runat="server" class="img-dimension card-img-top" src="#" alt="" style="width: 100%;max-width: 198px;max-height: 198px;" />
+                                            <div class="img" style="line-height: 200px; height: 240px; padding: 10px">
+                                                <img id="imgProduct" runat="server" class="img-dimension card-img-top" src="#" alt="" style="width: 100%; max-width: 198px; max-height: 198px;" />
                                             </div>
                                             <hr />
-                                            <div class="product-padding" style="padding: 10px;min-height: 25px;">
+                                            <div class="product-padding" style="padding: 10px; min-height: 25px;">
                                                 <div class="product-name" style="text-align: center;">
                                                     <a href='<%#GetProductLink(Eval("Type"),Eval("Id")) %>' style="color: #337ab7">
-                                                        <asp:Label ID="lblItemTitle" runat="server" Text='<%#Eval("Title")%>' style="font-weight: bold;" /></a>
+                                                        <asp:Label ID="lblItemTitle" runat="server" Text='<%#Eval("Title")%>' Style="font-weight: bold;" /></a>
                                                 </div>
                                                 <div class="hidden_inputs">
                                                     <asp:HiddenField ID="hdnItemId" runat="server" Value='<%#Eval("Id") %>' />
                                                     <asp:HiddenField ID="hdnItemType" runat="server" Value='<%#Convert.ToInt16(Eval("Type")) %>' />
                                                 </div>
                                             </div>
-                                            <div class="price_and_button_container" style="min-height: 240px;position: relative;">
+                                            <div class="price_and_button_container" style="min-height: 240px; position: relative;">
                                                 <asp:LoginView ID="lvItemPrice" runat="server">
                                                     <LoggedInTemplate>
                                                         <div id="divProductItemPrice" runat="server">
@@ -91,7 +89,7 @@
                                                     </LoggedInTemplate>
                                                 </asp:LoginView>
                                             </div>
-                                            <div id="divFurtherCategory" runat="server" class="price_div" style="text-align:center;position: absolute;bottom: 0;width: 100%;min-height: 35px;margin-top: 15px;padding: 10px;background-color: #FFFFFF;padding-top: 0px;">
+                                            <div id="divFurtherCategory" runat="server" class="price_div" style="text-align: center; position: absolute; bottom: 0; width: 100%; min-height: 35px; margin-top: 15px; padding: 10px; background-color: #FFFFFF; padding-top: 0px;">
                                                 <a id="lnkCategory" class="btn btn-yellow" href='<%#GetProductLink(Eval("Type"),Eval("Id")) %>'>Select Product</a>
                                             </div>
                                         </div>
@@ -104,4 +102,9 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(function () {
+            resetNavigation();
+        });
+    </script>
 </asp:Content>
