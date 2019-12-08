@@ -50,12 +50,13 @@
     background: transparent;
     color: #488c6c;
   }
-  #topbar .navbar-header .navbar-toggle .icon-bar {
-    background: #ffffff;
-    width: 30px;
-    height: 5px;
-    border-radius: 0;
-  }
+    #topbar .navbar-header .navbar-toggle .icon-bar {
+        /*background: #ffffff;*/
+        background: #2a3b4c;
+        width: 30px;
+        height: 5px;
+        border-radius: 0;
+    }
   #topbar .navbar-top-links {
     margin-left: 15px;
     margin-right: 15px;

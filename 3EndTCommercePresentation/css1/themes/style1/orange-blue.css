@@ -149,7 +149,7 @@ hr {
 #topbar .navbar-header {
   width: 250px;
   height: 100%;
-  background: #2f4355;
+  background: white;
   text-align: center;
 }
 #topbar .navbar-header #logo {
@@ -175,7 +175,7 @@ hr {
 }
 #topbar .topbar-main #menu-toggle {
   float: left;
-  padding: 15px 20px;
+  padding: 15px 50px;
   background-color: transparent;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -1159,7 +1159,7 @@ hr {
   margin-top: 3px;
 }
 .fa.arrow:before {
-  content: "\f104";
+  content: "\f105";
 }
 .active > a > .fa.arrow:before {
   content: "\f107";
@@ -1311,13 +1311,14 @@ hr {
   font-size: 12px;
   text-align: right;
 }
-#footer.fixed {
-  border-top: 1px solid #f3f3f3;
-  background: #fff;
-  position: fixed;
-  color: #999;
-  bottom: 0px;
-}
+    #footer.fixed {
+        width: 100%;
+        border-top: 1px solid #f3f3f3;
+        background: #fff;
+        position: fixed;
+        color: #999;
+        bottom: 0px;
+    }
 /*panel stat*/
 #sum_box .db {
   -webkit-transition: all 0.3s ease 0s;

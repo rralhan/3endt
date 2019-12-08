@@ -14,7 +14,7 @@
                 <div class="page-title"></div>
             </div>
             <div class="page-header pull-right">
-                <asp:LoginStatus CssClass="btn btn-primary" ID="MainLoginStatus" LogoutAction="Refresh" runat="server" LoginText="&nbsp;Login&nbsp;" LogoutText="&nbsp;Logout&nbsp;" />
+                <asp:LoginStatus CssClass="btn btn-yellow" ID="MainLoginStatus" LogoutAction="Refresh" runat="server" LoginText="&nbsp;Login&nbsp;" LogoutText="&nbsp;Logout&nbsp;" />
             </div>
             <div class="clearfix"></div>
         </div>

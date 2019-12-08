@@ -26,7 +26,7 @@
     <link type="text/css" rel="stylesheet" href="/vendors/jplist/html/css/jplist-custom.css" />
     <!--Loading style vendors-->
     <link type="text/css" rel="stylesheet" href="/vendors/animate.css/animate.css" />
-    <link type="text/css" rel="stylesheet" href="/vendors/jquery-pace/pace.css" />
+    <%--<link type="text/css" rel="stylesheet" href="/vendors/jquery-pace/pace.css" />--%>
     <link type="text/css" rel="stylesheet" href="/vendors/iCheck/skins/all.css" />
     <link type="text/css" rel="stylesheet" href="/vendors/jquery-notific8/jquery.notific8.min.css" />
     <link type="text/css" rel="stylesheet" href="/vendors/bootstrap-daterangepicker/daterangepicker-bs3.css" />
@@ -115,15 +115,21 @@
                 </nav>
                 <!--END SIDEBAR MENU-->
                 <!--BEGIN PAGE WRAPPER-->
+
                 <asp:ContentPlaceHolder ID="CoreContentHolder" runat="server">
                 </asp:ContentPlaceHolder>
+
                 <!--BEGIN FOOTER-->
-                <div id="footer">
+
+                <div id="footer" >
                     <center>
-                    <h4>High Quality NDT Equipment</h4>
-                    <div class="copyright">Copyright 2017 | 3endt. All rights reserved.</div>
-                        </center>
+                    <div class="copyright">
+                        <h4>High Quality NDT Equipment</h4>
+                        Copyright 2017 | 3endt. All rights reserved.
+                    </div>
+                     </center>
                 </div>
+
                 <!--END FOOTER-->
                 <!--END PAGE WRAPPER-->
             </div>
@@ -158,6 +164,24 @@
         <script src="/vendors/jplist/html/js/vendor/modernizr.min.js"></script>
         <script src="/vendors/jplist/html/js/jplist.min.js"></script>
         <script src="/js1/jplist.js"></script>
+        <script>
+
+            //jQuery.noConflict();
+            //jQuery(document).ready(function ($) {
+
+            //    $('footer').each(function () {
+            //        $(this).removeAttr('width')
+            //        $(this).removeAttr('height');
+            //    });
+
+            //});
+
+
+
+            $(window).load(function () {
+                document.getElementById("footer").style.removeProperty("width");
+            });
+        </script>
 
     </form>
 </body>

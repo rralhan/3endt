@@ -159,7 +159,7 @@
     </div>
     <input type="hidden" id="hdnShoppingCart" runat="server" data-name="hdnShoppingCart" />
 
-    <asp:LoginStatus ID="MainLoginStatus" LogoutAction="Redirect" LogoutPageUrl="/Default.aspx" runat="server" LoginText="Login" LogoutText="Logout" OnLoggedOut="MainLoginStatus_LoggedOut" CssClass="btn btn-primary" />
+    <asp:LoginStatus ID="MainLoginStatus" LogoutAction="Redirect" LogoutPageUrl="/Default.aspx" runat="server" LoginText="Login" LogoutText="Logout" OnLoggedOut="MainLoginStatus_LoggedOut" CssClass="btn btn-yellow" />
 
     <div id="divDisplayCart" runat="server" data-name="divDisplayCart" style="width: 50%; text-align: right; float: right; display: none;">
         <%--<asp:LinkButton ID="lnkDisplayCart" runat="server" OnClick="lnkDisplayCart_Click"></asp:LinkButton>--%>

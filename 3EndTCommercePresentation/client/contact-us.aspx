@@ -161,7 +161,7 @@
                                 </div>
 
                                 <div class="send_btn">
-                                    <asp:Button ID="btnSend" runat="server" Text="Send" CssClass="btn btn-success" OnClick="btnSend_Click" ValidationGroup="valContactUs" />
+                                    <asp:Button ID="btnSend" runat="server" Text="Send" CssClass="btn btn-yellow" OnClick="btnSend_Click" ValidationGroup="valContactUs" />
                                 </div>
                                 <%--<button type="submit" class="btn btn-success">Submit</button>--%>
                                 <%--</form>--%>
